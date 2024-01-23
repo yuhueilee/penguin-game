@@ -51,5 +51,5 @@ export const IsFinished = (cells) => {
 export const IsDraw = (playersScores) => {
   const maxScore = Math.max(playersScores);
 
-  return playersScores.filter(score => score === maxScore).length > 0;
+  return playersScores.filter(score => score !== maxScore).length > 0;
 }
