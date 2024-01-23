@@ -46,12 +46,12 @@ export function PenguinFiveBoard({ ctx, G, moves }) {
         <td key={id}>
           {G.cells[id] !== null ? (
             <div style={cellStyle}>
-              <h5 style={textStyle}>point: {G.cellsPoints[id]}</h5>
+              <h5 style={textStyle}>fishes: {G.fishes[id]}</h5>
               <h5 style={textStyle}>playerID: {G.cells[id]}</h5>
             </div>
           ) : (
             <div style={cellStyle}>
-              <h5 style={textStyle}>point: {G.cellsPoints[id]}</h5>
+              <h5 style={textStyle}>fishes: {G.fishes[id]}</h5>
               <button style={buttonStyle} onClick={() => onClick(id)}>select</button>
             </div>
           )}

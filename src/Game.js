@@ -5,7 +5,7 @@ import { INVALID_MOVE } from 'boardgame.io/core';
 export const PenguinFive = {
   setup: ({ ctx }) => ({
     cells: Array(9).fill(null),
-    cellsPoints: RandomIntArray(1, 3, 9),
+    fishes: RandomIntArray(1, 3, 9),
     scores: Array(ctx.numPlayers).fill(0),
   }),
 
@@ -21,7 +21,7 @@ export const PenguinFive = {
         return INVALID_MOVE;
       }
       G.cells[id] = parseInt(playerID)
-      G.scores[playerID] += G.cellsPoints[id]
+      G.scores[playerID] += G.fishes[id]
     }
   },
 
