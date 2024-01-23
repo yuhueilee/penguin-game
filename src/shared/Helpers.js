@@ -44,7 +44,7 @@ export const Winner = (playersScores) => {
 
 // IsFinished determines if the game is over by checking all the cell contains non-null value.
 export const IsFinished = (cells) => {
-  return cells.filter(cell => cell !== null).length === 0;
+  return cells.filter(cell => cell === null).length === 0;
 }
 
 // IsDraw determines if the finished game is draw by checking if more than one player scores the highest.
