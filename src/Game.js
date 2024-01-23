@@ -19,7 +19,7 @@ export const PenguinFive = {
       if (G.cells[id] !== null) {
         return INVALID_MOVE;
       }
-      G.cells[id] = playerID
+      G.cells[id] = parseInt(playerID)
     }
   },
 
