@@ -37,7 +37,7 @@ export const PlayersScores = (cells, cellsPoints, numPlayers) => {
 
 // Winner returns the player ID with the highest score among all players.
 export const Winner = (playersScores) => {
-  const maxScore = Math.max(playersScores);
+  const maxScore = Math.max(...playersScores);
 
   return playersScores.indexOf(maxScore)
 }
@@ -49,7 +49,7 @@ export const IsFinished = (cells) => {
 
 // IsDraw determines if the finished game is draw by checking if more than one player scores the highest.
 export const IsDraw = (playersScores) => {
-  const maxScore = Math.max(playersScores);
+  const maxScore = Math.max(...playersScores);
 
-  return playersScores.filter(score => score !== maxScore).length > 0;
+  return playersScores.filter(score => score === maxScore).length > 1;
 }

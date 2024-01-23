@@ -1,11 +1,12 @@
-import { RandomIntArray, IsFinished, PlayersScores, IsDraw, Winner } from "./shared/Helpers";
+import { RandomIntArray, IsFinished, IsDraw, Winner } from "./shared/Helpers";
 import { INVALID_MOVE } from 'boardgame.io/core';
 
 // PenguinFive defines the game state.
 export const PenguinFive = {
-  setup: () => ({
+  setup: ({ ctx }) => ({
     cells: Array(9).fill(null),
-    cellsPoints: RandomIntArray(1, 3, 9)
+    cellsPoints: RandomIntArray(1, 3, 9),
+    scores: Array(ctx.numPlayers).fill(0),
   }),
 
   turn: {
@@ -20,17 +21,16 @@ export const PenguinFive = {
         return INVALID_MOVE;
       }
       G.cells[id] = parseInt(playerID)
+      G.scores[playerID] += G.cellsPoints[id]
     }
   },
 
   endIf: ({ G, ctx }) => {
     if (IsFinished(G.cells)) {
-      const playersScores = PlayersScores(G.cells, G.cellsPoints, ctx.numPlayers)
-
-      if (IsDraw(playersScores)) {
+      if (IsDraw(G.scores)) {
         return { draw: true };
       } else {
-        return { winner: Winner(playersScores) };
+        return { winner: Winner(G.scores) };
       }
     }
   },
