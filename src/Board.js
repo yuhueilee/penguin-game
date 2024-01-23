@@ -14,12 +14,28 @@ export function PenguinFiveBoard({ ctx, G, moves }) {
   }
 
   const cellStyle = {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
     border: '1px solid #555',
-    width: '50px',
-    height: '50px',
-    lineHeight: '50px',
+    width: '100px',
+    height: '100px',
+    padding: '16px',
+    lineHeight: '10px',
     textAlign: 'center',
   };
+
+  const buttonStyle = {
+    backgroundColor: 'black',
+    color: 'white',
+    fontFamily: 'sans-serif',
+  };
+
+  const textStyle = {
+    margin: '8px',
+    fontWeight: '500',
+    fontFamily: 'sans-serif',
+  }
 
   let tbody = [];
   for (let i = 0; i < 3; i++) {
@@ -29,9 +45,15 @@ export function PenguinFiveBoard({ ctx, G, moves }) {
       cells.push(
         <td key={id}>
           {G.cells[id] !== null ? (
-            <div style={cellStyle}>{G.cells[id]}</div>
+            <div style={cellStyle}>
+              <h5 style={textStyle}>point: {G.cellsPoints[id]}</h5>
+              <h5 style={textStyle}>playerID: {G.cells[id]}</h5>
+            </div>
           ) : (
-            <button style={cellStyle} onClick={() => onClick(id)} />
+            <div style={cellStyle}>
+              <h5 style={textStyle}>point: {G.cellsPoints[id]}</h5>
+              <button style={buttonStyle} onClick={() => onClick(id)}>select</button>
+            </div>
           )}
         </td>
       );
