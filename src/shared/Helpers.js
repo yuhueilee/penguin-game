@@ -8,3 +8,15 @@ export const RandomInt = (min, max) => {
 
   return randomNum;
 };
+
+export const RandomIntArray = (min, max, length) => {
+  const randomIntArray = [];
+
+  for (let i = 0; i < length; i++) {
+    const randomNum = RandomInt(min, max);
+
+    randomIntArray.push(randomNum);
+  }
+
+  return randomIntArray;
+}

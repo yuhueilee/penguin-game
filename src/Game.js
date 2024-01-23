@@ -1,16 +1,14 @@
-import { RandomInt } from "./shared/Helpers"
+import { RandomIntArray } from "./shared/Helpers"
 
 export const PenguinFive = {
   setup: () => ({
-    cells: Array(9).fill({
-      point: RandomInt(1, 3),
-      playerID: null
-    })
+    cells: Array(9).fill(null),
+    cellsPoints: RandomIntArray(1, 3, 9)
   }),
 
   moves: {
     clickCell: ({ G, playerID }, id) => {
-      G.cells[id].playerID = playerID
+      G.cells[id] = playerID
     }
   },
 }
