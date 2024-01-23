@@ -25,7 +25,7 @@ export const PenguinFive = {
     }
   },
 
-  endIf: ({ G, ctx }) => {
+  endIf: ({ G }) => {
     if (IsFinished(G.cells)) {
       if (IsDraw(G.scores)) {
         return { draw: true };
