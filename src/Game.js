@@ -1,4 +1,5 @@
-import { RandomIntArray } from "./shared/Helpers"
+import { RandomIntArray } from "./shared/Helpers";
+import { INVALID_MOVE } from 'boardgame.io/core';
 
 export const PenguinFive = {
   setup: () => ({
@@ -8,6 +9,10 @@ export const PenguinFive = {
 
   moves: {
     clickCell: ({ G, playerID }, id) => {
+      // Player cannot move to a cell that has been selected.
+      if (G.cells[id] !== null) {
+        return INVALID_MOVE;
+      }
       G.cells[id] = playerID
     }
   },
