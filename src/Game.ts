@@ -1,8 +1,15 @@
-import { RandomIntArray, IsFinished, IsDraw, Winner, IsColonised } from "./shared/Helpers";
+import type { Game } from "boardgame.io";
+import {
+    RandomIntArray,
+    IsFinished,
+    IsDraw,
+    Winner,
+    IsColonised,
+} from "./shared/Helpers";
 import { INVALID_MOVE } from "boardgame.io/core";
 
 // PenguinFive defines the game state.
-export const PenguinFive = {
+export const PenguinFive: Game = {
     setup: ({ ctx }) => ({
         cells: Array(9).fill(null),
         fishes: RandomIntArray(1, 3, 9),
@@ -31,9 +38,9 @@ export const PenguinFive = {
             },
             start: true,
             endIf: ({ G, ctx }) => {
-                return IsColonised(G.cells, ctx.numPlayers, 4) // TODO: confugure the availability dynamically
+                return IsColonised(G.cells, ctx.numPlayers, 4); // TODO: confugure the availability dynamically
             },
-            next: 'hunting',
+            next: "hunting",
         },
         hunting: {
             moves: {
