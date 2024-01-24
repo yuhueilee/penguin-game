@@ -1,5 +1,5 @@
 import React from 'react';
-import './styles/Board.css';
+import './styles/Board.scss';
 
 export function PenguinFiveBoard({ ctx, G, moves }) {
   const onClick = (id) => moves.clickCell(id);
