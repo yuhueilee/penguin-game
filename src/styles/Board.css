@@ -1,0 +1,23 @@
+.cellStyle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: 1px solid #555;
+    width: 100px;
+    height: 100px;
+    padding: 16px;
+    line-height: 10px;
+    text-align: center;
+}
+
+.buttonStyle {
+    background-color: black;
+    color: white;
+    font-family: sans-serif;
+}
+
+.textStyle {
+    margin: 8px;
+    font-weight: 500;
+    font-family: sans-serif;
+}
