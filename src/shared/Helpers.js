@@ -1,41 +1,41 @@
 export const RandomInt = (min, max) => {
-  // Ensure that min and max are integers
-  min = Math.ceil(min);
-  max = Math.floor(max);
+    // Ensure that min and max are integers
+    min = Math.ceil(min);
+    max = Math.floor(max);
 
-  // Generate a random number between min and max (inclusive)
-  const randomNum = Math.floor(Math.random() * (max - min + 1)) + min;
+    // Generate a random number between min and max (inclusive)
+    const randomNum = Math.floor(Math.random() * (max - min + 1)) + min;
 
-  return randomNum;
+    return randomNum;
 };
 
 export const RandomIntArray = (min, max, length) => {
-  const randomIntArray = [];
+    const randomIntArray = [];
 
-  for (let i = 0; i < length; i++) {
-    const randomNum = RandomInt(min, max);
+    for (let i = 0; i < length; i++) {
+        const randomNum = RandomInt(min, max);
 
-    randomIntArray.push(randomNum);
-  }
+        randomIntArray.push(randomNum);
+    }
 
-  return randomIntArray;
-}
+    return randomIntArray;
+};
 
 // Winner returns the player ID with the highest score among all players.
 export const Winner = (playersScores) => {
-  const maxScore = Math.max(...playersScores);
+    const maxScore = Math.max(...playersScores);
 
-  return playersScores.indexOf(maxScore)
-}
+    return playersScores.indexOf(maxScore);
+};
 
 // IsFinished determines if the game is over by checking all the cell contains non-null value.
 export const IsFinished = (cells) => {
-  return cells.filter(cell => cell === null).length === 0;
-}
+    return cells.filter((cell) => cell === null).length === 0;
+};
 
 // IsDraw determines if the finished game is draw by checking if more than one player scores the highest.
 export const IsDraw = (playersScores) => {
-  const maxScore = Math.max(...playersScores);
+    const maxScore = Math.max(...playersScores);
 
-  return playersScores.filter(score => score === maxScore).length > 1;
-}
+    return playersScores.filter((score) => score === maxScore).length > 1;
+};
