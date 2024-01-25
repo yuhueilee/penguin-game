@@ -1,12 +1,7 @@
 import type { Game } from "boardgame.io";
-import {
-    RandomIntArray,
-    IsFinished,
-    IsDraw,
-    Winner,
-    IsColonised,
-} from "./shared/Helpers";
-import { INVALID_MOVE } from "boardgame.io/core";
+import { INVALID_MOVE } from 'boardgame.io/core';
+
+import { IsColonised, IsDraw, IsFinished, RandomIntArray, Winner } from './shared/Helpers';
 
 // PenguinFive defines the game state.
 export const PenguinFive: Game = {
