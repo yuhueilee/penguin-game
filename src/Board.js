@@ -28,7 +28,7 @@ export function PenguinFiveBoard({ ctx, G, moves }) {
                 j -
                 Math.floor(i / (maxIceBurgsPerRow - 1));
             cells.push(
-                <td key={id}>
+                <div key={id}>
                     {G.cells[id] !== null ? (
                         <div className="cellStyle">
                             <h5 className="textStyle">
@@ -51,17 +51,21 @@ export function PenguinFiveBoard({ ctx, G, moves }) {
                             </button>
                         </div>
                     )}
-                </td>
+                </div>
             );
         }
-        tbody.push(<tr key={i}>{cells}</tr>);
+        tbody.push(
+            <div key={i} className="row">
+                {cells}
+            </div>
+        );
     }
 
     return (
         <div>
-            <table id="board">
-                <tbody className="container">{tbody}</tbody>
-            </table>
+            <div id="board" className="table">
+                {tbody}
+            </div>
             {winner}
         </div>
     );
