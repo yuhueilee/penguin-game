@@ -52,7 +52,7 @@ export function PenguinFiveBoard({ ctx, G, moves }) {
     return (
         <div>
             <table id="board">
-                <tbody>{tbody}</tbody>
+                <tbody className="container">{tbody}</tbody>
             </table>
             {winner}
         </div>
