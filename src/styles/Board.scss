@@ -8,6 +8,9 @@
     padding: 16px;
     line-height: 10px;
     text-align: center;
+    /* transform to a symmetric pentagon */
+    background: #4169e1;
+    clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
 }
 
 .buttonStyle {
