@@ -1,4 +1,4 @@
-$gridGap: 10px;
+$gridGap: 15px;
 $hexagonWidth: 100px;
 
 .table {
@@ -14,24 +14,14 @@ $hexagonWidth: 100px;
     }
 }
 
-.container {
-    display: grid;
-    grid-template-columns: repeat(
-        auto-fill,
-        calc($hexagonWidth + $gridGap * 2)
-    ); /* set the width of each hexagon and adjust as needed */
-    grid-gap: $gridGap; /* adjust the gap between hexagons as needed */
-    justify-content: center;
-}
-
 .cellStyle {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    border: 1px solid #555;
     width: $hexagonWidth;
     height: calc((sqrt(3) / 2) * $hexagonWidth);
     padding: 16px;
+    margin: 0 $gridGap;
     line-height: 10px;
     text-align: center;
     /* transform to a symmetric hexagon */
