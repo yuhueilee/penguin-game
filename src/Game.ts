@@ -1,13 +1,14 @@
 import type { Game } from "boardgame.io";
 import { INVALID_MOVE } from 'boardgame.io/core';
 
+import { numIceBurgs } from './shared/Consts';
 import { IsColonised, IsDraw, IsFinished, RandomIntArray, Winner } from './shared/Helpers';
 
 // PenguinFive defines the game state.
 export const PenguinFive: Game = {
     setup: ({ ctx }) => ({
-        cells: Array(9).fill(null),
-        fishes: RandomIntArray(1, 3, 9),
+        cells: Array(numIceBurgs).fill(null),
+        fishes: RandomIntArray(1, 3, numIceBurgs),
         scores: Array(ctx.numPlayers).fill(0),
     }),
 

@@ -1,6 +1,8 @@
 import React from "react";
 import "./styles/Board.scss";
 
+import { numIceBurgs, maxIceBurgsPerRow } from "./shared/Consts";
+
 export function PenguinFiveBoard({ ctx, G, moves }) {
     const onClick = (id) => moves.clickCell(id);
 
@@ -14,11 +16,17 @@ export function PenguinFiveBoard({ ctx, G, moves }) {
             );
     }
 
+    const numRows = Math.ceil(numIceBurgs / maxIceBurgsPerRow);
     let tbody = [];
-    for (let i = 0; i < 3; i++) {
+    for (let i = 0; i < numRows; i++) {
         let cells = [];
-        for (let j = 0; j < 3; j++) {
-            const id = 3 * i + j;
+        const numColumns =
+            Math.abs(i) % 2 === 0 ? maxIceBurgsPerRow : maxIceBurgsPerRow - 1;
+        for (let j = 0; j < numColumns; j++) {
+            const id =
+                maxIceBurgsPerRow * i +
+                j -
+                Math.floor(i / (maxIceBurgsPerRow - 1));
             cells.push(
                 <td key={id}>
                     {G.cells[id] !== null ? (
