@@ -29,13 +29,13 @@ $hexagonWidth: 100px;
     clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
 }
 
-.buttonStyle {
-    background-color: black;
-    color: white;
+@mixin buttonStyle($primaryColor: black, $secondaryColor: white) {
+    background-color: $primaryColor;
+    color: $secondaryColor;
     font-family: sans-serif;
     &:hover {
-        background-color: white;
-        color: black;
+        background-color: $secondaryColor;
+        color: $primaryColor;
         cursor: pointer;
     }
     &:disabled {
@@ -43,6 +43,10 @@ $hexagonWidth: 100px;
         color: #666666;
         cursor: not-allowed;
     }
+}
+
+.buttonStyle {
+    @include buttonStyle;
 }
 
 .textStyle {
