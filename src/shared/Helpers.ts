@@ -1,5 +1,3 @@
-import { maxIceBurgsPerRow } from "./Consts";
-
 export const RandomInt = (min: number, max: number) => {
     // Ensure that min and max are integers
     min = Math.ceil(min);
@@ -73,7 +71,8 @@ export const IsLinked = (
     cellX: number,
     cellY: number,
     locX: number,
-    locY: number
+    locY: number,
+    maxIceBurgsPerRow: number
 ): boolean => {
     const cellID =
         maxIceBurgsPerRow * cellX +
