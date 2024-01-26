@@ -17,6 +17,7 @@ export const PenguinFive: Game = {
         fishes: RandomIntArray(1, 3, numIceBurgs),
         scores: Array(ctx.numPlayers).fill(0),
         location: null,
+        locations: Array(ctx.numPlayers).fill(Array(2).fill(null)), // TODO: configure the availability per player dynamically
     }),
 
     turn: {
@@ -41,7 +42,7 @@ export const PenguinFive: Game = {
             },
             start: true,
             endIf: ({ G, ctx }) => {
-                return IsColonised(G.cells, ctx.numPlayers, 4); // TODO: confugure the availability dynamically
+                return IsColonised(G.cells, ctx.numPlayers, 4); // TODO: confugure the availability for total players dynamically
             },
             next: "hunting",
         },
