@@ -4,7 +4,8 @@ import "./styles/Board.scss";
 import { numIceBurgs, maxIceBurgsPerRow } from "./shared/Consts";
 
 export function PenguinFiveBoard({ ctx, G, moves }) {
-    const onClick = (id) => moves.clickCell(id);
+    const colonise = (id) => moves.clickCell(id);
+    const locate = (id) => moves.locateCell(id);
 
     let winner = "";
     if (ctx.gameover) {
@@ -29,28 +30,27 @@ export function PenguinFiveBoard({ ctx, G, moves }) {
                 Math.floor(i / (maxIceBurgsPerRow - 1));
             cells.push(
                 <div key={id}>
-                    {G.cells[id] !== null ? (
-                        <div className="cellStyle">
-                            <h5 className="textStyle">
-                                fishes: {G.fishes[id]}
-                            </h5>
-                            <h5 className="textStyle">
-                                playerID: {G.cells[id]}
-                            </h5>
-                        </div>
-                    ) : (
-                        <div className="cellStyle">
-                            <h5 className="textStyle">
-                                fishes: {G.fishes[id]}
-                            </h5>
-                            <button
-                                className="buttonStyle"
-                                onClick={() => onClick(id)}
-                            >
-                                select
-                            </button>
-                        </div>
-                    )}
+                    <div className="cellStyle">
+                        <h5 className="textStyle">fishes: {G.fishes[id]}</h5>
+                        <h5 className="textStyle">playerID: {G.cells[id]}</h5>
+                        <button
+                            className="buttonStyle"
+                            onClick={() => colonise(id)}
+                            disabled={G.cells[id] !== null}
+                        >
+                            colonise
+                        </button>
+                        <button
+                            className="buttonStyle"
+                            onClick={() => locate(id)}
+                            disabled={
+                                G.cells[id] === null ||
+                                G.cells[id] !== parseInt(ctx.currentPlayer)
+                            }
+                        >
+                            locate
+                        </button>
+                    </div>
                 </div>
             );
         }

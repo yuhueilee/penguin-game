@@ -33,6 +33,16 @@ $hexagonWidth: 100px;
     background-color: black;
     color: white;
     font-family: sans-serif;
+    &:hover {
+        background-color: white;
+        color: black;
+        cursor: pointer;
+    }
+    &:disabled {
+        background-color: #cccccc;
+        color: #666666;
+        cursor: not-allowed;
+    }
 }
 
 .textStyle {

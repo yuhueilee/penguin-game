@@ -1,8 +1,14 @@
 import type { Game } from "boardgame.io";
-import { INVALID_MOVE } from 'boardgame.io/core';
+import { INVALID_MOVE } from "boardgame.io/core";
 
-import { numIceBurgs } from './shared/Consts';
-import { IsColonised, IsDraw, IsFinished, RandomIntArray, Winner } from './shared/Helpers';
+import { numIceBurgs } from "./shared/Consts";
+import {
+    IsColonised,
+    IsDraw,
+    IsFinished,
+    RandomIntArray,
+    Winner,
+} from "./shared/Helpers";
 
 // PenguinFive defines the game state.
 export const PenguinFive: Game = {
@@ -10,6 +16,7 @@ export const PenguinFive: Game = {
         cells: Array(numIceBurgs).fill(null),
         fishes: RandomIntArray(1, 3, numIceBurgs),
         scores: Array(ctx.numPlayers).fill(0),
+        location: null,
     }),
 
     turn: {
@@ -40,13 +47,43 @@ export const PenguinFive: Game = {
         },
         hunting: {
             moves: {
-                clickCell: ({ G, playerID }, id) => {
-                    // Player cannot move to a cell that has been selected.
-                    if (G.cells[id] !== null) {
+                locateCell: ({ G, playerID, events }, id) => {
+                    // Player cannot locate at a cell where they have not colonised.
+                    if (
+                        G.cells[id] !== parseInt(playerID) ||
+                        G.location !== null
+                    ) {
                         return INVALID_MOVE;
                     }
-                    G.cells[id] = parseInt(playerID);
-                    G.scores[playerID] += G.fishes[id];
+                    G.location = id; // record the located cell by the current player
+                    events.setActivePlayers({
+                        currentPlayer: "occupy",
+                        minMoves: 1,
+                        maxMoves: 1,
+                    });
+                },
+            },
+            turn: {
+                minMoves: 2,
+                maxMoves: 2,
+                stages: {
+                    occupy: {
+                        moves: {
+                            clickCell: ({ G, playerID, events }, id) => {
+                                // Player cannot move to a cell that has been selected.
+                                if (
+                                    G.cells[id] !== null ||
+                                    G.location === null
+                                ) {
+                                    return INVALID_MOVE;
+                                }
+                                G.cells[id] = parseInt(playerID);
+                                G.scores[playerID] += G.fishes[id];
+                                G.location = null; // reset the located cell after occupying
+                                events.endTurn();
+                            },
+                        },
+                    },
                 },
             },
         },
