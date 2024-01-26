@@ -36,7 +36,10 @@ export function PenguinFiveBoard({ ctx, G, moves }) {
                         <button
                             className="coloniseBtn"
                             onClick={() => colonise(id)}
-                            disabled={G.cells[id] !== null}
+                            disabled={
+                                G.cells[id] !== null ||
+                                (ctx.phase === "hunting" && G.location === null)
+                            }
                         >
                             colonise
                         </button>
