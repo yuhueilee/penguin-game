@@ -47,6 +47,11 @@ export function PenguinFiveBoard({ ctx, G, moves }) {
                             className="locateBtn"
                             onClick={() => locate(id)}
                             disabled={
+                                !isLabourLocated(
+                                    parseInt(ctx.currentPlayer),
+                                    id,
+                                    G.locations
+                                ) ||
                                 ctx.phase !== "hunting" ||
                                 G.cells[id] === null ||
                                 G.cells[id] !== parseInt(ctx.currentPlayer) ||
@@ -82,4 +87,16 @@ const cellStyle = (playerID) => {
     }
 
     return "colonisedCell";
+};
+
+/**
+ * Determines whether the cell ID matches with one of the player's labours' location.
+ *
+ * @param {number} playerID player ID
+ * @param {number} cellID cell ID
+ * @param {Array<number>} locations location of the player's labours
+ * @returns a boolean indicating if the cell ID matches with one of the labours' location
+ */
+const isLabourLocated = (playerID, cellID, locations) => {
+    return locations[playerID].indexOf(cellID) !== -1;
 };
