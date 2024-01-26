@@ -78,7 +78,7 @@ export const PenguinFive: Game = {
                                     return INVALID_MOVE;
                                 }
                                 G.cells[id] = parseInt(playerID);
-                                G.scores[playerID] += G.fishes[id];
+                                G.scores[playerID] += G.fishes[G.location];
                                 G.location = null; // reset the located cell after occupying
                                 events.endTurn();
                             },
