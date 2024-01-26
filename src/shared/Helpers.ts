@@ -1,3 +1,5 @@
+import { maxIceBurgsPerRow } from "./Consts";
+
 export const RandomInt = (min: number, max: number) => {
     // Ensure that min and max are integers
     min = Math.ceil(min);
@@ -60,4 +62,35 @@ export const IsColonised = (
     );
 
     return totalColonies === availability;
+};
+
+/**
+ * Determines if the cell is linked to the labour's location.
+ *
+ * @returns a boolean indicating if the cell ID is linked to the labour's location
+ */
+export const IsLinked = (
+    cellX: number,
+    cellY: number,
+    locX: number,
+    locY: number
+): boolean => {
+    const cellID =
+        maxIceBurgsPerRow * cellX +
+        cellY -
+        Math.floor(cellX / (maxIceBurgsPerRow - 1));
+    const locID =
+        maxIceBurgsPerRow * locX +
+        locY -
+        Math.floor(locX / (maxIceBurgsPerRow - 1));
+    const absDiff = Math.abs(cellID - locID);
+    const isAtTheSameRow = cellX === locX;
+    const isMultiplerOfTwo =
+        absDiff % 2 === 0 &&
+        ((locX > cellX && locY < cellY) || (locX < cellX && locY >= cellY));
+    const isMultiplerOfThree =
+        absDiff % 3 === 0 &&
+        ((locX > cellX && locY >= cellY) || (locX < cellX && locY < cellY));
+
+    return isAtTheSameRow || isMultiplerOfTwo || isMultiplerOfThree;
 };
