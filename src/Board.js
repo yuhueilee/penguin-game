@@ -44,6 +44,7 @@ export function PenguinFiveBoard({ ctx, G, moves }) {
                             className="buttonStyle"
                             onClick={() => locate(id)}
                             disabled={
+                                ctx.phase !== "hunting" ||
                                 G.cells[id] === null ||
                                 G.cells[id] !== parseInt(ctx.currentPlayer)
                             }
