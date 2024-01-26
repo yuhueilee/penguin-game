@@ -41,14 +41,23 @@ export const IsDraw = (playersScores: Array<number>) => {
 };
 
 // IsColonised determines if each player has colonised N cells where N is the availability value.
-export const IsColonised = (cells: Array<any>, numPlayers: number, availability: number) => {
+export const IsColonised = (
+    cells: Array<any>,
+    numPlayers: number,
+    availability: number
+) => {
     const playersColonies: Array<number> = Array(numPlayers).fill(0);
 
-    cells.filter(playerID => playerID !== null).map(playerID => {
-        return playersColonies[playerID] += 1;
-    })
+    cells
+        .filter((playerID) => playerID !== null)
+        .map((playerID) => {
+            return (playersColonies[playerID] += 1);
+        });
 
-    const totalColonies: number = playersColonies.reduce((accu, curr) => accu + curr, 0);
+    const totalColonies: number = playersColonies.reduce(
+        (accu, curr) => accu + curr,
+        0
+    );
 
-    return totalColonies === availability
-}
+    return totalColonies === availability;
+};
