@@ -28,12 +28,20 @@ export const PenguinFive: Game = {
     phases: {
         colonise: {
             moves: {
-                clickCell: ({ G, playerID }, id) => {
+                clickCell: ({ G, ctx, playerID }, id) => {
                     // Player cannot move to a cell that has been selected.
                     if (G.cells[id] !== null) {
                         return INVALID_MOVE;
                     }
-                    G.cells[id] = parseInt(playerID);
+                    const intPlayerID = parseInt(playerID);
+                    const moveOrder =
+                        ctx.numMoves === undefined ? 0 : ctx.numMoves;
+
+                    // Update the selected cell's occupation status.
+                    G.cells[id] = intPlayerID;
+
+                    // Store the current location for each player's labour.
+                    G.locations[intPlayerID][moveOrder] = id;
                 },
             },
             turn: {
@@ -56,7 +64,11 @@ export const PenguinFive: Game = {
                     ) {
                         return INVALID_MOVE;
                     }
-                    G.location = id; // record the located cell by the current player
+
+                    // Record the current location selected by the player.
+                    G.location = id;
+
+                    // Make the current player to occupy cell after selecting their labour's location.
                     events.setActivePlayers({
                         currentPlayer: "occupy",
                         minMoves: 1,
@@ -78,9 +90,23 @@ export const PenguinFive: Game = {
                                 ) {
                                     return INVALID_MOVE;
                                 }
-                                G.cells[id] = parseInt(playerID);
+                                const intPlayerID = parseInt(playerID);
+
+                                // Update the selected cell's occupation status.
+                                G.cells[id] = intPlayerID;
+
+                                // Update the scores for the player based on the location their labour comes from.
                                 G.scores[playerID] += G.fishes[G.location];
-                                G.location = null; // reset the located cell after occupying
+
+                                // Update the location for each of the players' labours.
+                                const index = G.locations[intPlayerID].indexOf(
+                                    G.location
+                                );
+                                G.locations[intPlayerID][index] = id;
+
+                                // Reset the current location before ending a turn.
+                                G.location = null;
+
                                 events.endTurn();
                             },
                         },
