@@ -24,10 +24,7 @@ export function PenguinFiveBoard({ ctx, G, moves }) {
         const numColumns =
             Math.abs(i) % 2 === 0 ? maxIceBurgsPerRow : maxIceBurgsPerRow - 1;
         for (let j = 0; j < numColumns; j++) {
-            const id =
-                maxIceBurgsPerRow * i +
-                j -
-                Math.floor(i / (maxIceBurgsPerRow - 1));
+            const id = maxIceBurgsPerRow * i + j - Math.floor(i / 2);
             cells.push(
                 <div key={id}>
                     <div className={cellStyle(G.cells[id])}>

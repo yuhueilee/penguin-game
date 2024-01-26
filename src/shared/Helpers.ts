@@ -74,22 +74,16 @@ export const IsLinked = (
     locY: number,
     maxIceBurgsPerRow: number
 ): boolean => {
-    const cellID =
-        maxIceBurgsPerRow * cellX +
-        cellY -
-        Math.floor(cellX / (maxIceBurgsPerRow - 1));
-    const locID =
-        maxIceBurgsPerRow * locX +
-        locY -
-        Math.floor(locX / (maxIceBurgsPerRow - 1));
+    const cellID = maxIceBurgsPerRow * cellX + cellY - Math.floor(cellX / 2);
+    const locID = maxIceBurgsPerRow * locX + locY - Math.floor(locX / 2);
     const absDiff = Math.abs(cellID - locID);
     const isAtTheSameRow = cellX === locX;
-    const isMultiplerOfTwo =
-        absDiff % 2 === 0 &&
+    const isMultiplerOfMaxMinusOne =
+        absDiff % (maxIceBurgsPerRow - 1) === 0 &&
         ((locX > cellX && locY < cellY) || (locX < cellX && locY >= cellY));
-    const isMultiplerOfThree =
-        absDiff % 3 === 0 &&
+    const isMultiplerOfMax =
+        absDiff % maxIceBurgsPerRow === 0 &&
         ((locX > cellX && locY >= cellY) || (locX < cellX && locY < cellY));
 
-    return isAtTheSameRow || isMultiplerOfTwo || isMultiplerOfThree;
+    return isAtTheSameRow || isMultiplerOfMaxMinusOne || isMultiplerOfMax;
 };
