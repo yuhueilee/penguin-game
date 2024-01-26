@@ -92,14 +92,13 @@ export const IDToCoord = (
  * @returns a boolean indicating if the cell ID is linked to the labour's location
  */
 export const IsLinked = (
-    cellX: number,
-    cellY: number,
-    locX: number,
-    locY: number,
+    cellID: number,
+    locID: number,
+    totalIceBurgs: number,
     maxIceBurgsPerRow: number
 ): boolean => {
-    const cellID = maxIceBurgsPerRow * cellX + cellY - Math.floor(cellX / 2);
-    const locID = maxIceBurgsPerRow * locX + locY - Math.floor(locX / 2);
+    const [cellX, cellY] = IDToCoord(cellID, totalIceBurgs, maxIceBurgsPerRow);
+    const [locX, locY] = IDToCoord(locID, totalIceBurgs, maxIceBurgsPerRow);
     const absDiff = Math.abs(cellID - locID);
     const isAtTheSameRow = cellX === locX;
     const isMultiplerOfMaxMinusOne =
