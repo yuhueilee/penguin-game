@@ -62,6 +62,30 @@ export const IsColonised = (
     return totalColonies === availability;
 };
 
+export const IDToCoord = (
+    target: number,
+    totalIceBurgs: number,
+    maxIceBurgsPerRow: number
+): Array<number> => {
+    let coord: Array<number> = [0, 0];
+
+    const numRows = Math.ceil(totalIceBurgs / maxIceBurgsPerRow);
+    for (let i = 0; i < numRows; i++) {
+        const numColumns =
+            Math.abs(i) % 2 === 0 ? maxIceBurgsPerRow : maxIceBurgsPerRow - 1;
+        for (let j = 0; j < numColumns; j++) {
+            const id = maxIceBurgsPerRow * i + j - Math.floor(i / 2);
+            if (id === target) {
+                coord[0] = i;
+                coord[1] = j;
+                break;
+            }
+        }
+    }
+
+    return coord;
+};
+
 /**
  * Determines if the cell is linked to the labour's location.
  *
