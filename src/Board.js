@@ -30,7 +30,7 @@ export function PenguinFiveBoard({ ctx, G, moves }) {
                 Math.floor(i / (maxIceBurgsPerRow - 1));
             cells.push(
                 <div key={id}>
-                    <div className="cellStyle">
+                    <div className={cellStyle(G.cells[id])}>
                         <h5 className="textStyle">fishes: {G.fishes[id]}</h5>
                         <h5 className="textStyle">playerID: {G.cells[id]}</h5>
                         <button
@@ -75,3 +75,11 @@ export function PenguinFiveBoard({ ctx, G, moves }) {
         </div>
     );
 }
+
+const cellStyle = (playerID) => {
+    if (playerID === null) {
+        return "emptyCell";
+    }
+
+    return "colonisedCell";
+};
