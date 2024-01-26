@@ -34,14 +34,14 @@ export function PenguinFiveBoard({ ctx, G, moves }) {
                         <h5 className="textStyle">fishes: {G.fishes[id]}</h5>
                         <h5 className="textStyle">playerID: {G.cells[id]}</h5>
                         <button
-                            className="buttonStyle"
+                            className="coloniseBtn"
                             onClick={() => colonise(id)}
                             disabled={G.cells[id] !== null}
                         >
                             colonise
                         </button>
                         <button
-                            className="buttonStyle"
+                            className="locateBtn"
                             onClick={() => locate(id)}
                             disabled={
                                 ctx.phase !== "hunting" ||

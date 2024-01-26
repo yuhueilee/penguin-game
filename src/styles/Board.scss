@@ -45,8 +45,12 @@ $hexagonWidth: 100px;
     }
 }
 
-.buttonStyle {
+.coloniseBtn {
     @include buttonStyle;
+}
+
+.locateBtn {
+    @include buttonStyle(red);
 }
 
 .textStyle {
