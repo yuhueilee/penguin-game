@@ -50,7 +50,6 @@ export function PenguinFiveBoard({ ctx, G, moves }) {
                                     G.locations
                                 ) ||
                                 ctx.phase !== "hunting" ||
-                                G.cells[id] === null ||
                                 isAtOccupyStage(
                                     parseInt(ctx.currentPlayer),
                                     ctx.activePlayers
