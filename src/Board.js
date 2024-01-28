@@ -34,7 +34,7 @@ export function PenguinFiveBoard({ ctx, G, moves }) {
                             className="coloniseBtn"
                             onClick={() => colonise(id)}
                             disabled={
-                                G.cells[id] !== null ||
+                                isCellColonised(id, G.cells) ||
                                 isLocatCellMove(ctx.phase, ctx.activePlayers)
                             }
                         >
@@ -99,6 +99,17 @@ const cellStyle = (playerID) => {
  */
 const isLabourLocated = (playerID, cellID, locations) => {
     return locations[playerID].indexOf(cellID) !== -1;
+};
+
+/**
+ * Determines if the cell with the specific ID has been colonised by a player.
+ *
+ * @param {number} id cell ID
+ * @param {Array<number>} cells a list of player IDs where the index corresponds to the cell ID
+ * @returns a boolean indicating if the cell has been colonised by any player
+ */
+const isCellColonised = (id, cells) => {
+    return cells[id] !== null;
 };
 
 /**
