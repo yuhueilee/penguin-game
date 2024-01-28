@@ -4,6 +4,8 @@ import "./styles/Board.scss";
 import { numIceBurgs, maxIceBurgsPerRow } from "./shared/Consts";
 
 export function PenguinFiveBoard({ ctx, G, moves }) {
+    const currPlayerID = parseInt(ctx.currentPlayer);
+
     const colonise = (id) => moves.clickCell(id);
     const locate = (id) => moves.locateCell(id);
 
@@ -24,17 +26,21 @@ export function PenguinFiveBoard({ ctx, G, moves }) {
         const numColumns =
             Math.abs(i) % 2 === 0 ? maxIceBurgsPerRow : maxIceBurgsPerRow - 1;
         for (let j = 0; j < numColumns; j++) {
-            const id = maxIceBurgsPerRow * i + j - Math.floor(i / 2);
+            const cellID = maxIceBurgsPerRow * i + j - Math.floor(i / 2);
             cells.push(
-                <div key={id}>
-                    <div className={cellStyle(G.cells[id])}>
-                        <h5 className="textStyle">fishes: {G.fishes[id]}</h5>
-                        <h5 className="textStyle">playerID: {G.cells[id]}</h5>
+                <div key={cellID}>
+                    <div className={cellStyle(G.cells[cellID])}>
+                        <h5 className="textStyle">
+                            fishes: {G.fishes[cellID]}
+                        </h5>
+                        <h5 className="textStyle">
+                            playerID: {G.cells[cellID]}
+                        </h5>
                         <button
                             className="coloniseBtn"
-                            onClick={() => colonise(id)}
+                            onClick={() => colonise(cellID)}
                             disabled={
-                                isCellColonised(id, G.cells) ||
+                                isCellColonised(cellID, G.cells) ||
                                 isLocatCellMove(ctx.phase, ctx.activePlayers)
                             }
                         >
@@ -42,17 +48,17 @@ export function PenguinFiveBoard({ ctx, G, moves }) {
                         </button>
                         <button
                             className="locateBtn"
-                            onClick={() => locate(id)}
+                            onClick={() => locate(cellID)}
                             disabled={
-                                !isLabourLocated(
-                                    parseInt(ctx.currentPlayer),
-                                    id,
-                                    G.locations
-                                ) ||
                                 !isAtHuntingPhase(ctx.phase) ||
                                 isAtOccupyStage(
-                                    parseInt(ctx.currentPlayer),
+                                    currPlayerID,
                                     ctx.activePlayers
+                                ) ||
+                                !isLabourLocated(
+                                    currPlayerID,
+                                    cellID,
+                                    G.locations
                                 )
                             }
                         >
