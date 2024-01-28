@@ -35,7 +35,7 @@ export function PenguinFiveBoard({ ctx, G, moves }) {
                             onClick={() => colonise(id)}
                             disabled={
                                 G.cells[id] !== null ||
-                                (ctx.phase === "hunting" && G.location === null)
+                                isLocatCellMove(ctx.phase, ctx.activePlayers)
                             }
                         >
                             colonise
@@ -52,7 +52,10 @@ export function PenguinFiveBoard({ ctx, G, moves }) {
                                 ctx.phase !== "hunting" ||
                                 G.cells[id] === null ||
                                 G.cells[id] !== parseInt(ctx.currentPlayer) ||
-                                G.location !== null
+                                isAtOccupyStage(
+                                    parseInt(ctx.currentPlayer),
+                                    ctx.activePlayers
+                                )
                             }
                         >
                             locate
@@ -96,4 +99,28 @@ const cellStyle = (playerID) => {
  */
 const isLabourLocated = (playerID, cellID, locations) => {
     return locations[playerID].indexOf(cellID) !== -1;
+};
+
+/**
+ * Determines if the current player can perform locate cell move.
+ *
+ * @param {string} phase game phase
+ * @param {Object} activePlayers key refers to the player ID and value refers to the stage the player is in
+ * @returns a boolean indicating if the current player can perform locate cell move
+ */
+const isLocatCellMove = (phase, activePlayers) => {
+    return phase === "hunting" && activePlayers === null;
+};
+
+/**
+ * Determines if the current player is at occupy stage.
+ *
+ * @param {number} playerID player ID
+ * @param {Object} activePlayers
+ * @returns a boolean indicating if the current player is at occupy stage
+ */
+const isAtOccupyStage = (playerID, activePlayers) => {
+    return activePlayers !== null
+        ? activePlayers[playerID] === "occupy"
+        : false;
 };
