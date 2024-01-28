@@ -118,7 +118,7 @@ const isCellColonised = (id, cells) => {
  * @returns a boolean indicating if the current player can perform locate cell move
  */
 const isLocatCellMove = (phase, activePlayers) => {
-    return phase === "hunting" && activePlayers === null;
+    return isAtHuntingPhase(phase) && activePlayers === null;
 };
 
 /**
