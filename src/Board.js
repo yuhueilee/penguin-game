@@ -49,7 +49,7 @@ export function PenguinFiveBoard({ ctx, G, moves }) {
                                     id,
                                     G.locations
                                 ) ||
-                                ctx.phase !== "hunting" ||
+                                !isAtHuntingPhase(ctx.phase) ||
                                 isAtOccupyStage(
                                     parseInt(ctx.currentPlayer),
                                     ctx.activePlayers
@@ -132,4 +132,14 @@ const isAtOccupyStage = (playerID, activePlayers) => {
     return activePlayers !== null
         ? activePlayers[playerID] === "occupy"
         : false;
+};
+
+/**
+ * Determines if the current phase is hunting.
+ *
+ * @param {string} phase game phase
+ * @returns a boolean indicating if the current phase is hunting
+ */
+const isAtHuntingPhase = (phase) => {
+    return phase === "hunting";
 };
