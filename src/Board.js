@@ -47,12 +47,7 @@ export function PenguinFiveBoard({ ctx, G, moves }) {
                                     currPlayerID,
                                     ctx.activePlayers
                                 ) &&
-                                    !IsLinked(
-                                        cellID,
-                                        G.location,
-                                        totalCells,
-                                        maxCellsPerRow
-                                    ))
+                                    !IsLinked(cellID, G.location, G.cellCoords))
                             }
                         >
                             colonise

@@ -1,8 +1,13 @@
 import type { Game } from "boardgame.io";
 import { INVALID_MOVE } from "boardgame.io/core";
 
-import { maxLaboursPerPlayer, totalCells } from "./shared/Consts";
 import {
+    maxCellsPerRow,
+    maxLaboursPerPlayer,
+    totalCells,
+} from "./shared/Consts";
+import {
+    CalculateCoords,
     IsColonised,
     IsDraw,
     IsFinished,
@@ -15,10 +20,7 @@ import { GameData } from "./shared/Types";
 export const PenguinFive: Game = {
     setup: ({ ctx }): GameData => ({
         cells: Array(totalCells).fill(null),
-        cellCoords: Array(totalCells).fill({
-            xCoord: 0,
-            yCoord: 0,
-        }),
+        cellCoords: CalculateCoords(totalCells, maxCellsPerRow),
         fishes: RandomIntArray(1, 3, totalCells),
         scores: Array(ctx.numPlayers).fill(0),
         location: null,

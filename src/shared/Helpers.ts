@@ -1,3 +1,5 @@
+import { Coord } from "./Types";
+
 export const RandomInt = (min: number, max: number) => {
     // Ensure that min and max are integers
     min = Math.ceil(min);
@@ -65,36 +67,47 @@ export const IsColonised = (
 /**
  * Transforms from integer value to coordinate values.
  *
- * @param target cell ID
- * @param totalIceBurgs total number of cells
- * @param maxIceBurgsPerRow maximum number of cells per row
+ * @param cellID cell ID
+ * @param cellCoords a list of coordinate
  * @returns a list of length 2 where the first value refers to the x-coordinate and the second value refers to the scaled y-coordinate
  */
-export const IDToCoord = (
-    target: number,
-    totalIceBurgs: number,
-    maxIceBurgsPerRow: number
-): Array<number> => {
-    let coord: Array<number> = [0, 0];
+export const IDToCoord = (cellID: number, cellCoords: Array<Coord>): Coord => {
+    return cellCoords[cellID];
+};
 
-    const numRows = Math.ceil(totalIceBurgs / maxIceBurgsPerRow);
+/**
+ * Returns a list of coordinate associated with the cell ID.
+ *
+ * @param totalCells total number of cells
+ * @param maxCellsPerRow maximum number of cells per row
+ * @returns a list of coordinate where the index is the cell ID
+ */
+export const CalculateCoords = (
+    totalCells: number,
+    maxCellsPerRow: number
+): Array<Coord> => {
+    let cellCoords: Array<Coord> = Array(totalCells)
+        .fill(undefined)
+        .map(() => ({
+            xCoord: 0,
+            yCoord: 0,
+        }));
+
+    const numRows = Math.ceil(totalCells / maxCellsPerRow);
     for (let i = 0; i < numRows; i++) {
         const numColumns =
-            Math.abs(i) % 2 === 0 ? maxIceBurgsPerRow : maxIceBurgsPerRow - 1;
+            Math.abs(i) % 2 === 0 ? maxCellsPerRow : maxCellsPerRow - 1;
         for (let j = 0; j < numColumns; j++) {
-            const id = maxIceBurgsPerRow * i + j - Math.floor(i / 2);
+            const id = maxCellsPerRow * i + j - Math.floor(i / 2);
             // Scale the j value by 2 if it's on the even row else scale by 2 and addition by 1 for odd row.
             // Note: This is to facilitate the calculation of whether the two cells are linked diagonally or horizontally.
             const jScaled = Math.abs(i) % 2 === 0 ? j * 2 : j * 2 + 1;
-            if (id === target) {
-                coord[0] = i;
-                coord[1] = jScaled;
-                break;
-            }
+            cellCoords[id].xCoord = i;
+            cellCoords[id].yCoord = jScaled;
         }
     }
 
-    return coord;
+    return cellCoords;
 };
 
 /**
@@ -131,20 +144,26 @@ const isLinkedDiagonally = (
 
 /**
  * Determines if the cell is linked to the labour's location.
- *
+ * @param cellID cell ID
+ * @param locID located cell ID
+ * @param cellCoords a list of coordinate
  * @returns a boolean indicating if the cell ID is linked to the labour's location
  */
 export const IsLinked = (
     cellID: number,
     locID: number,
-    totalIceBurgs: number,
-    maxIceBurgsPerRow: number
+    cellCoords: Array<Coord>
 ): boolean => {
-    const [cellX, cellY] = IDToCoord(cellID, totalIceBurgs, maxIceBurgsPerRow);
-    const [locX, locY] = IDToCoord(locID, totalIceBurgs, maxIceBurgsPerRow);
+    const cellCoord = IDToCoord(cellID, cellCoords);
+    const locCoord = IDToCoord(locID, cellCoords);
 
     return (
-        isLinkedHorizontally(cellX, locX) ||
-        isLinkedDiagonally(cellX, cellY, locX, locY)
+        isLinkedHorizontally(cellCoord.xCoord, locCoord.xCoord) ||
+        isLinkedDiagonally(
+            cellCoord.xCoord,
+            cellCoord.yCoord,
+            locCoord.xCoord,
+            locCoord.yCoord
+        )
     );
 };
