@@ -1,7 +1,7 @@
 import type { Game } from "boardgame.io";
 import { INVALID_MOVE } from "boardgame.io/core";
 
-import { totalCells } from "./shared/Consts";
+import { maxLaboursPerPlayer, totalCells } from "./shared/Consts";
 import {
     IsColonised,
     IsDraw,
@@ -17,7 +17,9 @@ export const PenguinFive: Game = {
         fishes: RandomIntArray(1, 3, totalCells),
         scores: Array(ctx.numPlayers).fill(0),
         location: null,
-        locations: Array(ctx.numPlayers).fill(Array(2).fill(null)), // TODO: configure the availability per player dynamically
+        locations: Array(ctx.numPlayers).fill(
+            Array(maxLaboursPerPlayer).fill(null)
+        ), // TODO: configure the availability per player dynamically
     }),
 
     turn: {
@@ -45,12 +47,16 @@ export const PenguinFive: Game = {
                 },
             },
             turn: {
-                minMoves: 2, // TODO: confugure the moves dynamically
-                maxMoves: 2, // TODO: confugure the moves dynamically
+                minMoves: maxLaboursPerPlayer, // TODO: confugure the moves dynamically
+                maxMoves: maxLaboursPerPlayer, // TODO: confugure the moves dynamically
             },
             start: true,
             endIf: ({ G, ctx }) => {
-                return IsColonised(G.cells, ctx.numPlayers, 4); // TODO: confugure the availability for total players dynamically
+                return IsColonised(
+                    G.cells,
+                    ctx.numPlayers,
+                    ctx.numPlayers * maxLaboursPerPlayer
+                ); // TODO: confugure the availability for total players dynamically
             },
             next: "hunting",
         },
