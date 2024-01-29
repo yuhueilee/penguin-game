@@ -90,6 +90,38 @@ export const IDToCoord = (
 };
 
 /**
+ * Determines if the current cell and the located cell is linked horizontally.
+ *
+ * @param cellX x-coordinate for the current cell
+ * @param locX x-coordinate for the located cell
+ * @returns a boolean indicating if the current cell and the located cell is linked horizontally
+ */
+const isLinkedHorizontally = (cellX: number, locX: number): boolean => {
+    return cellX === locX;
+};
+
+/**
+ * Determines if the current cell and the located cell is linked diagonally.
+ *
+ * @param cellX x-coordinate for the current cell
+ * @param cellY y-coordinate for the current cell
+ * @param locX x-coordinate for the located cell
+ * @param locY y-coordinate for the located cell
+ * @returns a boolean indicating if the current cell and the located cell is linked diagonally
+ */
+const isLinkedDiagonally = (
+    cellX: number,
+    cellY: number,
+    locX: number,
+    locY: number
+): boolean => {
+    const absDiffInX = Math.abs(cellX - locX);
+    const absDiffInY = Math.abs(cellY - locY);
+
+    return absDiffInX === absDiffInY;
+};
+
+/**
  * Determines if the cell is linked to the labour's location.
  *
  * @returns a boolean indicating if the cell ID is linked to the labour's location
@@ -102,14 +134,9 @@ export const IsLinked = (
 ): boolean => {
     const [cellX, cellY] = IDToCoord(cellID, totalIceBurgs, maxIceBurgsPerRow);
     const [locX, locY] = IDToCoord(locID, totalIceBurgs, maxIceBurgsPerRow);
-    const absDiff = Math.abs(cellID - locID);
-    const isAtTheSameRow = cellX === locX;
-    const isMultiplerOfMaxMinusOne =
-        absDiff % (maxIceBurgsPerRow - 1) === 0 &&
-        ((locX > cellX && locY < cellY) || (locX < cellX && locY >= cellY));
-    const isMultiplerOfMax =
-        absDiff % maxIceBurgsPerRow === 0 &&
-        ((locX > cellX && locY >= cellY) || (locX < cellX && locY < cellY));
 
-    return isAtTheSameRow || isMultiplerOfMaxMinusOne || isMultiplerOfMax;
+    return (
+        isLinkedHorizontally(cellX, locX) ||
+        isLinkedDiagonally(cellX, cellY, locX, locY)
+    );
 };
