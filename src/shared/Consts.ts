@@ -1,3 +1,3 @@
 export const totalCells = 8;
 
-export const maxIceBurgsPerRow = 3;
+export const maxCellsPerRow = 3;
