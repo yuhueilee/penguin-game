@@ -9,10 +9,11 @@ import {
     RandomIntArray,
     Winner,
 } from "./shared/Helpers";
+import { GameData } from "./shared/Types";
 
 // PenguinFive defines the game state.
 export const PenguinFive: Game = {
-    setup: ({ ctx }) => ({
+    setup: ({ ctx }): GameData => ({
         cells: Array(totalCells).fill(null),
         fishes: RandomIntArray(1, 3, totalCells),
         scores: Array(ctx.numPlayers).fill(0),
