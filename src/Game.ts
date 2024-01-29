@@ -1,7 +1,7 @@
 import type { Game } from "boardgame.io";
 import { INVALID_MOVE } from "boardgame.io/core";
 
-import { numIceBurgs } from "./shared/Consts";
+import { totalCells } from "./shared/Consts";
 import {
     IsColonised,
     IsDraw,
@@ -13,8 +13,8 @@ import {
 // PenguinFive defines the game state.
 export const PenguinFive: Game = {
     setup: ({ ctx }) => ({
-        cells: Array(numIceBurgs).fill(null),
-        fishes: RandomIntArray(1, 3, numIceBurgs),
+        cells: Array(totalCells).fill(null),
+        fishes: RandomIntArray(1, 3, totalCells),
         scores: Array(ctx.numPlayers).fill(0),
         location: null,
         locations: Array(ctx.numPlayers).fill(Array(2).fill(null)), // TODO: configure the availability per player dynamically

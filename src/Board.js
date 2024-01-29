@@ -1,7 +1,7 @@
 import React from "react";
 import "./styles/Board.scss";
 
-import { numIceBurgs, maxIceBurgsPerRow } from "./shared/Consts";
+import { totalCells, maxIceBurgsPerRow } from "./shared/Consts";
 import { IsLinked } from "./shared/Helpers";
 
 export function PenguinFiveBoard({ ctx, G, moves }) {
@@ -20,7 +20,7 @@ export function PenguinFiveBoard({ ctx, G, moves }) {
             );
     }
 
-    const numRows = Math.ceil(numIceBurgs / maxIceBurgsPerRow);
+    const numRows = Math.ceil(totalCells / maxIceBurgsPerRow);
     let tbody = [];
     for (let i = 0; i < numRows; i++) {
         let cells = [];
@@ -50,7 +50,7 @@ export function PenguinFiveBoard({ ctx, G, moves }) {
                                     !IsLinked(
                                         cellID,
                                         G.location,
-                                        numIceBurgs,
+                                        totalCells,
                                         maxIceBurgsPerRow
                                     ))
                             }
