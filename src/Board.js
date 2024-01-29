@@ -2,6 +2,7 @@ import React from "react";
 import "./styles/Board.scss";
 
 import { numIceBurgs, maxIceBurgsPerRow } from "./shared/Consts";
+import { IsLinked } from "./shared/Helpers";
 
 export function PenguinFiveBoard({ ctx, G, moves }) {
     const currPlayerID = parseInt(ctx.currentPlayer);
@@ -41,7 +42,17 @@ export function PenguinFiveBoard({ ctx, G, moves }) {
                             onClick={() => colonise(cellID)}
                             disabled={
                                 isCellColonised(cellID, G.cells) ||
-                                isLocatCellMove(ctx.phase, ctx.activePlayers)
+                                isLocatCellMove(ctx.phase, ctx.activePlayers) ||
+                                (isAtOccupyStage(
+                                    currPlayerID,
+                                    ctx.activePlayers
+                                ) &&
+                                    !IsLinked(
+                                        cellID,
+                                        G.location,
+                                        numIceBurgs,
+                                        maxIceBurgsPerRow
+                                    ))
                             }
                         >
                             colonise
