@@ -75,10 +75,12 @@ export const IDToCoord = (
             Math.abs(i) % 2 === 0 ? maxIceBurgsPerRow : maxIceBurgsPerRow - 1;
         for (let j = 0; j < numColumns; j++) {
             const id = maxIceBurgsPerRow * i + j - Math.floor(i / 2);
+            // Scale the j value by 2 if it's on the even row else scale by 2 and addition by 1 for odd row.
+            // Note: This is to facilitate the calculation of whether the two cells are linked diagonally or horizontally.
             const jScaled = Math.abs(i) % 2 === 0 ? j * 2 : j * 2 + 1;
             if (id === target) {
                 coord[0] = i;
-                coord[1] = j;
+                coord[1] = jScaled;
                 break;
             }
         }

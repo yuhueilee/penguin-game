@@ -1,9 +1,9 @@
 import { IDToCoord, IsLinked } from "./Helpers";
 
 it("correctly calculated the coordinate based on the ID", () => {
-    expect(IDToCoord(6, 15, 3)).toEqual([2, 1]);
-    expect(IDToCoord(8, 11, 4)).toEqual([2, 1]);
-    expect(IDToCoord(8, 9, 5)).toEqual([1, 3]);
+    expect(IDToCoord(6, 15, 3)).toEqual([2, 2]);
+    expect(IDToCoord(8, 11, 4)).toEqual([2, 2]);
+    expect(IDToCoord(8, 9, 5)).toEqual([1, 7]);
 });
 
 it("correctly determine if the cell ID is linked to the location", () => {
