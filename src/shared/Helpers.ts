@@ -75,6 +75,7 @@ export const IDToCoord = (
             Math.abs(i) % 2 === 0 ? maxIceBurgsPerRow : maxIceBurgsPerRow - 1;
         for (let j = 0; j < numColumns; j++) {
             const id = maxIceBurgsPerRow * i + j - Math.floor(i / 2);
+            const jScaled = Math.abs(i) % 2 === 0 ? j * 2 : j * 2 + 1;
             if (id === target) {
                 coord[0] = i;
                 coord[1] = j;
