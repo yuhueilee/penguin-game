@@ -62,6 +62,14 @@ export const IsColonised = (
     return totalColonies === availability;
 };
 
+/**
+ * Transforms from integer value to coordinate values.
+ *
+ * @param target cell ID
+ * @param totalIceBurgs total number of cells
+ * @param maxIceBurgsPerRow maximum number of cells per row
+ * @returns a list of length 2 where the first value refers to the x-coordinate and the second value refers to the scaled y-coordinate
+ */
 export const IDToCoord = (
     target: number,
     totalIceBurgs: number,
