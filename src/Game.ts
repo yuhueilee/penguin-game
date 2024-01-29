@@ -15,6 +15,10 @@ import { GameData } from "./shared/Types";
 export const PenguinFive: Game = {
     setup: ({ ctx }): GameData => ({
         cells: Array(totalCells).fill(null),
+        cellCoords: Array(totalCells).fill({
+            xCoord: 0,
+            yCoord: 0,
+        }),
         fishes: RandomIntArray(1, 3, totalCells),
         scores: Array(ctx.numPlayers).fill(0),
         location: null,
