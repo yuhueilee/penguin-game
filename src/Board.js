@@ -2,7 +2,7 @@ import React from "react";
 import "./styles/Board.scss";
 
 import { totalCells, maxCellsPerRow } from "./shared/Consts";
-import { Columns, IsLinked, Rows } from "./shared/Helpers";
+import { Columns, IsLinked, LinkedCells, Rows } from "./shared/Helpers";
 
 export function PenguinFiveBoard({ ctx, G, moves }) {
     const currPlayerID = parseInt(ctx.currentPlayer);
@@ -18,6 +18,16 @@ export function PenguinFiveBoard({ ctx, G, moves }) {
             ) : (
                 <div id="winner">Draw!</div>
             );
+    }
+
+    let linkedCells = [];
+    if (G.location !== null) {
+        linkedCells = LinkedCells(
+            G.location,
+            G.cells,
+            G.cellCoords,
+            maxCellsPerRow
+        );
     }
 
     const numRows = Rows(totalCells, maxCellsPerRow);
@@ -46,7 +56,7 @@ export function PenguinFiveBoard({ ctx, G, moves }) {
                                     currPlayerID,
                                     ctx.activePlayers
                                 ) &&
-                                    !IsLinked(cellID, G.location, G.cellCoords))
+                                    linkedCells.indexOf(cellID) === -1)
                             }
                         >
                             colonise
