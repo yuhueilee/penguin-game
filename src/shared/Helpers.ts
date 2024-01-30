@@ -189,3 +189,21 @@ export const IsLinked = (
         )
     );
 };
+
+/**
+ * Returns a list of cell IDs connected to the target cell ID either horizontally or diagonally without being occupied by any player.
+ *
+ * @param cellID targeted cell ID
+ * @param cells a list of player IDs where the index is the cell ID
+ * @param cellCoords a list of coordinates where the index is the cell ID
+ * @returns a list of cell IDs connected to the target cell ID either horizontally or diagonally without being occupied by any player
+ */
+export const LinkedCells = (
+    cellID: number,
+    cells: Array<number>,
+    cellCoords: Array<Coord>
+): Array<number> => {
+    let linkedCells: Array<number> = [];
+
+    return linkedCells;
+};
