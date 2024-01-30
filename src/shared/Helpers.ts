@@ -252,7 +252,7 @@ export const OutOfRange = (
 };
 
 /**
- * Returns a list of cell IDs connected to the target cell ID either horizontally or diagonally without being occupied by any player.
+ * Returns a sorted list of cell IDs connected to the target cell ID either horizontally or diagonally without being occupied by any player.
  *
  * @param target targeted cell ID
  * @param cells a list of player IDs where the index is the cell ID
