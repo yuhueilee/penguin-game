@@ -87,6 +87,30 @@ export const IsColonised = (
 };
 
 /**
+ * Returns the total number of rows.
+ *
+ * @param totalCells total number of cells
+ * @param maxCellsPerRow maximum number of cells per row
+ * @returns total number of rows
+ */
+export const Rows = (totalCells: number, maxCellsPerRow: number): number => {
+    return totalCells % maxCellsPerRow === 0
+        ? totalCells / maxCellsPerRow + 1
+        : Math.ceil(totalCells / maxCellsPerRow);
+};
+
+/**
+ * Returns the total number of columns.
+ *
+ * @param rowIndex index of the row
+ * @param maxCellsPerRow maximum number of cells per row
+ * @returns total number of columns
+ */
+export const Columns = (rowIndex: number, maxCellsPerRow: number): number => {
+    return Math.abs(rowIndex) % 2 === 0 ? maxCellsPerRow : maxCellsPerRow - 1;
+};
+
+/**
  * Transforms from integer value to coordinate values.
  *
  * @param cellID cell ID
@@ -115,13 +139,9 @@ export const CalculateCoords = (
             yCoord: 0,
         }));
 
-    const numRows =
-        totalCells % maxCellsPerRow === 0
-            ? totalCells / maxCellsPerRow + 1
-            : Math.ceil(totalCells / maxCellsPerRow);
+    const numRows = Rows(totalCells, maxCellsPerRow);
     for (let i = 0; i < numRows; i++) {
-        const numColumns =
-            Math.abs(i) % 2 === 0 ? maxCellsPerRow : maxCellsPerRow - 1;
+        const numColumns = Columns(i, maxCellsPerRow);
         for (let j = 0; j < numColumns; j++) {
             const id = maxCellsPerRow * i + j - Math.floor(i / 2);
             // Scale the j value by 2 if it's on the even row else scale by 2 and addition by 1 for odd row.

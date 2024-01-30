@@ -1,4 +1,4 @@
-export const totalCells = 8;
+export const totalCells = 15;
 
 export const maxCellsPerRow = 3;
 

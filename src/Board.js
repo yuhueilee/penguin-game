@@ -2,7 +2,7 @@ import React from "react";
 import "./styles/Board.scss";
 
 import { totalCells, maxCellsPerRow } from "./shared/Consts";
-import { IsLinked } from "./shared/Helpers";
+import { Columns, IsLinked, Rows } from "./shared/Helpers";
 
 export function PenguinFiveBoard({ ctx, G, moves }) {
     const currPlayerID = parseInt(ctx.currentPlayer);
@@ -20,15 +20,11 @@ export function PenguinFiveBoard({ ctx, G, moves }) {
             );
     }
 
-    const numRows =
-        totalCells % maxCellsPerRow === 0
-            ? totalCells / maxCellsPerRow + 1
-            : Math.ceil(totalCells / maxCellsPerRow);
+    const numRows = Rows(totalCells, maxCellsPerRow);
     let tbody = [];
     for (let i = 0; i < numRows; i++) {
         let cells = [];
-        const numColumns =
-            Math.abs(i) % 2 === 0 ? maxCellsPerRow : maxCellsPerRow - 1;
+        const numColumns = Columns(i, maxCellsPerRow);
         for (let j = 0; j < numColumns; j++) {
             const cellID = maxCellsPerRow * i + j - Math.floor(i / 2);
             cells.push(
