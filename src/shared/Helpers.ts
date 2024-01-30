@@ -213,7 +213,7 @@ export const OutOfRange = (
     const minY = 0;
     const maxY = maxCellsPerRow * 2 - 1;
 
-    return minX > xCoord || xCoord >= maxX || minY > yCoord || yCoord >= maxY;
+    return xCoord < minX || xCoord >= maxX || yCoord < minY || yCoord >= maxY;
 };
 
 /**
