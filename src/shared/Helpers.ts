@@ -288,12 +288,16 @@ export const LinkedCells = (
                 )
             ) {
                 outOfRange[dir] = true;
+                continue;
             }
 
             let cellID = CoordToID(coord, cellCoords);
             if (cells[cellID] === null) {
                 linkedCells.push(cellID);
                 multipliers[dir]++;
+            } else {
+                outOfRange[dir] = true;
+                continue;
             }
         }
     }

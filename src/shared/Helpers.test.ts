@@ -133,5 +133,5 @@ it("correctly return a list of linked cell IDs", () => {
     ]);
     cells[6] = 1;
     expect(LinkedCells(0, cells, cellCoords, 3)).toEqual([1, 2, 3]);
-    expect(LinkedCells(8, cells, cellCoords, 3)).toEqual([5, 6, 9, 10, 11, 14]);
+    expect(LinkedCells(8, cells, cellCoords, 3)).toEqual([5, 9, 10, 11, 14]);
 });
