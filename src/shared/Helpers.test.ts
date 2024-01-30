@@ -1,6 +1,7 @@
 import {
     CalculateCoords,
     Columns,
+    CoordToID,
     IDToCoord,
     IsLinked,
     LinkedCells,
@@ -43,6 +44,54 @@ it("correctly calculated the coordinate based on the ID", () => {
         xCoord: 1,
         yCoord: 7,
     });
+});
+
+it("correctly calculated the ID based on the coordinate", () => {
+    expect(
+        CoordToID(
+            {
+                xCoord: 0,
+                yCoord: 0,
+            },
+            CalculateCoords(15, 3)
+        )
+    ).toEqual(0);
+    expect(
+        CoordToID(
+            {
+                xCoord: 1,
+                yCoord: 3,
+            },
+            CalculateCoords(15, 3)
+        )
+    ).toEqual(4);
+    expect(
+        CoordToID(
+            {
+                xCoord: 2,
+                yCoord: 2,
+            },
+            CalculateCoords(15, 3)
+        )
+    ).toEqual(6);
+    expect(
+        CoordToID(
+            {
+                xCoord: 2,
+                yCoord: 2,
+            },
+            CalculateCoords(11, 4)
+        )
+    ).toEqual(8);
+    expect(
+        CoordToID(
+            {
+                xCoord: 1,
+                yCoord: 7,
+            },
+            CalculateCoords(9, 5)
+        )
+    ).toEqual(8);
 });
 
 it("correctly determine if the cell ID is linked to the location", () => {

@@ -122,6 +122,20 @@ export const IDToCoord = (cellID: number, cellCoords: Array<Coord>): Coord => {
 };
 
 /**
+ * Transforms from coordinate values to integer value.
+ *
+ * @param target targeted coordinate object
+ * @param cellCoords a list of coordinates
+ * @returns index of the targeted coordinate in the list
+ */
+export const CoordToID = (target: Coord, cellCoords: Array<Coord>): number => {
+    return cellCoords.findIndex(
+        (coord) =>
+            coord.xCoord === target.xCoord && coord.yCoord === target.yCoord
+    );
+};
+
+/**
  * Returns a list of coordinate associated with the cell ID.
  *
  * @param totalCells total number of cells
