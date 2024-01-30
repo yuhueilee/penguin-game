@@ -1,10 +1,26 @@
 import {
     CalculateCoords,
+    Columns,
     IDToCoord,
     IsLinked,
     LinkedCells,
     OutOfRange,
+    Rows,
 } from "./Helpers";
+
+it("correctly calculated the number of rows", () => {
+    expect(Rows(5, 2)).toEqual(3);
+    expect(Rows(15, 3)).toEqual(6);
+    expect(Rows(8, 3)).toEqual(3);
+    expect(Rows(11, 4)).toEqual(3);
+});
+
+it("correctly calculated the number of columns", () => {
+    expect(Columns(1, 2)).toEqual(1);
+    expect(Columns(2, 3)).toEqual(3);
+    expect(Columns(1, 3)).toEqual(2);
+    expect(Columns(2, 4)).toEqual(4);
+});
 
 it("correctly calculated the coordinate based on the ID", () => {
     expect(IDToCoord(0, CalculateCoords(15, 3))).toEqual({
