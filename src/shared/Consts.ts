@@ -6,4 +6,4 @@ export const maxLaboursPerPlayer = 2;
 
 export const iRange = [-1, -1, +0, +1, +1, +0];
 
-export const jRange = [-1, +1, +1, +1, -1, -1];
+export const jRange = [-1, +1, +2, +1, -1, -2];
