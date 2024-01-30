@@ -191,6 +191,32 @@ export const IsLinked = (
 };
 
 /**
+ * Determines if the given coordinate is within the range.
+ *
+ * @param xCoord x-coordinate
+ * @param yCoord y-coordinate
+ * @param totalCells total number of cells
+ * @param maxCellsPerRow maximum cells per row
+ * @returns a boolean indicating if the given coordinate is within the range
+ */
+export const OutOfRange = (
+    xCoord: number,
+    yCoord: number,
+    totalCells: number,
+    maxCellsPerRow: number
+): boolean => {
+    const minX = 0;
+    const maxX =
+        totalCells % maxCellsPerRow === 0
+            ? totalCells / maxCellsPerRow + 1
+            : Math.ceil(totalCells / maxCellsPerRow);
+    const minY = 0;
+    const maxY = maxCellsPerRow * 2 - 1;
+
+    return minX > xCoord || xCoord >= maxX || minY > yCoord || yCoord >= maxY;
+};
+
+/**
  * Returns a list of cell IDs connected to the target cell ID either horizontally or diagonally without being occupied by any player.
  *
  * @param target targeted cell ID

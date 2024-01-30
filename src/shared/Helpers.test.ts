@@ -1,4 +1,10 @@
-import { CalculateCoords, IDToCoord, IsLinked, LinkedCells } from "./Helpers";
+import {
+    CalculateCoords,
+    IDToCoord,
+    IsLinked,
+    LinkedCells,
+    OutOfRange,
+} from "./Helpers";
 
 it("correctly calculated the coordinate based on the ID", () => {
     expect(IDToCoord(0, CalculateCoords(15, 3))).toEqual({
@@ -45,6 +51,12 @@ it("correctly determine if the cell ID is linked to the location", () => {
     expect(IsLinked(4, 8, CalculateCoords(11, 4))).toBe(true);
 
     expect(IsLinked(5, 10, CalculateCoords(14, 5))).toBe(true);
+});
+
+it("correctly determines if the coordinate is out of range", () => {
+    expect(OutOfRange(0, 0, 15, 3)).toBe(false);
+    expect(OutOfRange(2, 2, 15, 3)).toBe(false);
+    expect(OutOfRange(5, 3, 15, 3)).toBe(false);
 });
 
 it("correctly return a list of linked cell IDs", () => {
