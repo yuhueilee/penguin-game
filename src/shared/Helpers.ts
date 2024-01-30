@@ -193,17 +193,36 @@ export const IsLinked = (
 /**
  * Returns a list of cell IDs connected to the target cell ID either horizontally or diagonally without being occupied by any player.
  *
- * @param cellID targeted cell ID
+ * @param target targeted cell ID
  * @param cells a list of player IDs where the index is the cell ID
  * @param cellCoords a list of coordinates where the index is the cell ID
  * @returns a list of cell IDs connected to the target cell ID either horizontally or diagonally without being occupied by any player
  */
 export const LinkedCells = (
-    cellID: number,
+    target: number,
     cells: Array<number>,
     cellCoords: Array<Coord>
 ): Array<number> => {
     let linkedCells: Array<number> = [];
+
+    // iRange: -1, -1, +0, +1, +1, +0
+    // jRange: -1, +1, +1, +1, -1, -1
+    // multipliers = 1, 1, 1, 1, 1, 1;
+    // outOfRange: false, false, false, false, false, false
+
+    // dirIndex = 0; dirIndex < 6; dirIndex++
+    //   while outOfRange[dirIndex] === false {
+    //     currX = cellCoords[target].xCoord += iRange[dirIndex]*multipliers[dirIndex]
+    //     currY = cellCoords[target].yCoord += jRange[dirIndex]*multipliers[dirIndex]
+    //     if (OutOfRange(currX, currY, totalCells, maxCellsPerRow)) {
+    //       outOfRange[dirIndex] = true
+    //     }
+    //     currID = CoordToID(currX, currY, totalCells, maxCellsPerRow)
+    //     if (cells[currID] === null) {
+    //       linkedCells.push(currID);
+    //       multipliers[dirIndex]++;
+    //     }
+    //   }
 
     return linkedCells;
 };
