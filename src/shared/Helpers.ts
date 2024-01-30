@@ -72,6 +72,44 @@ export const IsFinished = (
 };
 
 /**
+ * Determines if the player's turn is over.
+ *
+ * @playerID player ID
+ * @param locations a list of labour locations per player ID
+ * @param cells a list of player IDs where the index is the cell ID
+ * @param cellCoords a list of coordinates per cell ID
+ * @param maxCellsPerRow maximum number of cells per row
+ * @returns a boolean indicating if the player's labours has no linked cells
+ */
+export const IsFinishedByPlayerID = (
+    playerID: number,
+    locations: Array<Array<number>>,
+    cells: Array<number>,
+    cellCoords: Array<Coord>,
+    maxCellsPerRow: number
+) => {
+    let totalLinkedCells = 0;
+    let laboursLoc = locations[playerID];
+    for (let i = 0; i < laboursLoc.length; i++) {
+        if (laboursLoc[i] !== -1) {
+            let linkedCells = LinkedCells(
+                laboursLoc[i],
+                cells,
+                cellCoords,
+                maxCellsPerRow
+            );
+            totalLinkedCells += linkedCells.length;
+        }
+    }
+
+    const emptyCellsLocated = locations
+        .flat(1)
+        .reduce((acc, curr) => acc && curr === -1, true);
+
+    return !emptyCellsLocated && totalLinkedCells === 0;
+};
+
+/**
  * Determines if the finished game is draw by checking if more than one player scores the highest.
  *
  * @param playersScores a list of scores where the index is the player ID
