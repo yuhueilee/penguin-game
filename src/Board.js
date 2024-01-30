@@ -20,7 +20,10 @@ export function PenguinFiveBoard({ ctx, G, moves }) {
             );
     }
 
-    const numRows = Math.ceil(totalCells / maxCellsPerRow);
+    const numRows =
+        totalCells % maxCellsPerRow === 0
+            ? totalCells / maxCellsPerRow + 1
+            : Math.ceil(totalCells / maxCellsPerRow);
     let tbody = [];
     for (let i = 0; i < numRows; i++) {
         let cells = [];

@@ -115,7 +115,10 @@ export const CalculateCoords = (
             yCoord: 0,
         }));
 
-    const numRows = Math.ceil(totalCells / maxCellsPerRow);
+    const numRows =
+        totalCells % maxCellsPerRow === 0
+            ? totalCells / maxCellsPerRow + 1
+            : Math.ceil(totalCells / maxCellsPerRow);
     for (let i = 0; i < numRows; i++) {
         const numColumns =
             Math.abs(i) % 2 === 0 ? maxCellsPerRow : maxCellsPerRow - 1;
