@@ -37,13 +37,38 @@ export const Winner = (playersScores: Array<number>) => {
 };
 
 /**
- * Determines if the game is over by checking all the cell contains non-null value.
+ * Determines if the game is over by checking none of the labours have linked cells.
  *
  * @param cells a list of player IDs where the index is the cell ID
  * @returns a boolean indicating if the game is over
  */
-export const IsFinished = (cells: Array<any>) => {
-    return cells.filter((cell) => cell === null).length === 0;
+export const IsFinished = (
+    locations: Array<Array<number>>,
+    cells: Array<number>,
+    cellCoords: Array<Coord>,
+    maxCellsPerRow: number
+) => {
+    let totalLinkedCells = 0;
+    for (let playerID = 0; playerID < locations.length; playerID++) {
+        let laboursLoc = locations[playerID];
+        for (let i = 0; i < laboursLoc.length; i++) {
+            if (laboursLoc[i] !== -1) {
+                let linkedCells = LinkedCells(
+                    laboursLoc[i],
+                    cells,
+                    cellCoords,
+                    maxCellsPerRow
+                );
+                totalLinkedCells += linkedCells.length;
+            }
+        }
+    }
+
+    const emptyCellsLocated = locations
+        .flat(1)
+        .reduce((acc, curr) => acc && curr === -1, true);
+
+    return !emptyCellsLocated && totalLinkedCells === 0;
 };
 
 /**

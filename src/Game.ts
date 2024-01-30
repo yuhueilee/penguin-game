@@ -23,9 +23,9 @@ export const PenguinFive: Game = {
         cellCoords: CalculateCoords(totalCells, maxCellsPerRow),
         fishes: RandomIntArray(1, 3, totalCells),
         scores: Array(ctx.numPlayers).fill(0),
-        location: null,
+        location: -1,
         locations: Array(ctx.numPlayers).fill(
-            Array(maxLaboursPerPlayer).fill(null)
+            Array(maxLaboursPerPlayer).fill(-1)
         ), // TODO: configure the availability per player dynamically
     }),
 
@@ -71,10 +71,7 @@ export const PenguinFive: Game = {
             moves: {
                 locateCell: ({ G, playerID, events }, id) => {
                     // Player cannot locate at a cell where they have not colonised.
-                    if (
-                        G.cells[id] !== parseInt(playerID) ||
-                        G.location !== null
-                    ) {
+                    if (G.cells[id] !== parseInt(playerID)) {
                         return INVALID_MOVE;
                     }
 
@@ -97,10 +94,7 @@ export const PenguinFive: Game = {
                         moves: {
                             clickCell: ({ G, playerID, events }, id) => {
                                 // Player cannot move to a cell that has been selected.
-                                if (
-                                    G.cells[id] !== null ||
-                                    G.location === null
-                                ) {
+                                if (G.cells[id] !== null || G.location === -1) {
                                     return INVALID_MOVE;
                                 }
                                 const intPlayerID = parseInt(playerID);
@@ -118,7 +112,7 @@ export const PenguinFive: Game = {
                                 G.locations[intPlayerID][index] = id;
 
                                 // Reset the current location before ending a turn.
-                                G.location = null;
+                                G.location = -1;
 
                                 events.endTurn();
                             },
@@ -130,7 +124,7 @@ export const PenguinFive: Game = {
     },
 
     endIf: ({ G }) => {
-        if (IsFinished(G.cells)) {
+        if (IsFinished(G.locations, G.cells, G.cellCoords, maxCellsPerRow)) {
             if (IsDraw(G.scores)) {
                 return { draw: true };
             } else {

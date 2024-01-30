@@ -3,13 +3,11 @@ export interface GameData {
     cellCoords: Array<Coord>;
     fishes: Array<number>;
     scores: Array<number>;
-    location: LabourLocation;
-    locations: Array<Array<LabourLocation>>;
+    location: number;
+    locations: Array<Array<number>>;
 }
 
 export interface Coord {
     xCoord: number;
     yCoord: number;
 }
-
-export type LabourLocation = number | null;

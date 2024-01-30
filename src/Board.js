@@ -21,7 +21,7 @@ export function PenguinFiveBoard({ ctx, G, moves }) {
     }
 
     let linkedCells = [];
-    if (G.location !== null) {
+    if (G.location !== -1) {
         linkedCells = LinkedCells(
             G.location,
             G.cells,
