@@ -1,3 +1,4 @@
+import { iRange, jRange } from "./Consts";
 import { Coord } from "./Types";
 
 export const RandomInt = (min: number, max: number) => {
@@ -256,33 +257,46 @@ export const OutOfRange = (
  * @param target targeted cell ID
  * @param cells a list of player IDs where the index is the cell ID
  * @param cellCoords a list of coordinates where the index is the cell ID
+ * @param maxCellsPerRow maximum number of cells per row
  * @returns a list of cell IDs connected to the target cell ID either horizontally or diagonally without being occupied by any player
  */
 export const LinkedCells = (
     target: number,
     cells: Array<number>,
-    cellCoords: Array<Coord>
+    cellCoords: Array<Coord>,
+    maxCellsPerRow: number
 ): Array<number> => {
     let linkedCells: Array<number> = [];
+    let multipliers: Array<number> = Array(6).fill(1);
+    let outOfRange: Array<boolean> = Array(6).fill(false);
 
-    // iRange: -1, -1, +0, +1, +1, +0
-    // jRange: -1, +1, +1, +1, -1, -1
-    // multipliers = 1, 1, 1, 1, 1, 1;
-    // outOfRange: false, false, false, false, false, false
+    for (let dir = 0; dir < 6; dir++) {
+        while (outOfRange[dir] === false) {
+            let coord: Coord = {
+                xCoord:
+                    cellCoords[target].xCoord + iRange[dir] * multipliers[dir],
+                yCoord:
+                    cellCoords[target].yCoord + jRange[dir] * multipliers[dir],
+            };
 
-    // dirIndex = 0; dirIndex < 6; dirIndex++
-    //   while outOfRange[dirIndex] === false {
-    //     currX = cellCoords[target].xCoord += iRange[dirIndex]*multipliers[dirIndex]
-    //     currY = cellCoords[target].yCoord += jRange[dirIndex]*multipliers[dirIndex]
-    //     if (OutOfRange(currX, currY, totalCells, maxCellsPerRow)) {
-    //       outOfRange[dirIndex] = true
-    //     }
-    //     currID = CoordToID(currX, currY, totalCells, maxCellsPerRow)
-    //     if (cells[currID] === null) {
-    //       linkedCells.push(currID);
-    //       multipliers[dirIndex]++;
-    //     }
-    //   }
+            if (
+                OutOfRange(
+                    coord.xCoord,
+                    coord.yCoord,
+                    cells.length,
+                    maxCellsPerRow
+                )
+            ) {
+                outOfRange[dir] = true;
+            }
 
-    return linkedCells;
+            let cellID = CoordToID(coord, cellCoords);
+            if (cells[cellID] === null) {
+                linkedCells.push(cellID);
+                multipliers[dir]++;
+            }
+        }
+    }
+
+    return linkedCells.sort((a, b) => a - b);
 };

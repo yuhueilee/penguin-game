@@ -125,7 +125,14 @@ it("correctly determines if the coordinate is out of range", () => {
 });
 
 it("correctly return a list of linked cell IDs", () => {
-    expect(
-        LinkedCells(3, Array(15).fill(null), CalculateCoords(15, 3))
-    ).toEqual([]);
+    const cellCoords = CalculateCoords(15, 3);
+    let cells = Array(15).fill(null);
+    expect(LinkedCells(0, cells, cellCoords, 3)).toEqual([1, 2, 3, 6, 9, 12]);
+    expect(LinkedCells(8, cells, cellCoords, 3)).toEqual([
+        2, 4, 5, 6, 9, 10, 11, 14,
+    ]);
+    cells[6] = 1;
+    expect(LinkedCells(8, cells, cellCoords, 3)).toEqual([
+        2, 4, 5, 6, 9, 10, 11, 14,
+    ]);
 });
