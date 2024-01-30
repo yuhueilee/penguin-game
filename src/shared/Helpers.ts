@@ -23,26 +23,48 @@ export const RandomIntArray = (min: number, max: number, length: number) => {
     return randomIntArray;
 };
 
-// Winner returns the player ID with the highest score among all players.
+/**
+ * Returns the player ID with the highest score among all players.
+ *
+ * @param playersScores a list of scores where the index is the player ID
+ * @returns player ID with the highest score
+ */
 export const Winner = (playersScores: Array<number>) => {
     const maxScore = Math.max(...playersScores);
 
     return playersScores.indexOf(maxScore);
 };
 
-// IsFinished determines if the game is over by checking all the cell contains non-null value.
+/**
+ * Determines if the game is over by checking all the cell contains non-null value.
+ *
+ * @param cells a list of player IDs where the index is the cell ID
+ * @returns a boolean indicating if the game is over
+ */
 export const IsFinished = (cells: Array<any>) => {
     return cells.filter((cell) => cell === null).length === 0;
 };
 
-// IsDraw determines if the finished game is draw by checking if more than one player scores the highest.
+/**
+ * Determines if the finished game is draw by checking if more than one player scores the highest.
+ *
+ * @param playersScores a list of scores where the index is the player ID
+ * @returns a boolean indicating if the game is draw
+ */
 export const IsDraw = (playersScores: Array<number>) => {
     const maxScore = Math.max(...playersScores);
 
     return playersScores.filter((score) => score === maxScore).length > 1;
 };
 
-// IsColonised determines if each player has colonised N cells where N is the availability value.
+/**
+ * Determines if each player has colonised N cells where N is the availability value.
+ *
+ * @param cells a list of player IDs where the index is the cell ID
+ * @param numPlayers total number of players
+ * @param availability total number of labours available per player
+ * @returns a boolean indicating if each player has colonised N cells where N is the availability value
+ */
 export const IsColonised = (
     cells: Array<any>,
     numPlayers: number,
