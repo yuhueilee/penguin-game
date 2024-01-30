@@ -68,28 +68,31 @@ export const PenguinFive: Game = {
             next: "hunting",
         },
         hunting: {
-            moves: {
-                locateCell: ({ G, playerID, events }, id) => {
-                    // Player cannot locate at a cell where they have not colonised.
-                    if (G.cells[id] !== parseInt(playerID)) {
-                        return INVALID_MOVE;
-                    }
-
-                    // Record the current location selected by the player.
-                    G.location = id;
-
-                    // Make the current player to occupy cell after selecting their labour's location.
-                    events.setActivePlayers({
-                        currentPlayer: "occupy",
-                        minMoves: 1,
-                        maxMoves: 1,
-                    });
-                },
-            },
             turn: {
-                minMoves: 2,
+                activePlayers: { currentPlayer: "locate" },
+                minMoves: 0,
                 maxMoves: 2,
                 stages: {
+                    locate: {
+                        moves: {
+                            locateCell: ({ G, playerID, events }, id) => {
+                                // Player cannot locate at a cell where they have not colonised.
+                                if (G.cells[id] !== parseInt(playerID)) {
+                                    return INVALID_MOVE;
+                                }
+
+                                // Record the current location selected by the player.
+                                G.location = id;
+
+                                // Make the current player to occupy cell after selecting their labour's location.
+                                events.setActivePlayers({
+                                    currentPlayer: "occupy",
+                                    minMoves: 1,
+                                    maxMoves: 1,
+                                });
+                            },
+                        },
+                    },
                     occupy: {
                         moves: {
                             clickCell: ({ G, playerID, events }, id) => {
