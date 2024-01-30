@@ -2,7 +2,7 @@ import React from "react";
 import "./styles/Board.scss";
 
 import { totalCells, maxCellsPerRow } from "./shared/Consts";
-import { Columns, IsLinked, LinkedCells, Rows } from "./shared/Helpers";
+import { Columns, LinkedCells, Rows } from "./shared/Helpers";
 
 export function PenguinFiveBoard({ ctx, G, moves }) {
     const currPlayerID = parseInt(ctx.currentPlayer);
