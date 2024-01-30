@@ -51,7 +51,10 @@ export function PenguinFiveBoard({ ctx, G, moves }) {
                             onClick={() => colonise(cellID)}
                             disabled={
                                 isCellColonised(cellID, G.cells) ||
-                                isLocatCellMove(ctx.phase, ctx.activePlayers) ||
+                                isAtLocateStage(
+                                    currPlayerID,
+                                    ctx.activePlayers
+                                ) ||
                                 (isAtOccupyStage(
                                     currPlayerID,
                                     ctx.activePlayers
@@ -65,15 +68,16 @@ export function PenguinFiveBoard({ ctx, G, moves }) {
                             className="locateBtn"
                             onClick={() => locate(cellID)}
                             disabled={
-                                !isAtHuntingPhase(ctx.phase) ||
-                                isAtOccupyStage(
-                                    currPlayerID,
-                                    ctx.activePlayers
-                                ) ||
-                                !isLabourLocated(
-                                    currPlayerID,
-                                    cellID,
-                                    G.locations
+                                !(
+                                    isAtLocateStage(
+                                        currPlayerID,
+                                        ctx.activePlayers
+                                    ) &&
+                                    isLabourLocated(
+                                        currPlayerID,
+                                        cellID,
+                                        G.locations
+                                    )
                                 )
                             }
                         >
@@ -134,12 +138,14 @@ const isCellColonised = (id, cells) => {
 /**
  * Determines if the current player can perform locate cell move.
  *
- * @param {string} phase game phase
+ * @param {number} playerID player ID
  * @param {Object} activePlayers key refers to the player ID and value refers to the stage the player is in
  * @returns a boolean indicating if the current player can perform locate cell move
  */
-const isLocatCellMove = (phase, activePlayers) => {
-    return isAtHuntingPhase(phase) && activePlayers === null;
+const isAtLocateStage = (playerID, activePlayers) => {
+    return activePlayers !== null
+        ? activePlayers[playerID] === "locate"
+        : false;
 };
 
 /**
@@ -153,14 +159,4 @@ const isAtOccupyStage = (playerID, activePlayers) => {
     return activePlayers !== null
         ? activePlayers[playerID] === "occupy"
         : false;
-};
-
-/**
- * Determines if the current phase is hunting.
- *
- * @param {string} phase game phase
- * @returns a boolean indicating if the current phase is hunting
- */
-const isAtHuntingPhase = (phase) => {
-    return phase === "hunting";
 };
