@@ -229,10 +229,7 @@ export const OutOfRange = (
     maxCellsPerRow: number
 ): boolean => {
     const minX = 0;
-    const maxX =
-        totalCells % maxCellsPerRow === 0
-            ? totalCells / maxCellsPerRow + 1
-            : Math.ceil(totalCells / maxCellsPerRow);
+    const maxX = Rows(totalCells, maxCellsPerRow);
     const minY = 0;
     const maxY = maxCellsPerRow * 2 - 1;
 
