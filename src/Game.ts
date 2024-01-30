@@ -11,6 +11,7 @@ import {
     IsColonised,
     IsDraw,
     IsFinished,
+    IsFinishedByPlayerID,
     RandomIntArray,
     Winner,
 } from "./shared/Helpers";
@@ -69,7 +70,22 @@ export const PenguinFive: Game = {
         },
         hunting: {
             turn: {
-                activePlayers: { currentPlayer: "locate" },
+                onBegin: ({ G, ctx, events }) => {
+                    // Ends the active player's turn if no cells are linked to the labours.
+                    if (
+                        IsFinishedByPlayerID(
+                            parseInt(ctx.currentPlayer),
+                            G.locations,
+                            G.cells,
+                            G.cellCoords,
+                            maxCellsPerRow
+                        )
+                    ) {
+                        events.endTurn();
+                    }
+
+                    events.setActivePlayers({ currentPlayer: "locate" });
+                },
                 minMoves: 0,
                 maxMoves: 2,
                 stages: {
