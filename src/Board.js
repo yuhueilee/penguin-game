@@ -77,6 +77,12 @@ export function PenguinFiveBoard({ ctx, G, moves }) {
                                         currPlayerID,
                                         cellID,
                                         G.locations
+                                    ) &&
+                                    isLabourLinkedToOtherCells(
+                                        cellID,
+                                        G.cells,
+                                        G.cellCoords,
+                                        maxCellsPerRow
                                     )
                                 )
                             }
@@ -122,6 +128,24 @@ const cellStyle = (playerID) => {
  */
 const isLabourLocated = (playerID, cellID, locations) => {
     return locations[playerID].indexOf(cellID) !== -1;
+};
+
+/**
+ * Determines if the labour is linked to any cells.
+ *
+ * @param {number} cellID targeted cell ID
+ * @param {Array<number>} cells a list of player IDs
+ * @param {Array<Coord>} cellCoords a list of coordinates
+ * @param {number} maxCellsPerRow maximum number of cells per row
+ * @returns a boolean indicating if there are any cells linked to the targeted cell ID
+ */
+const isLabourLinkedToOtherCells = (
+    cellID,
+    cells,
+    cellCoords,
+    maxCellsPerRow
+) => {
+    return LinkedCells(cellID, cells, cellCoords, maxCellsPerRow).length !== 0;
 };
 
 /**
