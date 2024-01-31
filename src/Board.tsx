@@ -54,12 +54,14 @@ export function PenguinBattleBoard({ ctx, G, moves } : {ctx: Ctx, G:GameData, mo
                             onClick={() => colonise(cellID)}
                             disabled={
                                 isCellColonised(cellID, G.cells) ||
-                                isAtLocateStage(
+                                isPlayerAtStage(
                                     currPlayerID,
+                                    "locate",
                                     ctx.activePlayers
                                 ) ||
-                                (isAtOccupyStage(
+                                (isPlayerAtStage(
                                     currPlayerID,
+                                    "occupy",
                                     ctx.activePlayers
                                 ) &&
                                     linkedCells.indexOf(cellID) === -1)
@@ -72,8 +74,9 @@ export function PenguinBattleBoard({ ctx, G, moves } : {ctx: Ctx, G:GameData, mo
                             onClick={() => locate(cellID)}
                             disabled={
                                 !(
-                                    isAtLocateStage(
+                                    isPlayerAtStage(
                                         currPlayerID,
+                                        "locate",
                                         ctx.activePlayers
                                     ) &&
                                     isLabourLocated(
@@ -163,27 +166,15 @@ const isCellColonised = (id: number, cells: Array<number>) => {
 };
 
 /**
- * Determines if the current player can perform locate cell move.
- *
+ * Determines if the player is at certain stage.
+ * 
  * @param playerID player ID
- * @param activePlayers key refers to the player ID and value refers to the stage the player is in
- * @returns a boolean indicating if the current player can perform locate cell move
+ * @param stage stage name
+ * @param activePlayers an object where the key is the player ID and the value is the stage the player is currently at
+ * @returns 
  */
-const isAtLocateStage = (playerID: number, activePlayers: (null | ActivePlayers)) => {
-    return activePlayers !== null
-        ? activePlayers[playerID] === "locate"
-        : false;
-};
+const isPlayerAtStage = (playerID: number, stage: string, activePlayers: (null | ActivePlayers)) => {
+    if (activePlayers === null) {return false}
 
-/**
- * Determines if the current player is at occupy stage.
- *
- * @param playerID player ID
- * @param activePlayers
- * @returns a boolean indicating if the current player is at occupy stage
- */
-const isAtOccupyStage = (playerID: number, activePlayers: (null | ActivePlayers)) => {
-    return activePlayers !== null
-        ? activePlayers[playerID] === "occupy"
-        : false;
-};
+    return activePlayers[playerID] === stage
+}
