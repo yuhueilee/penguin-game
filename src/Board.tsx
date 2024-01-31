@@ -1,16 +1,19 @@
-import React from "react";
-import "./styles/Board.scss";
+import './styles/Board.scss';
 
-import { totalCells, maxCellsPerRow } from "./shared/Consts";
-import { Columns, LinkedCells, Rows } from "./shared/Helpers";
+import { ActivePlayers, Ctx } from 'boardgame.io';
+import React from 'react';
 
-export function PenguinFiveBoard({ ctx, G, moves }) {
+import { maxCellsPerRow, totalCells } from './shared/Consts';
+import { Columns, LinkedCells, Rows } from './shared/Helpers';
+import { Coord, GameData } from './shared/Types';
+
+export function PenguinFiveBoard({ ctx, G, moves } : {ctx: Ctx, G:GameData, moves:any }): JSX.Element {
     const currPlayerID = parseInt(ctx.currentPlayer);
 
-    const colonise = (id) => moves.clickCell(id);
-    const locate = (id) => moves.locateCell(id);
+    const colonise = (id: number) => moves.clickCell(id);
+    const locate = (id: number) => moves.locateCell(id);
 
-    let winner = "";
+    let winner: any = "";
     if (ctx.gameover) {
         winner =
             ctx.gameover.winner !== undefined ? (
@@ -20,7 +23,7 @@ export function PenguinFiveBoard({ ctx, G, moves }) {
             );
     }
 
-    let linkedCells = [];
+    let linkedCells: Array<number> = [];
     if (G.location !== -1) {
         linkedCells = LinkedCells(
             G.location,
@@ -110,7 +113,7 @@ export function PenguinFiveBoard({ ctx, G, moves }) {
     );
 }
 
-const cellStyle = (playerID) => {
+const cellStyle = (playerID: number) => {
     if (playerID === null) {
         return "emptyCell";
     }
@@ -121,29 +124,29 @@ const cellStyle = (playerID) => {
 /**
  * Determines whether the cell ID matches with one of the player's labours' location.
  *
- * @param {number} playerID player ID
- * @param {number} cellID cell ID
- * @param {Array<number>} locations location of the player's labours
+ * @param playerID player ID
+ * @param cellID cell ID
+ * @param locations location of the player's labours
  * @returns a boolean indicating if the cell ID matches with one of the labours' location
  */
-const isLabourLocated = (playerID, cellID, locations) => {
+const isLabourLocated = (playerID: number, cellID: number, locations: Array<Array<number>>) => {
     return locations[playerID].indexOf(cellID) !== -1;
 };
 
 /**
  * Determines if the labour is linked to any cells.
  *
- * @param {number} cellID targeted cell ID
- * @param {Array<number>} cells a list of player IDs
- * @param {Array<Coord>} cellCoords a list of coordinates
- * @param {number} maxCellsPerRow maximum number of cells per row
+ * @param cellID targeted cell ID
+ * @param cells a list of player IDs
+ * @param cellCoords a list of coordinates
+ * @param maxCellsPerRow maximum number of cells per row
  * @returns a boolean indicating if there are any cells linked to the targeted cell ID
  */
 const isLabourLinkedToOtherCells = (
-    cellID,
-    cells,
-    cellCoords,
-    maxCellsPerRow
+    cellID: number,
+    cells: Array<number>,
+    cellCoords: Array<Coord>,
+    maxCellsPerRow: number
 ) => {
     return LinkedCells(cellID, cells, cellCoords, maxCellsPerRow).length !== 0;
 };
@@ -151,22 +154,22 @@ const isLabourLinkedToOtherCells = (
 /**
  * Determines if the cell with the specific ID has been colonised by a player.
  *
- * @param {number} id cell ID
- * @param {Array<number>} cells a list of player IDs where the index corresponds to the cell ID
+ * @param id cell ID
+ * @param cells a list of player IDs where the index corresponds to the cell ID
  * @returns a boolean indicating if the cell has been colonised by any player
  */
-const isCellColonised = (id, cells) => {
+const isCellColonised = (id: number, cells: Array<number>) => {
     return cells[id] !== null;
 };
 
 /**
  * Determines if the current player can perform locate cell move.
  *
- * @param {number} playerID player ID
- * @param {Object} activePlayers key refers to the player ID and value refers to the stage the player is in
+ * @param playerID player ID
+ * @param activePlayers key refers to the player ID and value refers to the stage the player is in
  * @returns a boolean indicating if the current player can perform locate cell move
  */
-const isAtLocateStage = (playerID, activePlayers) => {
+const isAtLocateStage = (playerID: number, activePlayers: (null | ActivePlayers)) => {
     return activePlayers !== null
         ? activePlayers[playerID] === "locate"
         : false;
@@ -175,11 +178,11 @@ const isAtLocateStage = (playerID, activePlayers) => {
 /**
  * Determines if the current player is at occupy stage.
  *
- * @param {number} playerID player ID
- * @param {Object} activePlayers
+ * @param playerID player ID
+ * @param activePlayers
  * @returns a boolean indicating if the current player is at occupy stage
  */
-const isAtOccupyStage = (playerID, activePlayers) => {
+const isAtOccupyStage = (playerID: number, activePlayers: (null | ActivePlayers)) => {
     return activePlayers !== null
         ? activePlayers[playerID] === "occupy"
         : false;
