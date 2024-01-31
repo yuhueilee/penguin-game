@@ -1,11 +1,11 @@
 import { Client } from 'boardgame.io/react';
 
-import { PenguinFiveBoard } from './Board';
-import { PenguinFive } from './Game';
+import { PenguinBattleBoard } from './Board';
+import { PenguinBattle } from './Game';
 
 const App = Client({
-    game: PenguinFive,
-    board: PenguinFiveBoard,
+    game: PenguinBattle,
+    board: PenguinBattleBoard,
 });
 
 export default App;

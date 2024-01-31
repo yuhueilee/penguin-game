@@ -17,8 +17,8 @@ import {
 } from "./shared/Helpers";
 import { GameData } from "./shared/Types";
 
-// PenguinFive defines the game state.
-export const PenguinFive: Game = {
+// PenguinBattle defines the game state.
+export const PenguinBattle: Game = {
     setup: ({ ctx }): GameData => ({
         cells: Array(totalCells).fill(null),
         cellCoords: CalculateCoords(totalCells, maxCellsPerRow),

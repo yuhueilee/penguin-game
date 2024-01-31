@@ -7,7 +7,7 @@ import { maxCellsPerRow, totalCells } from './shared/Consts';
 import { Columns, LinkedCells, Rows } from './shared/Helpers';
 import { Coord, GameData } from './shared/Types';
 
-export function PenguinFiveBoard({ ctx, G, moves } : {ctx: Ctx, G:GameData, moves:any }): JSX.Element {
+export function PenguinBattleBoard({ ctx, G, moves } : {ctx: Ctx, G:GameData, moves:any }): JSX.Element {
     const currPlayerID = parseInt(ctx.currentPlayer);
 
     const colonise = (id: number) => moves.clickCell(id);
