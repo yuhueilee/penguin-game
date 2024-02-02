@@ -84,7 +84,7 @@ export function PenguinBattleBoard({ ctx, G, moves } : {ctx: Ctx, G:GameData, mo
                                         cellID,
                                         G.locations
                                     ) &&
-                                    isLabourLinkedToOtherCells(
+                                    isLinked(
                                         cellID,
                                         G.cells,
                                         G.cellCoords,
@@ -137,7 +137,7 @@ const isLabourLocated = (playerID: number, cellID: number, locations: Array<Arra
 };
 
 /**
- * Determines if the labour is linked to any cells.
+ * Determines if the cell is linked to any other unoccupied cells.
  *
  * @param cellID targeted cell ID
  * @param cells a list of player IDs
@@ -145,7 +145,7 @@ const isLabourLocated = (playerID: number, cellID: number, locations: Array<Arra
  * @param maxCellsPerRow maximum number of cells per row
  * @returns a boolean indicating if there are any cells linked to the targeted cell ID
  */
-const isLabourLinkedToOtherCells = (
+const isLinked = (
     cellID: number,
     cells: Array<number>,
     cellCoords: Array<Coord>,
