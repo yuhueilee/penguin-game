@@ -6,6 +6,8 @@ jobs:
     tests:
         runs-on: ubuntu-latest
 
+        permissions: read-all
+
         strategy:
             matrix:
                 node-version: [20.x]
