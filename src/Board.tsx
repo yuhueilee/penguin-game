@@ -57,32 +57,16 @@ export function PenguinBattleBoard({
                         ) : (
                             <></>
                         )}
-                        <button
-                            className="locateBtn"
-                            onClick={() => locate(cellID)}
-                            disabled={
-                                !(
-                                    isPlayerAtStage(
-                                        currPlayerID,
-                                        "locate",
-                                        ctx.activePlayers
-                                    ) &&
-                                    isLabourLocated(
-                                        currPlayerID,
-                                        cellID,
-                                        G.locations
-                                    ) &&
-                                    isLinked(
-                                        cellID,
-                                        G.cells,
-                                        G.cellCoords,
-                                        maxCellsPerRow
-                                    )
-                                )
-                            }
-                        >
-                            locate
-                        </button>
+                        {showLocateButton(ctx, G, currPlayerID, cellID) ? (
+                            <button
+                                className="locateBtn"
+                                onClick={() => locate(cellID)}
+                            >
+                                locate
+                            </button>
+                        ) : (
+                            <></>
+                        )}
                     </div>
                 </div>
             );
@@ -149,6 +133,31 @@ const showColoniseButton = (
     }
 
     return true;
+};
+
+/**
+ * Locate button should only be shown when the all of the conditions below fulfills:
+ * 1) player is at locate stage
+ * 2) player's labour is located at the cell
+ * 3) the cell is linked to other unoccupied cells
+ *
+ * @param ctx context data of the game
+ * @param g game data
+ * @param playerID player ID
+ * @param cellID cell ID
+ * @returns a boolean indicating if the locate button should be shown or not
+ */
+const showLocateButton = (
+    ctx: Ctx,
+    g: GameData,
+    playerID: number,
+    cellID: number
+) => {
+    return (
+        isPlayerAtStage(playerID, "locate", ctx.activePlayers) &&
+        isLabourLocated(playerID, cellID, g.locations) &&
+        isLinked(cellID, g.cells, g.cellCoords, maxCellsPerRow)
+    );
 };
 
 /**
