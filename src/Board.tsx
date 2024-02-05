@@ -84,7 +84,12 @@ export function PenguinBattleBoard({
             <div className="playerInfo">
                 <div className="ranking">ranking placeholder</div>
                 <div className="playerIcon">player {i}</div>
-                <div className="score">{G.scores[i]} fish</div>
+                <div className="score">
+                    <h2 className="amount">
+                        {G.scores[i]}
+                        <span className="smallText">fish</span>
+                    </h2>
+                </div>
             </div>
         );
     }

@@ -10,6 +10,18 @@ $hexagonWidth: 100px;
     flex-direction: $d;
 }
 
+@mixin fontStyle(
+    $color: black,
+    $size: 16px,
+    $weight: 400,
+    $letterSpacing: 2px
+) {
+    color: $color;
+    font-size: $size;
+    font-weight: 400;
+    letter-spacing: $letterSpacing;
+}
+
 @mixin cellStyle($backgroundColor: #4169e1) {
     @include flexDisplay(center, center, column);
     width: $hexagonWidth;
@@ -58,7 +70,8 @@ $hexagonWidth: 100px;
         padding: 8px;
     }
     .playerInfo {
-        @include flexDisplay(flex-start, flex-start, row);
+        @include flexDisplay(center, center, row);
+        @include fontStyle;
         width: 100%;
         .ranking {
             flex: 2;
@@ -71,6 +84,14 @@ $hexagonWidth: 100px;
         .score {
             flex: 7;
             padding: 8px;
+            .amount {
+                @include fontStyle(red, 32px, 500);
+                margin: 0;
+                .smallText {
+                    @include fontStyle;
+                    padding-left: 8px;
+                }
+            }
         }
     }
 }
