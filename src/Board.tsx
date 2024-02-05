@@ -80,6 +80,7 @@ export function PenguinBattleBoard({
 
     return (
         <div className="board">
+            <div className="summary"></div>
             <div className="table">{tbody}</div>
             {winner}
         </div>

@@ -9,12 +9,18 @@ $hexagonWidth: 100px;
 }
 
 .board {
-    @include flexDisplay;
+    @include flexDisplay(flex-start, flex-start);
     position: relative;
+}
+
+.summary {
+    @include flexDisplay(flex-start, flex-start, column);
+    flex: 2;
 }
 
 .table {
     @include flexDisplay(center, center, column);
+    flex: 7;
 
     .row {
         @include flexDisplay;
