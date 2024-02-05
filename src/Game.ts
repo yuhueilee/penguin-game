@@ -28,6 +28,7 @@ export const PenguinBattle: Game = {
         locations: Array(ctx.numPlayers).fill(
             Array(maxLaboursPerPlayer).fill(-1)
         ), // TODO: configure the availability per player dynamically
+        maxCellsPerRow: maxCellsPerRow,
     }),
 
     turn: {
