@@ -77,6 +77,10 @@ $hexagonWidth: 100px;
         @include fontStyle;
         padding: 0 8px;
     }
+    .divider {
+        width: 100%;
+        border-color: rgba(white, 0.7);
+    }
     .playerInfo {
         @include flexDisplay(center, center, row);
         @include fontStyle;

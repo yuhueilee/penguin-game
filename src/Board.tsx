@@ -99,6 +99,7 @@ export function PenguinBattleBoard({
             <div className="summary">
                 <h1 className="title">LeaderBoard</h1>
                 {ranking}
+                <hr className="divider"></hr>
                 <h1 className="title">Who's Turn?</h1>
                 <h2 className="highlightText">
                     <span className="smallText">player</span>
