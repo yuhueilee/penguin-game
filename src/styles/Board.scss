@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Protest+Riot&display=swap");
+
 $gridGap: 15px;
 $hexagonWidth: 100px;
 
@@ -11,6 +13,7 @@ $hexagonWidth: 100px;
 .board {
     @include flexDisplay(flex-start, flex-start);
     position: relative;
+    font-family: "Protest Riot", sans-serif;
 }
 
 .summary {
@@ -51,7 +54,7 @@ $hexagonWidth: 100px;
 @mixin buttonStyle($primaryColor: black, $secondaryColor: white) {
     background-color: $primaryColor;
     color: $secondaryColor;
-    font-family: sans-serif;
+    font-family: "Protest Riot", sans-serif;
     &:hover {
         background-color: $secondaryColor;
         color: $primaryColor;
@@ -75,7 +78,6 @@ $hexagonWidth: 100px;
 .textStyle {
     margin: 8px;
     font-weight: 500;
-    font-family: sans-serif;
     color: rgba($color: white, $alpha: 0.85);
 }
 
@@ -90,5 +92,4 @@ $hexagonWidth: 100px;
     background-color: rgba($color: #242424, $alpha: 0.7);
     color: white;
     border-radius: 20px;
-    font-family: sans-serif;
 }
