@@ -80,9 +80,7 @@ export function PenguinBattleBoard({
 
     return (
         <div>
-            <div id="board" className="table">
-                {tbody}
-            </div>
+            <div className="table">{tbody}</div>
             {winner}
         </div>
     );
