@@ -5,6 +5,7 @@ export interface GameData {
     scores: Array<number>;
     location: number;
     locations: Array<Array<number>>;
+    maxCellsPerRow: number;
 }
 
 export interface Coord {

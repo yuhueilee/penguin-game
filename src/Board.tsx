@@ -1,13 +1,21 @@
-import './styles/Board.scss';
+import "./styles/Board.scss";
 
-import { ActivePlayers, Ctx } from 'boardgame.io';
-import React from 'react';
+import { ActivePlayers, Ctx } from "boardgame.io";
+import React from "react";
 
-import { maxCellsPerRow, totalCells } from './shared/Consts';
-import { Columns, LinkedCells, Rows } from './shared/Helpers';
-import { Coord, GameData } from './shared/Types';
+import { maxCellsPerRow, totalCells } from "./shared/Consts";
+import { Columns, LinkedCells, Rows } from "./shared/Helpers";
+import { Coord, GameData } from "./shared/Types";
 
-export function PenguinBattleBoard({ ctx, G, moves } : {ctx: Ctx, G:GameData, moves:any }): JSX.Element {
+export function PenguinBattleBoard({
+    ctx,
+    G,
+    moves,
+}: {
+    ctx: Ctx;
+    G: GameData;
+    moves: any;
+}): JSX.Element {
     const currPlayerID = parseInt(ctx.currentPlayer);
 
     const colonise = (id: number) => moves.clickCell(id);
@@ -39,26 +47,16 @@ export function PenguinBattleBoard({ ctx, G, moves } : {ctx: Ctx, G:GameData, mo
                         <h5 className="textStyle">
                             playerID: {G.cells[cellID]}
                         </h5>
-                        <button
-                            className="coloniseBtn"
-                            onClick={() => colonise(cellID)}
-                            disabled={
-                                isCellColonised(cellID, G.cells) ||
-                                isPlayerAtStage(
-                                    currPlayerID,
-                                    "locate",
-                                    ctx.activePlayers
-                                ) ||
-                                (isPlayerAtStage(
-                                    currPlayerID,
-                                    "occupy",
-                                    ctx.activePlayers
-                                ) &&
-                                !isCellLinkedToLocatedLabour(cellID, G.location, G.cells, G.cellCoords, maxCellsPerRow))
-                            }
-                        >
-                            colonise
-                        </button>
+                        {showColoniseButton(ctx, G, currPlayerID, cellID) ? (
+                            <button
+                                className="coloniseBtn"
+                                onClick={() => colonise(cellID)}
+                            >
+                                colonise
+                            </button>
+                        ) : (
+                            <></>
+                        )}
                         <button
                             className="locateBtn"
                             onClick={() => locate(cellID)}
@@ -115,6 +113,45 @@ const cellStyle = (playerID: number) => {
 };
 
 /**
+ * Determines if the colonise button should be shown or not.
+ *
+ * @param ctx context data of the game
+ * @param g game data
+ * @param playerID player ID
+ * @param cellID cell ID
+ * @returns a boolean indicating if the colonise button should be shown or not
+ */
+const showColoniseButton = (
+    ctx: Ctx,
+    g: GameData,
+    playerID: number,
+    cellID: number
+) => {
+    // Hide the button when the cell has been colonised.
+    if (isCellColonised(cellID, g.cells)) {
+        return false;
+    }
+
+    // Hide the button when the player is at locate stage.
+    if (isPlayerAtStage(playerID, "locate", ctx.activePlayers)) {
+        return false;
+    }
+
+    // Show the button when the player is at occupy stage and the cell is linked to the located cell, vice versa.
+    if (isPlayerAtStage(playerID, "occupy", ctx.activePlayers)) {
+        return isCellLinkedToLocatedLabour(
+            cellID,
+            g.location,
+            g.cells,
+            g.cellCoords,
+            g.maxCellsPerRow
+        );
+    }
+
+    return true;
+};
+
+/**
  * Determines whether the cell ID matches with one of the player's labours' location.
  *
  * @param playerID player ID
@@ -122,7 +159,11 @@ const cellStyle = (playerID: number) => {
  * @param locations location of the player's labours
  * @returns a boolean indicating if the cell ID matches with one of the labours' location
  */
-const isLabourLocated = (playerID: number, cellID: number, locations: Array<Array<number>>) => {
+const isLabourLocated = (
+    playerID: number,
+    cellID: number,
+    locations: Array<Array<number>>
+) => {
     return locations[playerID].indexOf(cellID) !== -1;
 };
 
@@ -146,7 +187,7 @@ const isLinked = (
 
 /**
  * Determines if the cell is linked to the located cell.
- * 
+ *
  * @param cellID current cell ID
  * @param locatedLabour located cell ID
  * @param cells a list of player IDs
@@ -165,7 +206,12 @@ const isCellLinkedToLocatedLabour = (
         return false;
     }
 
-    const linkedCells = LinkedCells(locatedLabour, cells, cellCoords, maxCellsPerRow);
+    const linkedCells = LinkedCells(
+        locatedLabour,
+        cells,
+        cellCoords,
+        maxCellsPerRow
+    );
 
     return linkedCells.indexOf(cellID) !== -1;
 };
@@ -183,14 +229,20 @@ const isCellColonised = (id: number, cells: Array<number>) => {
 
 /**
  * Determines if the player is at certain stage.
- * 
+ *
  * @param playerID player ID
  * @param stage stage name
  * @param activePlayers an object where the key is the player ID and the value is the stage the player is currently at
- * @returns 
+ * @returns
  */
-const isPlayerAtStage = (playerID: number, stage: string, activePlayers: (null | ActivePlayers)) => {
-    if (activePlayers === null) {return false}
+const isPlayerAtStage = (
+    playerID: number,
+    stage: string,
+    activePlayers: null | ActivePlayers
+) => {
+    if (activePlayers === null) {
+        return false;
+    }
 
-    return activePlayers[playerID] === stage
-}
+    return activePlayers[playerID] === stage;
+};
