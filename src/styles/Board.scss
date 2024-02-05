@@ -10,6 +10,35 @@ $hexagonWidth: 100px;
     flex-direction: $d;
 }
 
+@mixin cellStyle($backgroundColor: #4169e1) {
+    @include flexDisplay(center, center, column);
+    width: $hexagonWidth;
+    height: calc((sqrt(3) / 2) * $hexagonWidth);
+    padding: 16px;
+    margin: 0 $gridGap;
+    line-height: 10px;
+    text-align: center;
+    /* transform to a symmetric hexagon */
+    background: $backgroundColor;
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+}
+
+@mixin buttonStyle($primaryColor: black, $secondaryColor: white) {
+    background-color: $primaryColor;
+    color: $secondaryColor;
+    font-family: "Protest Riot", sans-serif;
+    &:hover {
+        background-color: $secondaryColor;
+        color: $primaryColor;
+        cursor: pointer;
+    }
+    &:disabled {
+        background-color: #cccccc;
+        color: #666666;
+        cursor: not-allowed;
+    }
+}
+
 .board {
     @include flexDisplay(flex-start, flex-start);
     position: relative;
@@ -30,41 +59,12 @@ $hexagonWidth: 100px;
     }
 }
 
-@mixin cellStyle($backgroundColor: #4169e1) {
-    @include flexDisplay(center, center, column);
-    width: $hexagonWidth;
-    height: calc((sqrt(3) / 2) * $hexagonWidth);
-    padding: 16px;
-    margin: 0 $gridGap;
-    line-height: 10px;
-    text-align: center;
-    /* transform to a symmetric hexagon */
-    background: $backgroundColor;
-    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-}
-
 .emptyCell {
     @include cellStyle;
 }
 
 .colonisedCell {
     @include cellStyle(#284086);
-}
-
-@mixin buttonStyle($primaryColor: black, $secondaryColor: white) {
-    background-color: $primaryColor;
-    color: $secondaryColor;
-    font-family: "Protest Riot", sans-serif;
-    &:hover {
-        background-color: $secondaryColor;
-        color: $primaryColor;
-        cursor: pointer;
-    }
-    &:disabled {
-        background-color: #cccccc;
-        color: #666666;
-        cursor: not-allowed;
-    }
 }
 
 .coloniseBtn {
