@@ -41,9 +41,7 @@ export function PenguinBattleBoard({
             cells.push(
                 <div key={cellID}>
                     <div className={cellStyle(G.cells[cellID])}>
-                        <h5 className="textStyle">
-                            fishes: {G.fishes[cellID]}
-                        </h5>
+                        <h5 className="textStyle">fish: {G.fish[cellID]}</h5>
                         <h5 className="textStyle">
                             playerID: {G.cells[cellID]}
                         </h5>
@@ -78,11 +76,35 @@ export function PenguinBattleBoard({
         );
     }
 
-    return (
-        <div>
-            <div id="board" className="table">
-                {tbody}
+    let ranking = [];
+    for (let i = 0; i < ctx.numPlayers; i++) {
+        ranking.push(
+            <div className="playerInfo">
+                <div className="ranking">ranking placeholder</div>
+                <div className="playerIcon">player {i}</div>
+                <div className="score">
+                    <h2 className="highlightText">
+                        {G.scores[i]}
+                        <span className="smallText">fish</span>
+                    </h2>
+                </div>
             </div>
+        );
+    }
+
+    return (
+        <div className="board">
+            <div className="summary">
+                <h1 className="title">LeaderBoard</h1>
+                {ranking}
+                <hr className="divider"></hr>
+                <h1 className="title">Who's Turn?</h1>
+                <h2 className="highlightText">
+                    <span className="smallText">player</span>
+                    {currPlayerID}
+                </h2>
+            </div>
+            <div className="table">{tbody}</div>
             {winner}
         </div>
     );

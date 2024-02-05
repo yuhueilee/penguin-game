@@ -22,7 +22,7 @@ export const PenguinBattle: Game = {
     setup: ({ ctx }): GameData => ({
         cells: Array(totalCells).fill(null),
         cellCoords: CalculateCoords(totalCells, maxCellsPerRow),
-        fishes: RandomIntArray(1, 3, totalCells),
+        fish: RandomIntArray(1, 3, totalCells),
         scores: Array(ctx.numPlayers).fill(0),
         location: -1,
         locations: Array(ctx.numPlayers).fill(
@@ -123,7 +123,7 @@ export const PenguinBattle: Game = {
                                 G.cells[id] = intPlayerID;
 
                                 // Update the scores for the player based on the location their labour comes from.
-                                G.scores[playerID] += G.fishes[G.location];
+                                G.scores[playerID] += G.fish[G.location];
 
                                 // Update the location for each of the players' labours.
                                 const index = G.locations[intPlayerID].indexOf(

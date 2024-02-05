@@ -1,23 +1,30 @@
+@import url("https://fonts.googleapis.com/css2?family=Protest+Riot&display=swap");
+
 $gridGap: 15px;
 $hexagonWidth: 100px;
 
-.table {
+@mixin flexDisplay($j: center, $a: center, $d: row) {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    justify-content: $j;
+    align-items: $a;
+    flex-direction: $d;
+}
 
-    .row {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-    }
+@mixin fontStyle(
+    $color: black,
+    $size: 16px,
+    $weight: 400,
+    $letterSpacing: 2px
+) {
+    color: $color;
+    font-size: $size;
+    font-weight: $weight;
+    letter-spacing: $letterSpacing;
+    font-family: "Protest Riot", sans-serif;
 }
 
 @mixin cellStyle($backgroundColor: #4169e1) {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    @include flexDisplay(center, center, column);
     width: $hexagonWidth;
     height: calc((sqrt(3) / 2) * $hexagonWidth);
     padding: 16px;
@@ -29,18 +36,12 @@ $hexagonWidth: 100px;
     clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
 }
 
-.emptyCell {
-    @include cellStyle;
-}
-
-.colonisedCell {
-    @include cellStyle(#284086);
-}
-
 @mixin buttonStyle($primaryColor: black, $secondaryColor: white) {
+    @include fontStyle($secondaryColor, 14px, 300, 1px);
     background-color: $primaryColor;
     color: $secondaryColor;
-    font-family: sans-serif;
+    border: none;
+    border-radius: 5px;
     &:hover {
         background-color: $secondaryColor;
         color: $primaryColor;
@@ -53,6 +54,75 @@ $hexagonWidth: 100px;
     }
 }
 
+.board {
+    @include flexDisplay(flex-start, flex-start);
+    position: relative;
+    font-family: "Protest Riot", sans-serif;
+    letter-spacing: 1px;
+}
+
+.summary {
+    @include flexDisplay(flex-start, center, column);
+    flex: 300px;
+    flex-shrink: 0;
+    border-radius: 10px;
+    box-shadow: 0px 0px 30px rgba(black, 0.3);
+    padding: 8px;
+    .title {
+        margin: 0;
+        padding: 8px;
+    }
+    .highlightText {
+        @include fontStyle(red, 32px, 500);
+        margin: 0;
+    }
+    .smallText {
+        @include fontStyle;
+        padding: 0 8px;
+    }
+    .divider {
+        width: 100%;
+        border-color: rgba(white, 0.7);
+    }
+    .playerInfo {
+        @include flexDisplay(center, center, row);
+        @include fontStyle;
+        width: 100%;
+        background-color: rgb(176, 176, 176);
+        border-radius: 5px;
+        margin: 2px;
+        .ranking {
+            flex: 2;
+            padding: 8px;
+        }
+        .playerIcon {
+            flex: 3;
+            padding: 8px;
+        }
+        .score {
+            flex: 7;
+            padding: 8px;
+        }
+    }
+}
+
+.table {
+    @include flexDisplay(center, center, column);
+    flex: 7;
+
+    .row {
+        @include flexDisplay;
+    }
+}
+
+.emptyCell {
+    @include cellStyle;
+}
+
+.colonisedCell {
+    @include cellStyle(#284086);
+}
+
 .coloniseBtn {
     @include buttonStyle;
 }
@@ -63,16 +133,13 @@ $hexagonWidth: 100px;
 
 .textStyle {
     margin: 8px;
-    font-weight: 500;
-    font-family: sans-serif;
+    font-size: 14px;
     color: rgba($color: white, $alpha: 0.85);
 }
 
 #winner {
+    @include flexDisplay;
     position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -81,5 +148,4 @@ $hexagonWidth: 100px;
     background-color: rgba($color: #242424, $alpha: 0.7);
     color: white;
     border-radius: 20px;
-    font-family: sans-serif;
 }
