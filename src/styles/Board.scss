@@ -43,6 +43,7 @@ $hexagonWidth: 100px;
     @include flexDisplay(flex-start, flex-start);
     position: relative;
     font-family: "Protest Riot", sans-serif;
+    letter-spacing: 1px;
 }
 
 .summary {
@@ -77,7 +78,7 @@ $hexagonWidth: 100px;
 
 .textStyle {
     margin: 8px;
-    font-weight: 500;
+    font-size: 14px;
     color: rgba($color: white, $alpha: 0.85);
 }
 
