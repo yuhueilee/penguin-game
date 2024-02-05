@@ -1,23 +1,23 @@
 $gridGap: 15px;
 $hexagonWidth: 100px;
 
-.table {
+@mixin flexDisplay($j: center, $a: center, $d: row) {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    justify-content: $j;
+    align-items: $a;
+    flex-direction: $d;
+}
+
+.table {
+    @include flexDisplay(center, center, column);
 
     .row {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
+        @include flexDisplay;
     }
 }
 
 @mixin cellStyle($backgroundColor: #4169e1) {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    @include flexDisplay(center, center, column);
     width: $hexagonWidth;
     height: calc((sqrt(3) / 2) * $hexagonWidth);
     padding: 16px;
@@ -69,10 +69,8 @@ $hexagonWidth: 100px;
 }
 
 #winner {
+    @include flexDisplay;
     position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
