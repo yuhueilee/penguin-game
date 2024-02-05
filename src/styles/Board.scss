@@ -69,6 +69,14 @@ $hexagonWidth: 100px;
         margin: 0;
         padding: 8px;
     }
+    .highlightText {
+        @include fontStyle(red, 32px, 500);
+        margin: 0;
+    }
+    .smallText {
+        @include fontStyle;
+        padding: 0 8px;
+    }
     .playerInfo {
         @include flexDisplay(center, center, row);
         @include fontStyle;
@@ -87,14 +95,6 @@ $hexagonWidth: 100px;
         .score {
             flex: 7;
             padding: 8px;
-            .amount {
-                @include fontStyle(red, 32px, 500);
-                margin: 0;
-                .smallText {
-                    @include fontStyle;
-                    padding-left: 8px;
-                }
-            }
         }
     }
 }

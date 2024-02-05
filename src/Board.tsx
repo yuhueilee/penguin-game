@@ -85,7 +85,7 @@ export function PenguinBattleBoard({
                 <div className="ranking">ranking placeholder</div>
                 <div className="playerIcon">player {i}</div>
                 <div className="score">
-                    <h2 className="amount">
+                    <h2 className="highlightText">
                         {G.scores[i]}
                         <span className="smallText">fish</span>
                     </h2>
@@ -99,6 +99,11 @@ export function PenguinBattleBoard({
             <div className="summary">
                 <h1 className="leaderBoardTitle">LeaderBoard</h1>
                 {ranking}
+                <h1 className="leaderBoardTitle">Who's Turn?</h1>
+                <h2 className="highlightText">
+                    <span className="smallText">player</span>
+                    {currPlayerID}
+                </h2>
             </div>
             <div className="table">{tbody}</div>
             {winner}
