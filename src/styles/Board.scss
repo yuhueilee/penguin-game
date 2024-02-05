@@ -18,8 +18,9 @@ $hexagonWidth: 100px;
 ) {
     color: $color;
     font-size: $size;
-    font-weight: 400;
+    font-weight: $weight;
     letter-spacing: $letterSpacing;
+    font-family: "Protest Riot", sans-serif;
 }
 
 @mixin cellStyle($backgroundColor: #4169e1) {
@@ -36,9 +37,11 @@ $hexagonWidth: 100px;
 }
 
 @mixin buttonStyle($primaryColor: black, $secondaryColor: white) {
+    @include fontStyle($secondaryColor, 14px, 300, 1px);
     background-color: $primaryColor;
     color: $secondaryColor;
-    font-family: "Protest Riot", sans-serif;
+    border: none;
+    border-radius: 5px;
     &:hover {
         background-color: $secondaryColor;
         color: $primaryColor;
