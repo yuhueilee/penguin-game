@@ -1,7 +1,7 @@
 export interface GameData {
     cells: Array<number>;
     cellCoords: Array<Coord>;
-    fishes: Array<number>;
+    fish: Array<number>;
     scores: Array<number>;
     location: number;
     locations: Array<Array<number>>;

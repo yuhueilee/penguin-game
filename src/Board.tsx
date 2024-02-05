@@ -41,7 +41,7 @@ export function PenguinBattleBoard({
             cells.push(
                 <div key={cellID}>
                     <div className={cellStyle(G.cells[cellID])}>
-                        <h5 className="textStyle">fish: {G.fishes[cellID]}</h5>
+                        <h5 className="textStyle">fish: {G.fish[cellID]}</h5>
                         <h5 className="textStyle">
                             playerID: {G.cells[cellID]}
                         </h5>

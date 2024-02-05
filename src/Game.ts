@@ -22,7 +22,7 @@ export const PenguinBattle: Game = {
     setup: ({ ctx }): GameData => ({
         cells: Array(totalCells).fill(null),
         cellCoords: CalculateCoords(totalCells, maxCellsPerRow),
-        fishes: RandomIntArray(1, 3, totalCells),
+        fish: RandomIntArray(1, 3, totalCells),
         scores: Array(ctx.numPlayers).fill(0),
         location: -1,
         locations: Array(ctx.numPlayers).fill(
