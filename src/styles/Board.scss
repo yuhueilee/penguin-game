@@ -73,6 +73,9 @@ $hexagonWidth: 100px;
         @include flexDisplay(center, center, row);
         @include fontStyle;
         width: 100%;
+        background-color: rgb(176, 176, 176);
+        border-radius: 5px;
+        margin: 2px;
         .ranking {
             flex: 2;
             padding: 8px;
