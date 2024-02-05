@@ -78,20 +78,22 @@ export function PenguinBattleBoard({
         );
     }
 
+    let ranking = [];
+    for (let i = 0; i < ctx.numPlayers; i++) {
+        ranking.push(
+            <div className="playerInfo">
+                <div className="ranking">ranking placeholder</div>
+                <div className="playerIcon">player {i}</div>
+                <div className="score">{G.scores[i]} fish</div>
+            </div>
+        );
+    }
+
     return (
         <div className="board">
             <div className="summary">
                 <h1 className="leaderBoardTitle">LeaderBoard</h1>
-                <div className="playerInfo">
-                    <div className="ranking">1</div>
-                    <div className="playerIcon">icon</div>
-                    <div className="score">x fish</div>
-                </div>
-                <div className="playerInfo">
-                    <div className="ranking">2</div>
-                    <div className="playerIcon">icon</div>
-                    <div className="score">x fish</div>
-                </div>
+                {ranking}
             </div>
             <div className="table">{tbody}</div>
             {winner}
