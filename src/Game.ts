@@ -123,7 +123,7 @@ export const PenguinBattle: Game = {
                                 G.cells[id] = intPlayerID;
 
                                 // Update the scores for the player based on the location their labour comes from.
-                                G.scores[playerID] += G.fishes[G.location];
+                                G.scores[playerID] += G.fish[G.location];
 
                                 // Update the location for each of the players' labours.
                                 const index = G.locations[intPlayerID].indexOf(
