@@ -23,16 +23,6 @@ export function PenguinBattleBoard({ ctx, G, moves } : {ctx: Ctx, G:GameData, mo
             );
     }
 
-    let linkedCells: Array<number> = [];
-    if (G.location !== -1) {
-        linkedCells = LinkedCells(
-            G.location,
-            G.cells,
-            G.cellCoords,
-            maxCellsPerRow
-        );
-    }
-
     const numRows = Rows(totalCells, maxCellsPerRow);
     let tbody = [];
     for (let i = 0; i < numRows; i++) {
@@ -64,7 +54,7 @@ export function PenguinBattleBoard({ ctx, G, moves } : {ctx: Ctx, G:GameData, mo
                                     "occupy",
                                     ctx.activePlayers
                                 ) &&
-                                    linkedCells.indexOf(cellID) === -1)
+                                !isCellLinkedToLocatedLabour(cellID, G.location, G.cells, G.cellCoords, maxCellsPerRow))
                             }
                         >
                             colonise
@@ -152,6 +142,32 @@ const isLinked = (
     maxCellsPerRow: number
 ) => {
     return LinkedCells(cellID, cells, cellCoords, maxCellsPerRow).length !== 0;
+};
+
+/**
+ * Determines if the cell is linked to the located cell.
+ * 
+ * @param cellID current cell ID
+ * @param locatedLabour located cell ID
+ * @param cells a list of player IDs
+ * @param cellCoords a list of coordinates
+ * @param maxCellsPerRow maximum number of cells per row
+ * @returns a boolean indicating if the current cell is linked to the located cell.
+ */
+const isCellLinkedToLocatedLabour = (
+    cellID: number,
+    locatedLabour: number,
+    cells: Array<number>,
+    cellCoords: Array<Coord>,
+    maxCellsPerRow: number
+) => {
+    if (locatedLabour === -1) {
+        return false;
+    }
+
+    const linkedCells = LinkedCells(locatedLabour, cells, cellCoords, maxCellsPerRow);
+
+    return linkedCells.indexOf(cellID) !== -1;
 };
 
 /**
