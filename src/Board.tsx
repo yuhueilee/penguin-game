@@ -79,7 +79,7 @@ export function PenguinBattleBoard({
     }
 
     return (
-        <div>
+        <div className="board">
             <div className="table">{tbody}</div>
             {winner}
         </div>

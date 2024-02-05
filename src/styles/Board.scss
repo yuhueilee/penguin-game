@@ -8,6 +8,11 @@ $hexagonWidth: 100px;
     flex-direction: $d;
 }
 
+.board {
+    @include flexDisplay;
+    position: relative;
+}
+
 .table {
     @include flexDisplay(center, center, column);
 
