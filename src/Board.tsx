@@ -26,9 +26,16 @@ export function PenguinBattleBoard({
     if (ctx.gameover) {
         winner =
             ctx.gameover.winner !== undefined ? (
-                <div id="winner">Winner: {ctx.gameover.winner}</div>
+                <>
+                    <h1 className="title">You Win!</h1>
+                    {PenguinIcon(parseInt(ctx.gameover.winner))}
+                    <hr className="divider"></hr>
+                </>
             ) : (
-                <div id="winner">Draw!</div>
+                <>
+                    <h1 className="title">Draw!</h1>
+                    <hr className="divider"></hr>
+                </>
             );
     }
 
@@ -96,6 +103,7 @@ export function PenguinBattleBoard({
     return (
         <div className="board">
             <div className="summary">
+                {winner}
                 <h1 className="title">LeaderBoard</h1>
                 {ranking}
                 <hr className="divider"></hr>
@@ -103,7 +111,6 @@ export function PenguinBattleBoard({
                 {PenguinIcon(currPlayerID)}
             </div>
             <div className="table">{tbody}</div>
-            {winner}
         </div>
     );
 }
