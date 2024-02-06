@@ -5,10 +5,12 @@ import React from "react";
 import { colorByPlayerID } from "./Consts";
 
 export function PenguinIcon(playerID: number): JSX.Element {
-    const color = colorByPlayerID[playerID];
+    const colorStyle = colorByPlayerID[playerID];
+    const gridStyle = "grid " + colorStyle;
+    const cardStyle = "card " + colorStyle;
 
     return (
-        <div className="grid">
+        <div className={gridStyle}>
             <div className="body">
                 <div className="face">
                     <div className="eyes">
@@ -30,7 +32,7 @@ export function PenguinIcon(playerID: number): JSX.Element {
                     <div className="wing2"></div>
                 </div>
                 <div className="belly"></div>
-                <div className="card">
+                <div className={cardStyle}>
                     <div className="id">
                         <h1>{playerID}</h1>
                     </div>
