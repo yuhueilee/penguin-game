@@ -1,5 +1,13 @@
 import React from "react";
 
+import { colorByPlayerID } from "./Consts";
+
 export function PenguinIcon(playerID: number): JSX.Element {
-    return <div>{playerID}</div>;
+    const color = colorByPlayerID[playerID];
+
+    return (
+        <div>
+            {playerID} {color}
+        </div>
+    );
 }
