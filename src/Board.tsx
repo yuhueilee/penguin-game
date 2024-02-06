@@ -4,6 +4,7 @@ import { ActivePlayers, Ctx } from "boardgame.io";
 import React from "react";
 
 import { maxCellsPerRow, totalCells } from "./shared/Consts";
+import { PenguinIcon } from "./shared/Elements";
 import { Columns, LinkedCells, Rows } from "./shared/Helpers";
 import { Coord, GameData } from "./shared/Types";
 
@@ -81,7 +82,7 @@ export function PenguinBattleBoard({
         ranking.push(
             <div className="playerInfo">
                 <div className="ranking">ranking placeholder</div>
-                <div className="playerIcon">player {i}</div>
+                <div className="playerIcon">{PenguinIcon(i)}</div>
                 <div className="score">
                     <h2 className="highlightText">
                         {G.scores[i]}
