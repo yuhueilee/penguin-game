@@ -1,5 +1,5 @@
 import React from "react";
 
-export function PenguinIcon(): JSX.Element {
-    return <div></div>;
+export function PenguinIcon(playerID: number): JSX.Element {
+    return <div>{playerID}</div>;
 }
