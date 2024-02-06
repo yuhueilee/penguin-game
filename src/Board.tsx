@@ -81,7 +81,7 @@ export function PenguinBattleBoard({
     for (let i = 0; i < ctx.numPlayers; i++) {
         ranking.push(
             <div className="playerInfo">
-                <div className="ranking">ranking placeholder</div>
+                <div className="ranking">ranking</div>
                 <div className="playerIcon">{PenguinIcon(i)}</div>
                 <div className="score">
                     <h2 className="highlightText">
