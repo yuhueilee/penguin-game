@@ -100,10 +100,7 @@ export function PenguinBattleBoard({
                 {ranking}
                 <hr className="divider"></hr>
                 <h1 className="title">Who's Turn?</h1>
-                <h2 className="highlightText">
-                    <span className="smallText">player</span>
-                    {currPlayerID}
-                </h2>
+                {PenguinIcon(currPlayerID)}
             </div>
             <div className="table">{tbody}</div>
             {winner}
