@@ -34,26 +34,27 @@ $bodyWidth: 80px;
 }
 
 .grid {
+    $width: 0.5em;
     @include flex;
     @include size(120px, 120px, 50%);
     background: $colorBlue content-box;
-    border: solid 0.5em $colorBlue;
-    padding: 0.5em;
+    border: solid $width $colorBlue;
+    padding: $width;
     &.red {
         background: $colorRed content-box;
-        border: solid 0.5em $colorRed;
+        border: solid $width $colorRed;
     }
     &.yellow {
         background: $colorYellow content-box;
-        border: solid 0.5em $colorYellow;
+        border: solid $width $colorYellow;
     }
     &.green {
         background: $colorGreen content-box;
-        border: solid 0.5em $colorGreen;
+        border: solid $width $colorGreen;
     }
     &.blue {
         background: $colorBlue content-box;
-        border: solid 0.5em $colorBlue;
+        border: solid $width $colorBlue;
     }
 }
 
