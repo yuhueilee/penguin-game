@@ -91,11 +91,13 @@ $colorBlueGradient: linear-gradient(150deg, $colorBlueLight, $colorBlueDark);
         @include flexDisplay(center, center, row);
         @include fontStyle;
         width: 100%;
-        background-color: rgb(176, 176, 176);
-        border-radius: 5px;
+        background: linear-gradient(white, white) padding-box,
+            $colorBlueGradient border-box;
+        border: 4px solid transparent;
+        border-radius: 100px;
         margin: 2px;
         .ranking {
-            flex: 1;
+            flex: 2;
             padding: 8px;
             @include flexDisplay;
             h1 {
@@ -110,8 +112,9 @@ $colorBlueGradient: linear-gradient(150deg, $colorBlueLight, $colorBlueDark);
             padding: 8px;
         }
         .score {
-            flex: 5;
+            flex: 2;
             padding: 8px;
+            @include flexDisplay;
         }
     }
 }

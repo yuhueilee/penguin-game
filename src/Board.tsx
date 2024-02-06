@@ -90,15 +90,15 @@ export function PenguinBattleBoard({
         let playerID = scoreRanking[i];
         ranking.push(
             <div className="playerInfo">
-                <div className="ranking">
-                    <h1>{i + 1}</h1>
-                </div>
                 <div className="playerIcon">{PenguinIcon(playerID)}</div>
                 <div className="score">
                     <h2 className="highlightText">
                         {G.scores[playerID]}
                         <span className="smallText">fish</span>
                     </h2>
+                </div>
+                <div className="ranking">
+                    <h1>{i + 1}</h1>
                 </div>
             </div>
         );
