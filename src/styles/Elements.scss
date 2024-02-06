@@ -7,8 +7,8 @@ $colorGreen: #65df67;
 $colorBlue: #4870ff;
 $colorGreyShadow: rgba(black, 25%);
 
-$bodyHeight: 180px;
-$bodyWidth: 160px;
+$bodyHeight: 90px;
+$bodyWidth: 80px;
 
 @mixin flex($j: center, $a: center, $d: row) {
     display: flex;
@@ -35,8 +35,7 @@ $bodyWidth: 160px;
 
 .grid {
     @include flex;
-    @include size(240px, 240px, 50%);
-    transform: scale(0.45);
+    @include size(120px, 120px, 50%);
     background: $colorBlue content-box;
     border: solid 0.5em $colorBlue;
     padding: 0.5em;
@@ -59,30 +58,30 @@ $bodyWidth: 160px;
 }
 
 .body {
-    @include size($bodyWidth, $bodyHeight, 50% 50% 10px 10px);
+    @include size($bodyWidth, $bodyHeight, 50% 50% 5px 5px);
     background-color: black;
 
     .face {
         z-index: 6;
-        $width: 140px;
-        @include size($width, 80px);
+        $width: 70px;
+        @include size($width, 40px);
         @include absPos(50%, 10%);
         @include flex(center, center, column);
         transform: translateX(-$width/2);
         .eyes {
             @include flex;
             .eye1 {
-                @include size(60px, 60px, 50% 40% 20% 50%);
+                @include size(30px, 30px, 50% 40% 20% 50%);
             }
             .eye2 {
-                @include size(60px, 60px, 40% 50% 50% 20%);
+                @include size(30px, 30px, 40% 50% 50% 20%);
             }
             .eye1,
             .eye2 {
                 background-color: #fff;
                 .eyeBall1,
                 .eyeBall2 {
-                    $width: 10px;
+                    $width: 5px;
                     @include size($width, $width, 50%);
                     transform: translateX(-$width/2);
                     background-color: black;
@@ -96,42 +95,42 @@ $bodyWidth: 160px;
             }
         }
         .mouth {
-            @include size(60px, 10px, 50%);
-            margin-top: -10px;
+            @include size(30px, 5px, 50%);
+            margin-top: -5px;
             background-color: $colorYellow;
-            box-shadow: inset -2px 2px $colorGreyShadow;
+            box-shadow: inset -1px 1px $colorGreyShadow;
         }
     }
 
     .belly {
         z-index: 5;
-        $len: 120px;
-        @include size($len, $len, 50% 50% 10px 10px);
+        $len: 60px;
+        @include size($len, $len, 50% 50% 5px 5px);
         @include absPos(50%, 100%);
         transform: translateX(-$len/2) translateY(-$len);
         background-color: #fff;
-        box-shadow: inset 0px -10px $colorGreyShadow;
+        box-shadow: inset 0px -5px $colorGreyShadow;
     }
     .feet {
-        $width: 100px;
-        $height: 20px;
+        $width: 50px;
+        $height: 10px;
         z-index: 7;
-        @include size($width, 20px);
+        @include size($width, $height);
         @include flex;
         justify-content: space-between;
         @include absPos($bodyWidth/2, $bodyHeight - $height);
         transform: translateX(-$width/2);
         .foot {
-            @include size(40px, 20px, 50%);
+            @include size(20px, 10px, 50%);
             background-color: $colorYellow;
-            box-shadow: inset 0px -5px $colorGreyShadow;
+            box-shadow: inset 0px -2px $colorGreyShadow;
         }
     }
 
     .wings {
         z-index: 8;
-        $width: 200px;
-        $height: 60px;
+        $width: 100px;
+        $height: 30px;
         @include size($width, $height);
         @include flex;
         justify-content: space-between;
@@ -142,26 +141,26 @@ $bodyWidth: 160px;
             background-color: black;
         }
         .wing1 {
-            @include size(40px, 60px, 45% 100% 45% 0);
-            transform: translateX(30px);
+            @include size(20px, 30px, 45% 100% 45% 0);
+            transform: translateX(15px);
         }
         .wing2 {
-            @include size(40px, 60px, 100% 45% 0 45%);
-            transform: translateX(-30px);
+            @include size(20px, 30px, 100% 45% 0 45%);
+            transform: translateX(-15px);
         }
     }
 
     .card {
         z-index: 6;
-        $width: 60px;
-        @include size($width, $width, 5px);
+        $width: 30px;
+        @include size($width, $width, 2px);
         @include flex;
-        @include absPos($bodyWidth/2, 100px);
+        @include absPos($bodyWidth/2, 50px);
         transform: translateX(-$width/2);
-        box-shadow: inset -5px -5px $colorGreyShadow;
+        box-shadow: inset -2px -2px $colorGreyShadow;
         .id > h1 {
             margin: 0;
-            font-size: 56px;
+            font-size: 28px;
             font-family: "Protest Riot", sans-serif;
             color: white;
         }
@@ -183,20 +182,20 @@ $bodyWidth: 160px;
 /* animation style */
 @keyframes cardAnimation {
     0% {
-        transform: translateX(-30px);
+        transform: translateX(-15px);
     }
     100% {
-        transform: translateX(-30px) translateY(-12px);
+        transform: translateX(-15px) translateY(-6px);
     }
 }
 
 .body:hover {
     .wing1 {
-        @include size(40px, 60px, 100% 45% 0 45%);
+        @include size(20px, 30px, 100% 45% 0 45%);
         transform: translateX(0px);
     }
     .wing2 {
-        @include size(40px, 60px, 45% 100% 45% 0);
+        @include size(20px, 30px, 45% 100% 45% 0);
         transform: translateX(0px);
     }
     .card {
