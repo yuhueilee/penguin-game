@@ -98,6 +98,8 @@ $hexagonWidth: 100px;
         .playerIcon {
             flex: 3;
             padding: 8px;
+            @include flexDisplay(center, center, row);
+            height: 120px;
         }
         .score {
             flex: 7;
