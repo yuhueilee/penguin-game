@@ -2,9 +2,24 @@
 
 $gridGap: 15px;
 $hexagonWidth: 100px;
+
+$colorRedLight: #fe9191;
+$colorRedDark: #f24f4f;
+$colorYellowLight: #ffe76c;
+$colorYellowDark: #ffc700;
+$colorGreenLight: #adf8af;
+$colorGreenDark: #65df67;
 $colorBlueLight: #6fc5ff;
 $colorBlueDark: #0058ff;
+$colorRedGradient: linear-gradient(150deg, $colorRedLight, $colorRedDark);
+$colorYellowGradient: linear-gradient(
+    150deg,
+    $colorYellowLight,
+    $colorYellowDark
+);
+$colorGreenGradient: linear-gradient(150deg, $colorGreenLight, $colorGreenDark);
 $colorBlueGradient: linear-gradient(150deg, $colorBlueLight, $colorBlueDark);
+$colorWhiteGradient: linear-gradient(white, white);
 
 @mixin flexDisplay($j: center, $a: center, $d: row) {
     display: flex;
@@ -91,8 +106,6 @@ $colorBlueGradient: linear-gradient(150deg, $colorBlueLight, $colorBlueDark);
         @include flexDisplay(center, center, row);
         @include fontStyle;
         width: 100%;
-        background: linear-gradient(white, white) padding-box,
-            $colorBlueGradient border-box;
         border: 4px solid transparent;
         border-radius: 100px;
         margin: 2px;
@@ -115,6 +128,23 @@ $colorBlueGradient: linear-gradient(150deg, $colorBlueLight, $colorBlueDark);
             flex: 2;
             padding: 8px;
             @include flexDisplay;
+        }
+
+        &.red {
+            background: $colorWhiteGradient padding-box,
+                $colorRedGradient border-box;
+        }
+        &.yellow {
+            background: $colorWhiteGradient padding-box,
+                $colorYellowGradient border-box;
+        }
+        &.green {
+            background: $colorWhiteGradient padding-box,
+                $colorGreenGradient border-box;
+        }
+        &.blue {
+            background: $colorWhiteGradient padding-box,
+                $colorBlueGradient border-box;
         }
     }
 }

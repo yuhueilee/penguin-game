@@ -3,7 +3,7 @@ import "./styles/Board.scss";
 import { ActivePlayers, Ctx } from "boardgame.io";
 import React from "react";
 
-import { maxCellsPerRow, totalCells } from "./shared/Consts";
+import { colorByPlayerID, maxCellsPerRow, totalCells } from "./shared/Consts";
 import { PenguinIcon } from "./shared/Elements";
 import { Columns, LinkedCells, Ranking, Rows } from "./shared/Helpers";
 import { Coord, GameData } from "./shared/Types";
@@ -89,7 +89,7 @@ export function PenguinBattleBoard({
     for (let i = 0; i < scoreRanking.length; i++) {
         let playerID = scoreRanking[i];
         ranking.push(
-            <div className="playerInfo">
+            <div className={playerInfoStyle(playerID)}>
                 <div className="playerIcon">{PenguinIcon(playerID)}</div>
                 <div className="score">
                     <h2 className="highlightText">
@@ -125,6 +125,10 @@ const cellStyle = (playerID: number) => {
     }
 
     return "colonisedCell";
+};
+
+const playerInfoStyle = (playerID: number) => {
+    return "playerInfo " + colorByPlayerID[playerID];
 };
 
 /**
