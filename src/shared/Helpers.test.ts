@@ -211,5 +211,5 @@ it("correctly return a list of linked cell IDs", () => {
 });
 
 it("correctly return the ranking of player's ID", () => {
-    expect(Ranking([3, 4, 1])).toEqual([]);
+    expect(Ranking([3, 4, 1])).toEqual([2, 0, 1]);
 });
