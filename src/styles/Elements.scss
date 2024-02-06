@@ -34,7 +34,7 @@ $bodyWidth: 80px;
 }
 
 .grid {
-    $width: 0.5em;
+    $width: 0.2em;
     @include flex;
     @include size(120px, 120px, 50%);
     background: $colorBlue content-box;
