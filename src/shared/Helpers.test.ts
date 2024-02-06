@@ -7,6 +7,7 @@ import {
     IsLinked,
     LinkedCells,
     OutOfRange,
+    Ranking,
     Rows,
 } from "./Helpers";
 
@@ -207,4 +208,10 @@ it("correctly return a list of linked cell IDs", () => {
     cells[6] = 1;
     expect(LinkedCells(0, cells, cellCoords, 3)).toEqual([1, 2, 3]);
     expect(LinkedCells(8, cells, cellCoords, 3)).toEqual([5, 9, 10, 11, 14]);
+});
+
+it("correctly return the ranking of player's ID", () => {
+    expect(Ranking([3, 4, 1])).toEqual([1, 0, 2]);
+    expect(Ranking([2, 4, 5, 1])).toEqual([2, 1, 0, 3]);
+    expect(Ranking([3, 1, 1])).toEqual([0, 1, 2]);
 });

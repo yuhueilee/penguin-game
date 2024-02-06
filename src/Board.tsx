@@ -3,9 +3,9 @@ import "./styles/Board.scss";
 import { ActivePlayers, Ctx } from "boardgame.io";
 import React from "react";
 
-import { maxCellsPerRow, totalCells } from "./shared/Consts";
+import { colorByPlayerID, maxCellsPerRow, totalCells } from "./shared/Consts";
 import { PenguinIcon } from "./shared/Elements";
-import { Columns, LinkedCells, Rows } from "./shared/Helpers";
+import { Columns, LinkedCells, Ranking, Rows } from "./shared/Helpers";
 import { Coord, GameData } from "./shared/Types";
 
 export function PenguinBattleBoard({
@@ -84,17 +84,21 @@ export function PenguinBattleBoard({
         );
     }
 
+    const scoreRanking = Ranking(G.scores);
     let ranking = [];
-    for (let i = 0; i < ctx.numPlayers; i++) {
+    for (let i = 0; i < scoreRanking.length; i++) {
+        let playerID = scoreRanking[i];
         ranking.push(
-            <div className="playerInfo">
-                <div className="ranking">ranking</div>
-                <div className="playerIcon">{PenguinIcon(i)}</div>
+            <div key={playerID} className={playerInfoStyle(playerID)}>
+                <div className="playerIcon">{PenguinIcon(playerID)}</div>
                 <div className="score">
                     <h2 className="highlightText">
-                        {G.scores[i]}
+                        {G.scores[playerID]}
                         <span className="smallText">fish</span>
                     </h2>
+                </div>
+                <div className="ranking">
+                    <h1>{i + 1}</h1>
                 </div>
             </div>
         );
@@ -121,6 +125,10 @@ const cellStyle = (playerID: number) => {
     }
 
     return "colonisedCell";
+};
+
+const playerInfoStyle = (playerID: number) => {
+    return "playerInfo " + colorByPlayerID[playerID];
 };
 
 /**
