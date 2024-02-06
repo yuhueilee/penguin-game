@@ -28,12 +28,12 @@ export const RandomIntArray = (min: number, max: number, length: number) => {
  * Get the ranking of the player ID based on their scores.
  *
  * @param scores a list of player's score where the index is the player's ID
- * @returns a list of player's ID sorted by their score in ascending order
+ * @returns a list of player's ID sorted by their score in descending order
  */
 export const Ranking = (scores: Array<number>) => {
-    const indices = scores.map((_, index) => index);
+    let indices = scores.map((_, index) => index);
 
-    indices.sort((a, b) => scores[a] - scores[b]);
+    indices.sort((a, b) => scores[b] - scores[a]);
 
     return indices;
 };
