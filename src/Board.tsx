@@ -4,6 +4,7 @@ import { ActivePlayers, Ctx } from "boardgame.io";
 import React from "react";
 
 import { maxCellsPerRow, totalCells } from "./shared/Consts";
+import { PenguinIcon } from "./shared/Elements";
 import { Columns, LinkedCells, Rows } from "./shared/Helpers";
 import { Coord, GameData } from "./shared/Types";
 
@@ -25,9 +26,16 @@ export function PenguinBattleBoard({
     if (ctx.gameover) {
         winner =
             ctx.gameover.winner !== undefined ? (
-                <div id="winner">Winner: {ctx.gameover.winner}</div>
+                <>
+                    <h1 className="title">You Win!</h1>
+                    {PenguinIcon(parseInt(ctx.gameover.winner))}
+                    <hr className="divider"></hr>
+                </>
             ) : (
-                <div id="winner">Draw!</div>
+                <>
+                    <h1 className="title">Draw!</h1>
+                    <hr className="divider"></hr>
+                </>
             );
     }
 
@@ -80,8 +88,8 @@ export function PenguinBattleBoard({
     for (let i = 0; i < ctx.numPlayers; i++) {
         ranking.push(
             <div className="playerInfo">
-                <div className="ranking">ranking placeholder</div>
-                <div className="playerIcon">player {i}</div>
+                <div className="ranking">ranking</div>
+                <div className="playerIcon">{PenguinIcon(i)}</div>
                 <div className="score">
                     <h2 className="highlightText">
                         {G.scores[i]}
@@ -95,17 +103,14 @@ export function PenguinBattleBoard({
     return (
         <div className="board">
             <div className="summary">
+                {winner}
                 <h1 className="title">LeaderBoard</h1>
                 {ranking}
                 <hr className="divider"></hr>
                 <h1 className="title">Who's Turn?</h1>
-                <h2 className="highlightText">
-                    <span className="smallText">player</span>
-                    {currPlayerID}
-                </h2>
+                {PenguinIcon(currPlayerID)}
             </div>
             <div className="table">{tbody}</div>
-            {winner}
         </div>
     );
 }

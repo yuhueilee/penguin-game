@@ -63,7 +63,7 @@ $hexagonWidth: 100px;
 
 .summary {
     @include flexDisplay(flex-start, center, column);
-    flex: 300px;
+    flex: 220px;
     flex-shrink: 0;
     border-radius: 10px;
     box-shadow: 0px 0px 30px rgba(black, 0.3);
@@ -92,15 +92,15 @@ $hexagonWidth: 100px;
         border-radius: 5px;
         margin: 2px;
         .ranking {
-            flex: 2;
+            flex: 1;
             padding: 8px;
         }
         .playerIcon {
-            flex: 3;
+            flex: 2;
             padding: 8px;
         }
         .score {
-            flex: 7;
+            flex: 5;
             padding: 8px;
         }
     }
