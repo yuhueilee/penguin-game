@@ -2,6 +2,9 @@
 
 $gridGap: 15px;
 $hexagonWidth: 100px;
+$colorBlueLight: #6fc5ff;
+$colorBlueDark: #0058ff;
+$colorBlueGradient: linear-gradient(150deg, $colorBlueLight, $colorBlueDark);
 
 @mixin flexDisplay($j: center, $a: center, $d: row) {
     display: flex;
@@ -94,6 +97,13 @@ $hexagonWidth: 100px;
         .ranking {
             flex: 1;
             padding: 8px;
+            @include flexDisplay;
+            h1 {
+                background: $colorBlueGradient;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+                margin: 0;
+            }
         }
         .playerIcon {
             flex: 2;
