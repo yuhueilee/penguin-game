@@ -4,7 +4,7 @@ import { ActivePlayers, Ctx } from "boardgame.io";
 import React from "react";
 
 import { colorByPlayerID, maxCellsPerRow, totalCells } from "./shared/Consts";
-import { PenguinIcon } from "./shared/Elements";
+import { FishIcon, PenguinIcon } from "./shared/Elements";
 import { Columns, LinkedCells, Ranking, Rows } from "./shared/Helpers";
 import { Coord, GameData } from "./shared/Types";
 
@@ -49,6 +49,7 @@ export function PenguinBattleBoard({
             cells.push(
                 <div key={cellID}>
                     <div className={cellStyle(G.cells[cellID])}>
+                        <div>{FishIcon(G.fish[cellID])}</div>
                         <h5 className="textStyle">fish: {G.fish[cellID]}</h5>
                         <h5 className="textStyle">
                             playerID: {G.cells[cellID]}

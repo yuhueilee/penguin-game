@@ -5,6 +5,12 @@ $colorYellow: #ffc700;
 $colorYellowLight: #ffe76c;
 $colorGreen: #65df67;
 $colorBlue: #4870ff;
+$colorGrey: #8c8c8c;
+$colorGreyDark: #303030;
+$colorPurple: #ab87ff;
+$colorPurpleDark: #8049ff;
+$colorOrange: #ffba4c;
+$colorOrangeDark: #f29100;
 $colorGreyShadow: rgba(black, 25%);
 
 $penguinBodyHeight: 90px;
@@ -209,4 +215,59 @@ $penguinBodyWidth: 80px;
     .card {
         animation: cardAnimation 0.5s infinite alternate;
     }
+}
+
+/* Fish Icon */
+@mixin fish(
+    $primary,
+    $secondary,
+    $bodyWidth,
+    $bodyHeight: $bodyWidth,
+    $eyeSize,
+    $tailsSize
+) {
+    @include size($bodyWidth, $bodyHeight, 100% 100% 5% 100%);
+    background-color: $primary;
+    box-shadow: inset 0px calc(-0.1 * $bodyWidth) $secondary;
+
+    .eye {
+        @include size($eyeSize, $eyeSize, 100%);
+        background-color: black;
+        position: absolute;
+        border: solid 2px white;
+        top: 15%;
+        left: 20%;
+    }
+
+    .tails {
+        @include size($tailsSize, $tailsSize);
+        position: absolute;
+        top: $bodyHeight - calc($tailsSize / 2);
+        left: $bodyWidth - calc($tailsSize / 2);
+        transform: rotate(-45deg);
+        .tail1,
+        .tail2 {
+            background-color: $primary;
+        }
+        .tail1 {
+            z-index: 3;
+            @include size(calc($tailsSize / 2), $tailsSize, 0 100% 100% 0);
+            transform: rotate(45deg);
+            position: absolute;
+            left: 5%;
+            box-shadow: inset 0px calc(-0.1 * $bodyWidth) $secondary;
+        }
+        .tail2 {
+            z-index: 2;
+            @include size(calc($tailsSize / 2), $tailsSize, 100% 0 0 100%);
+            transform: rotate(-45deg);
+            position: absolute;
+            right: 5%;
+            box-shadow: inset calc($bodyWidth * 0.1) 0px $secondary;
+        }
+    }
+}
+
+.fish-1 {
+    @include fish($colorGrey, $colorGreyDark, 24px, 24px, 5px, 10px);
 }
