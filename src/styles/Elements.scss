@@ -15,10 +15,10 @@ $colorGreyShadow: rgba(black, 25%);
 
 $penguinBodyHeight: 90px;
 $penguinBodyWidth: 80px;
-$fishBodyHeight: 24px;
-$fishBodyWidth: 24px;
+$fishBodyHeight: 30px;
+$fishBodyWidth: 30px;
 $fishEyeSize: 5px;
-$fishTailSize: 10px;
+$fishTailSize: 15px;
 
 @mixin flex($j: center, $a: center, $d: row) {
     display: flex;
