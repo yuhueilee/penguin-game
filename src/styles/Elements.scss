@@ -314,11 +314,15 @@ $fishTailSize: 15px;
         $w: 100px;
         $h: 50px;
         z-index: 5;
+        @include flex;
         @include size(100px, 50px, 2px 2px 5px 5px);
         @include absPos(50%, 100%);
         transform: translateX(calc(-1 * $w/2)) translateY(-1 * $h);
         background-color: $colorBlue;
         box-shadow: inset 0px -5px $colorBlueDark;
+        h1 {
+            color: white;
+        }
     }
     .tf-1 {
         z-index: 1;

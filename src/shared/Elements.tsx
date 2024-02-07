@@ -92,7 +92,9 @@ export function FishBoxIcon(amount: number): JSX.Element {
             <div className="tf-2">{blackFish}</div>
             <div className="tf-3">{blackFish}</div>
             <div className="tf-4">{blackFish}</div>
-            <div className="box"></div>
+            <div className="box">
+                <h1>{amount}</h1>
+            </div>
         </div>
     );
 }
