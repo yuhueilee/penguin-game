@@ -15,6 +15,10 @@ $colorGreyShadow: rgba(black, 25%);
 
 $penguinBodyHeight: 90px;
 $penguinBodyWidth: 80px;
+$fishBodyHeight: 24px;
+$fishBodyWidth: 24px;
+$fishEyeSize: 5px;
+$fishTailSize: 10px;
 
 @mixin flex($j: center, $a: center, $d: row) {
     display: flex;
@@ -269,13 +273,34 @@ $penguinBodyWidth: 80px;
 }
 
 .fish-1 {
-    @include fish($colorGrey, $colorGreyDark, 24px, 24px, 5px, 10px);
+    @include fish(
+        $colorGrey,
+        $colorGreyDark,
+        $fishBodyWidth,
+        $fishBodyHeight,
+        $fishEyeSize,
+        $fishTailSize
+    );
 }
 
 .fish-2 {
-    @include fish($colorPurple, $colorPurpleDark, 24px, 24px, 5px, 10px);
+    @include fish(
+        $colorPurple,
+        $colorPurpleDark,
+        $fishBodyWidth,
+        $fishBodyHeight,
+        $fishEyeSize,
+        $fishTailSize
+    );
 }
 
 .fish-3 {
-    @include fish($colorOrange, $colorOrangeDark, 24px, 24px, 5px, 10px);
+    @include fish(
+        $colorOrange,
+        $colorOrangeDark,
+        $fishBodyWidth,
+        $fishBodyHeight,
+        $fishEyeSize,
+        $fishTailSize
+    );
 }
