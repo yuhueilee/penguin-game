@@ -7,8 +7,8 @@ $colorGreen: #65df67;
 $colorBlue: #4870ff;
 $colorGreyShadow: rgba(black, 25%);
 
-$bodyHeight: 90px;
-$bodyWidth: 80px;
+$penguinBodyHeight: 90px;
+$penguinBodyWidth: 80px;
 
 @mixin flex($j: center, $a: center, $d: row) {
     display: flex;
@@ -33,6 +33,7 @@ $bodyWidth: 80px;
     position: relative;
 }
 
+/* Penguin Icon */
 .grid {
     $width: 0.2em;
     @include flex;
@@ -59,7 +60,7 @@ $bodyWidth: 80px;
 }
 
 .body {
-    @include size($bodyWidth, $bodyHeight, 50% 50% 5px 5px);
+    @include size($penguinBodyWidth, $penguinBodyHeight, 50% 50% 5px 5px);
     background-color: black;
 
     .face {
@@ -68,7 +69,7 @@ $bodyWidth: 80px;
         @include size($width, 40px);
         @include absPos(50%, 10%);
         @include flex(center, center, column);
-        transform: translateX(-$width/2);
+        transform: translateX(calc(-1 * $width / 2));
         .eyes {
             @include flex;
             .eye1 {
@@ -84,7 +85,7 @@ $bodyWidth: 80px;
                 .eyeBall2 {
                     $width: 5px;
                     @include size($width, $width, 50%);
-                    transform: translateX(-$width/2);
+                    transform: translateX(calc(-1 * $width / 2));
                     background-color: black;
                 }
                 .eyeBall1 {
@@ -108,7 +109,7 @@ $bodyWidth: 80px;
         $len: 60px;
         @include size($len, $len, 50% 50% 5px 5px);
         @include absPos(50%, 100%);
-        transform: translateX(-$len/2) translateY(-$len);
+        transform: translateX(calc(-1 * $len / 2)) translateY(-$len);
         background-color: #fff;
         box-shadow: inset 0px -5px $colorGreyShadow;
     }
@@ -119,8 +120,11 @@ $bodyWidth: 80px;
         @include size($width, $height);
         @include flex;
         justify-content: space-between;
-        @include absPos($bodyWidth/2, $bodyHeight - $height);
-        transform: translateX(-$width/2);
+        @include absPos(
+            calc($penguinBodyWidth / 2),
+            $penguinBodyHeight - $height
+        );
+        transform: translateX(calc(-1 * $width / 2));
         .foot {
             @include size(20px, 10px, 50%);
             background-color: $colorYellow;
@@ -135,8 +139,11 @@ $bodyWidth: 80px;
         @include size($width, $height);
         @include flex;
         justify-content: space-between;
-        @include absPos($bodyWidth/2, $bodyHeight - $height * 1.5);
-        transform: translateX(-$width/2);
+        @include absPos(
+            calc($penguinBodyWidth/2),
+            $penguinBodyHeight - $height * 1.5
+        );
+        transform: translateX(calc(-1 * $width / 2));
         .wing1,
         .wing2 {
             background-color: black;
@@ -156,8 +163,8 @@ $bodyWidth: 80px;
         $width: 30px;
         @include size($width, $width, 2px);
         @include flex;
-        @include absPos($bodyWidth/2, 50px);
-        transform: translateX(-$width/2);
+        @include absPos(calc($penguinBodyWidth/2), 50px);
+        transform: translateX(calc(-1 * $width / 2));
         box-shadow: inset -2px -2px $colorGreyShadow;
         .id > h1 {
             margin: 0;
