@@ -76,5 +76,23 @@ export function FishIcon(amount: number): JSX.Element {
 }
 
 export function FishBoxIcon(amount: number): JSX.Element {
-    return <></>;
+    let blackFish = (
+        <div className="blackFish">
+            <div className="eye"></div>
+            <div className="tails">
+                <div className="tail1"></div>
+                <div className="tail2"></div>
+            </div>
+        </div>
+    );
+
+    return (
+        <div className="fishBox">
+            <div className="tf-1">{blackFish}</div>
+            <div className="tf-2">{blackFish}</div>
+            <div className="tf-3">{blackFish}</div>
+            <div className="tf-4">{blackFish}</div>
+            <div className="box"></div>
+        </div>
+    );
 }

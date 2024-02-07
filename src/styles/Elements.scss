@@ -5,6 +5,7 @@ $colorYellow: #ffc700;
 $colorYellowLight: #ffe76c;
 $colorGreen: #65df67;
 $colorBlue: #4870ff;
+$colorBlueDark: #0058ff;
 $colorGrey: #8c8c8c;
 $colorGreyDark: #303030;
 $colorPurple: #ab87ff;
@@ -303,4 +304,52 @@ $fishTailSize: 15px;
         $fishEyeSize,
         $fishTailSize
     );
+}
+
+/* Fish Box Icon */
+.fishBox {
+    position: relative;
+    @include size(100px);
+    .box {
+        $w: 100px;
+        $h: 50px;
+        z-index: 5;
+        @include size(100px, 50px, 2px 2px 5px 5px);
+        @include absPos(50%, 100%);
+        transform: translateX(calc(-1 * $w/2)) translateY(-1 * $h);
+        background-color: $colorBlue;
+        box-shadow: inset 0px -5px $colorBlueDark;
+    }
+    .tf-1 {
+        z-index: 1;
+        @include absPos(0px, 25px);
+        transform: rotate(10deg);
+    }
+    .tf-2 {
+        z-index: 3;
+        @include absPos(30px, 30px);
+        transform: rotate(-150deg);
+    }
+    .tf-3 {
+        z-index: 2;
+        @include absPos(50px, 20px);
+        transform: rotate(50deg);
+    }
+    .tf-4 {
+        z-index: 4;
+        @include absPos(65px, 40px);
+        transform: rotate(-100deg);
+    }
+}
+
+.blackFish {
+    @include fish(
+        black,
+        black,
+        $fishBodyWidth,
+        $fishBodyHeight,
+        $fishEyeSize,
+        $fishTailSize
+    );
+    border: solid 2px white;
 }
