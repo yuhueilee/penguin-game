@@ -74,3 +74,7 @@ export function FishIcon(amount: number): JSX.Element {
     }
     return <></>;
 }
+
+export function FishBoxIcon(amount: number): JSX.Element {
+    return <></>;
+}
