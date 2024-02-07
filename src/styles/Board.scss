@@ -180,6 +180,11 @@ $colorWhiteGradient: linear-gradient(white, white);
     color: rgba($color: white, $alpha: 0.85);
 }
 
+.fishIconGrid {
+    @include flexDisplay(space-evenly, center, row);
+    width: 100%;
+}
+
 #winner {
     @include flexDisplay;
     position: absolute;

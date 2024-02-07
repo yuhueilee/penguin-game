@@ -41,3 +41,60 @@ export function PenguinIcon(playerID: number): JSX.Element {
         </div>
     );
 }
+
+export function FishIcon(amount: number): JSX.Element {
+    let fishPart = (
+        <>
+            <div className="eye"></div>
+            <div className="tails">
+                <div className="tail1"></div>
+                <div className="tail2"></div>
+            </div>
+        </>
+    );
+
+    switch (amount) {
+        case 1:
+            return <div className="fish-1">{fishPart}</div>;
+        case 2:
+            return (
+                <>
+                    <div className="fish-2">{fishPart}</div>
+                    <div className="fish-2">{fishPart}</div>
+                </>
+            );
+        case 3:
+            return (
+                <>
+                    <div className="fish-3">{fishPart}</div>
+                    <div className="fish-3">{fishPart}</div>
+                    <div className="fish-3">{fishPart}</div>
+                </>
+            );
+    }
+    return <></>;
+}
+
+export function FishBoxIcon(amount: number): JSX.Element {
+    let blackFish = (
+        <div className="blackFish">
+            <div className="eye"></div>
+            <div className="tails">
+                <div className="tail1"></div>
+                <div className="tail2"></div>
+            </div>
+        </div>
+    );
+
+    return (
+        <div className="fishBox">
+            <div className="tf-1">{blackFish}</div>
+            <div className="tf-2">{blackFish}</div>
+            <div className="tf-3">{blackFish}</div>
+            <div className="tf-4">{blackFish}</div>
+            <div className="box">
+                <h1>{amount}</h1>
+            </div>
+        </div>
+    );
+}

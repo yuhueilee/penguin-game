@@ -5,10 +5,21 @@ $colorYellow: #ffc700;
 $colorYellowLight: #ffe76c;
 $colorGreen: #65df67;
 $colorBlue: #4870ff;
+$colorBlueDark: #0058ff;
+$colorGrey: #8c8c8c;
+$colorGreyDark: #303030;
+$colorPurple: #ab87ff;
+$colorPurpleDark: #8049ff;
+$colorOrange: #ffba4c;
+$colorOrangeDark: #f29100;
 $colorGreyShadow: rgba(black, 25%);
 
-$bodyHeight: 90px;
-$bodyWidth: 80px;
+$penguinBodyHeight: 90px;
+$penguinBodyWidth: 80px;
+$fishBodyHeight: 30px;
+$fishBodyWidth: 30px;
+$fishEyeSize: 5px;
+$fishTailSize: 15px;
 
 @mixin flex($j: center, $a: center, $d: row) {
     display: flex;
@@ -33,6 +44,7 @@ $bodyWidth: 80px;
     position: relative;
 }
 
+/* Penguin Icon */
 .grid {
     $width: 0.2em;
     @include flex;
@@ -59,7 +71,7 @@ $bodyWidth: 80px;
 }
 
 .body {
-    @include size($bodyWidth, $bodyHeight, 50% 50% 5px 5px);
+    @include size($penguinBodyWidth, $penguinBodyHeight, 50% 50% 5px 5px);
     background-color: black;
 
     .face {
@@ -68,7 +80,7 @@ $bodyWidth: 80px;
         @include size($width, 40px);
         @include absPos(50%, 10%);
         @include flex(center, center, column);
-        transform: translateX(-$width/2);
+        transform: translateX(calc(-1 * $width / 2));
         .eyes {
             @include flex;
             .eye1 {
@@ -84,7 +96,7 @@ $bodyWidth: 80px;
                 .eyeBall2 {
                     $width: 5px;
                     @include size($width, $width, 50%);
-                    transform: translateX(-$width/2);
+                    transform: translateX(calc(-1 * $width / 2));
                     background-color: black;
                 }
                 .eyeBall1 {
@@ -108,7 +120,7 @@ $bodyWidth: 80px;
         $len: 60px;
         @include size($len, $len, 50% 50% 5px 5px);
         @include absPos(50%, 100%);
-        transform: translateX(-$len/2) translateY(-$len);
+        transform: translateX(calc(-1 * $len / 2)) translateY(-$len);
         background-color: #fff;
         box-shadow: inset 0px -5px $colorGreyShadow;
     }
@@ -119,8 +131,11 @@ $bodyWidth: 80px;
         @include size($width, $height);
         @include flex;
         justify-content: space-between;
-        @include absPos($bodyWidth/2, $bodyHeight - $height);
-        transform: translateX(-$width/2);
+        @include absPos(
+            calc($penguinBodyWidth / 2),
+            $penguinBodyHeight - $height
+        );
+        transform: translateX(calc(-1 * $width / 2));
         .foot {
             @include size(20px, 10px, 50%);
             background-color: $colorYellow;
@@ -135,8 +150,11 @@ $bodyWidth: 80px;
         @include size($width, $height);
         @include flex;
         justify-content: space-between;
-        @include absPos($bodyWidth/2, $bodyHeight - $height * 1.5);
-        transform: translateX(-$width/2);
+        @include absPos(
+            calc($penguinBodyWidth/2),
+            $penguinBodyHeight - $height * 1.5
+        );
+        transform: translateX(calc(-1 * $width / 2));
         .wing1,
         .wing2 {
             background-color: black;
@@ -156,8 +174,8 @@ $bodyWidth: 80px;
         $width: 30px;
         @include size($width, $width, 2px);
         @include flex;
-        @include absPos($bodyWidth/2, 50px);
-        transform: translateX(-$width/2);
+        @include absPos(calc($penguinBodyWidth/2), 50px);
+        transform: translateX(calc(-1 * $width / 2));
         box-shadow: inset -2px -2px $colorGreyShadow;
         .id > h1 {
             margin: 0;
@@ -202,4 +220,140 @@ $bodyWidth: 80px;
     .card {
         animation: cardAnimation 0.5s infinite alternate;
     }
+}
+
+/* Fish Icon */
+@mixin fish(
+    $primary,
+    $secondary,
+    $bodyWidth,
+    $bodyHeight: $bodyWidth,
+    $eyeSize,
+    $tailsSize
+) {
+    @include size($bodyWidth, $bodyHeight, 100% 100% 5% 100%);
+    background-color: $primary;
+    box-shadow: inset 0px calc(-0.1 * $bodyWidth) $secondary;
+
+    .eye {
+        @include size($eyeSize, $eyeSize, 100%);
+        background-color: black;
+        position: absolute;
+        border: solid 2px white;
+        top: 15%;
+        left: 20%;
+    }
+
+    .tails {
+        @include size($tailsSize, $tailsSize);
+        position: absolute;
+        top: $bodyHeight - calc($tailsSize / 2);
+        left: $bodyWidth - calc($tailsSize / 2);
+        transform: rotate(-45deg);
+        .tail1,
+        .tail2 {
+            background-color: $primary;
+        }
+        .tail1 {
+            z-index: 3;
+            @include size(calc($tailsSize / 2), $tailsSize, 0 100% 100% 0);
+            transform: rotate(45deg);
+            position: absolute;
+            left: 5%;
+            box-shadow: inset 0px calc(-0.1 * $bodyWidth) $secondary;
+        }
+        .tail2 {
+            z-index: 2;
+            @include size(calc($tailsSize / 2), $tailsSize, 100% 0 0 100%);
+            transform: rotate(-45deg);
+            position: absolute;
+            right: 5%;
+            box-shadow: inset calc($bodyWidth * 0.1) 0px $secondary;
+        }
+    }
+}
+
+.fish-1 {
+    @include fish(
+        $colorGrey,
+        $colorGreyDark,
+        $fishBodyWidth,
+        $fishBodyHeight,
+        $fishEyeSize,
+        $fishTailSize
+    );
+}
+
+.fish-2 {
+    @include fish(
+        $colorPurple,
+        $colorPurpleDark,
+        $fishBodyWidth,
+        $fishBodyHeight,
+        $fishEyeSize,
+        $fishTailSize
+    );
+}
+
+.fish-3 {
+    @include fish(
+        $colorOrange,
+        $colorOrangeDark,
+        $fishBodyWidth,
+        $fishBodyHeight,
+        $fishEyeSize,
+        $fishTailSize
+    );
+}
+
+/* Fish Box Icon */
+.fishBox {
+    position: relative;
+    @include size(100px);
+    .box {
+        $w: 100px;
+        $h: 50px;
+        z-index: 5;
+        @include flex;
+        @include size(100px, 50px, 2px 2px 5px 5px);
+        @include absPos(50%, 100%);
+        transform: translateX(calc(-1 * $w/2)) translateY(-1 * $h);
+        background-color: $colorBlue;
+        box-shadow: inset 0px -5px $colorBlueDark;
+        h1 {
+            color: white;
+        }
+    }
+    .tf-1 {
+        z-index: 1;
+        @include absPos(0px, 25px);
+        transform: rotate(10deg);
+    }
+    .tf-2 {
+        z-index: 3;
+        @include absPos(30px, 30px);
+        transform: rotate(-150deg);
+    }
+    .tf-3 {
+        z-index: 2;
+        @include absPos(50px, 20px);
+        transform: rotate(50deg);
+    }
+    .tf-4 {
+        z-index: 4;
+        @include absPos(65px, 40px);
+        transform: rotate(-100deg);
+    }
+}
+
+.blackFish {
+    @include fish(
+        black,
+        black,
+        $fishBodyWidth,
+        $fishBodyHeight,
+        $fishEyeSize,
+        $fishTailSize
+    );
+    border: solid 2px white;
 }
