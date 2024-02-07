@@ -271,3 +271,11 @@ $penguinBodyWidth: 80px;
 .fish-1 {
     @include fish($colorGrey, $colorGreyDark, 24px, 24px, 5px, 10px);
 }
+
+.fish-2 {
+    @include fish($colorPurple, $colorPurpleDark, 24px, 24px, 5px, 10px);
+}
+
+.fish-3 {
+    @include fish($colorOrange, $colorOrangeDark, 24px, 24px, 5px, 10px);
+}

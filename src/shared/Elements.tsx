@@ -43,13 +43,62 @@ export function PenguinIcon(playerID: number): JSX.Element {
 }
 
 export function FishIcon(amount: number): JSX.Element {
-    return (
-        <div className="fish-1">
-            <div className="eye"></div>
-            <div className="tails">
-                <div className="tail1"></div>
-                <div className="tail2"></div>
-            </div>
-        </div>
-    );
+    switch (amount) {
+        case 1:
+            return (
+                <div className="fish-1">
+                    <div className="eye"></div>
+                    <div className="tails">
+                        <div className="tail1"></div>
+                        <div className="tail2"></div>
+                    </div>
+                </div>
+            );
+        case 2:
+            return (
+                <>
+                    <div className="fish-2">
+                        <div className="eye"></div>
+                        <div className="tails">
+                            <div className="tail1"></div>
+                            <div className="tail2"></div>
+                        </div>
+                    </div>
+                    <div className="fish-2">
+                        <div className="eye"></div>
+                        <div className="tails">
+                            <div className="tail1"></div>
+                            <div className="tail2"></div>
+                        </div>
+                    </div>
+                </>
+            );
+        case 3:
+            return (
+                <>
+                    <div className="fish-3">
+                        <div className="eye"></div>
+                        <div className="tails">
+                            <div className="tail1"></div>
+                            <div className="tail2"></div>
+                        </div>
+                    </div>
+                    <div className="fish-3">
+                        <div className="eye"></div>
+                        <div className="tails">
+                            <div className="tail1"></div>
+                            <div className="tail2"></div>
+                        </div>
+                    </div>
+                    <div className="fish-3">
+                        <div className="eye"></div>
+                        <div className="tails">
+                            <div className="tail1"></div>
+                            <div className="tail2"></div>
+                        </div>
+                    </div>
+                </>
+            );
+    }
+    return <></>;
 }
