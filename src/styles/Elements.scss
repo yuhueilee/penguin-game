@@ -14,6 +14,7 @@ $colorOrange: #ffba4c;
 $colorOrangeDark: #f29100;
 $colorGreyShadow: rgba(black, 25%);
 
+$gridSize: 120px;
 $penguinBodyHeight: 90px;
 $penguinBodyWidth: 80px;
 $fishBodyHeight: 30px;
@@ -48,7 +49,7 @@ $fishTailSize: 15px;
 .grid {
     $width: 0.2em;
     @include flex;
-    @include size(120px, 120px, 50%);
+    @include size($gridSize, $gridSize, 50%);
     background: $colorBlue content-box;
     border: solid $width $colorBlue;
     padding: $width;
@@ -76,18 +77,19 @@ $fishTailSize: 15px;
 
     .face {
         z-index: 6;
-        $width: 70px;
-        @include size($width, 40px);
+        $width: $penguinBodyWidth - 10px;
+        @include size($width, calc($penguinBodyWidth / 2));
         @include absPos(50%, 10%);
         @include flex(center, center, column);
         transform: translateX(calc(-1 * $width / 2));
         .eyes {
             @include flex;
+            $eyeSize: calc($penguinBodyHeight / 3);
             .eye1 {
-                @include size(30px, 30px, 50% 40% 20% 50%);
+                @include size($eyeSize, $eyeSize, 50% 40% 20% 50%);
             }
             .eye2 {
-                @include size(30px, 30px, 40% 50% 50% 20%);
+                @include size($eyeSize, $eyeSize, 40% 50% 50% 20%);
             }
             .eye1,
             .eye2 {
@@ -108,7 +110,8 @@ $fishTailSize: 15px;
             }
         }
         .mouth {
-            @include size(30px, 5px, 50%);
+            $mouthSize: calc($penguinBodyHeight/3);
+            @include size($mouthSize, 5px, 50%);
             margin-top: -5px;
             background-color: $colorYellow;
             box-shadow: inset -1px 1px $colorGreyShadow;
@@ -117,7 +120,7 @@ $fishTailSize: 15px;
 
     .belly {
         z-index: 5;
-        $len: 60px;
+        $len: calc($penguinBodyHeight * 2 / 3);
         @include size($len, $len, 50% 50% 5px 5px);
         @include absPos(50%, 100%);
         transform: translateX(calc(-1 * $len / 2)) translateY(-$len);
@@ -125,8 +128,8 @@ $fishTailSize: 15px;
         box-shadow: inset 0px -5px $colorGreyShadow;
     }
     .feet {
-        $width: 50px;
-        $height: 10px;
+        $width: calc($penguinBodyHeight * 5 / 9);
+        $height: calc($penguinBodyHeight / 9);
         z-index: 7;
         @include size($width, $height);
         @include flex;
@@ -137,7 +140,9 @@ $fishTailSize: 15px;
         );
         transform: translateX(calc(-1 * $width / 2));
         .foot {
-            @include size(20px, 10px, 50%);
+            $width: calc($penguinBodyWidth/4);
+            $height: calc($width/2);
+            @include size($width, $height, 50%);
             background-color: $colorYellow;
             box-shadow: inset 0px -2px $colorGreyShadow;
         }
@@ -145,8 +150,8 @@ $fishTailSize: 15px;
 
     .wings {
         z-index: 8;
-        $width: 100px;
-        $height: 30px;
+        $width: calc($penguinBodyHeight * 10 / 9);
+        $height: calc($penguinBodyHeight/3);
         @include size($width, $height);
         @include flex;
         justify-content: space-between;
@@ -160,18 +165,22 @@ $fishTailSize: 15px;
             background-color: black;
         }
         .wing1 {
-            @include size(20px, 30px, 45% 100% 45% 0);
-            transform: translateX(15px);
+            $width: calc($penguinBodyWidth/4);
+            $height: calc($penguinBodyHeight/3);
+            @include size($width, $height, 45% 100% 45% 0);
+            transform: translateX(calc($height/2));
         }
         .wing2 {
-            @include size(20px, 30px, 100% 45% 0 45%);
-            transform: translateX(-15px);
+            $width: calc($penguinBodyWidth/4);
+            $height: calc($penguinBodyHeight/3);
+            @include size($width, $height, 100% 45% 0 45%);
+            transform: translateX(calc(-1 * $height/2));
         }
     }
 
     .card {
         z-index: 6;
-        $width: 30px;
+        $width: calc($penguinBodyHeight/3);
         @include size($width, $width, 2px);
         @include flex;
         @include absPos(calc($penguinBodyWidth/2), 50px);
@@ -179,7 +188,7 @@ $fishTailSize: 15px;
         box-shadow: inset -2px -2px $colorGreyShadow;
         .id > h1 {
             margin: 0;
-            font-size: 28px;
+            font-size: calc($penguinBodyWidth/4);
             font-family: "Protest Riot", sans-serif;
             color: white;
         }
