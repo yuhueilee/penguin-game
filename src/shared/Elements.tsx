@@ -41,3 +41,7 @@ export function PenguinIcon(playerID: number): JSX.Element {
         </div>
     );
 }
+
+export function FishIcon(amount: number): JSX.Element {
+    return <div></div>;
+}
