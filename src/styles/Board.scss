@@ -53,7 +53,7 @@ $colorWhiteGradient: linear-gradient(white, white);
     font-family: "Protest Riot", sans-serif;
 }
 
-@mixin cellStyle($backgroundColor: #4169e1) {
+@mixin cellStyle($backgroundColor: $colorBlueLight) {
     @include flexDisplay(center, center, column);
     position: relative;
     width: $hexagonWidth;
@@ -178,9 +178,21 @@ $colorWhiteGradient: linear-gradient(white, white);
 }
 
 .colonisedCell {
-    @include cellStyle(#284086);
     .fishIconGrid {
         filter: opacity(0);
+    }
+
+    &.red {
+        @include cellStyle($colorRedDark);
+    }
+    &.yellow {
+        @include cellStyle($colorYellowDark);
+    }
+    &.green {
+        @include cellStyle($colorGreenDark);
+    }
+    &.blue {
+        @include cellStyle($colorBlueDark);
     }
 }
 

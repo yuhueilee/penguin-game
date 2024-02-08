@@ -127,7 +127,7 @@ const cellStyle = (playerID: number) => {
         return "emptyCell";
     }
 
-    return "colonisedCell";
+    return "colonisedCell " + colorByPlayerID[playerID];
 };
 
 const playerInfoStyle = (playerID: number) => {
