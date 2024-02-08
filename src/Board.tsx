@@ -53,35 +53,33 @@ export function PenguinBattleBoard({
             const cellID = maxCellsPerRow * i + j - Math.floor(i / 2);
             const playerID = playerIDOfLabourAtCell(cellID, G.locations);
             cells.push(
-                <div key={cellID}>
-                    <div className={cellStyle(G.cells[cellID])}>
-                        <div className="fishIconGrid">
-                            {FishIcon(G.fish[cellID])}
-                        </div>
-                        <div className="labourIconGrid">
-                            {PenguinLabourIcon(playerID)}
-                        </div>
-                        {showColoniseButton(ctx, G, currPlayerID, cellID) ? (
-                            <button
-                                className="coloniseBtn"
-                                onClick={() => colonise(cellID)}
-                            >
-                                colonise
-                            </button>
-                        ) : (
-                            <></>
-                        )}
-                        {showLocateButton(ctx, G, currPlayerID, cellID) ? (
-                            <button
-                                className="locateBtn"
-                                onClick={() => locate(cellID)}
-                            >
-                                locate
-                            </button>
-                        ) : (
-                            <></>
-                        )}
+                <div key={cellID} className={cellStyle(G.cells[cellID])}>
+                    <div className="fishIconGrid">
+                        {FishIcon(G.fish[cellID])}
                     </div>
+                    <div className="labourIconGrid">
+                        {PenguinLabourIcon(playerID)}
+                    </div>
+                    {showColoniseButton(ctx, G, currPlayerID, cellID) ? (
+                        <button
+                            className="coloniseBtn"
+                            onClick={() => colonise(cellID)}
+                        >
+                            colonise
+                        </button>
+                    ) : (
+                        <></>
+                    )}
+                    {showLocateButton(ctx, G, currPlayerID, cellID) ? (
+                        <button
+                            className="locateBtn"
+                            onClick={() => locate(cellID)}
+                        >
+                            locate
+                        </button>
+                    ) : (
+                        <></>
+                    )}
                 </div>
             );
         }
