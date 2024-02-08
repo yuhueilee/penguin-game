@@ -4,7 +4,12 @@ import { ActivePlayers, Ctx } from "boardgame.io";
 import React from "react";
 
 import { colorByPlayerID, maxCellsPerRow, totalCells } from "./shared/Consts";
-import { FishBoxIcon, FishIcon, PenguinIcon } from "./shared/Elements";
+import {
+    FishBoxIcon,
+    FishIcon,
+    PenguinIcon,
+    PenguinLabourIcon,
+} from "./shared/Elements";
 import { Columns, LinkedCells, Ranking, Rows } from "./shared/Helpers";
 import { Coord, GameData } from "./shared/Types";
 
@@ -46,11 +51,15 @@ export function PenguinBattleBoard({
         const numColumns = Columns(i, maxCellsPerRow);
         for (let j = 0; j < numColumns; j++) {
             const cellID = maxCellsPerRow * i + j - Math.floor(i / 2);
+            const playerID = playerIDOfLabourAtCell(cellID, G.locations);
             cells.push(
                 <div key={cellID}>
                     <div className={cellStyle(G.cells[cellID])}>
                         <div className="fishIconGrid">
                             {FishIcon(G.fish[cellID])}
+                        </div>
+                        <div className="labourIconGrid">
+                            {PenguinLabourIcon(playerID)}
                         </div>
                         <h5 className="textStyle">
                             playerID: {G.cells[cellID]}
@@ -190,6 +199,29 @@ const showLocateButton = (
         isLabourLocated(playerID, cellID, g.locations) &&
         isLinked(cellID, g.cells, g.cellCoords, maxCellsPerRow)
     );
+};
+
+/**
+ * Returns the player ID associated to the labour located at the cell if there's any, otherwise return -1.
+ *
+ * @param cellID cell ID
+ * @param locations a list of labours' locations
+ * @returns player ID if the cell is occupied by a labour
+ */
+const playerIDOfLabourAtCell = (
+    cellID: number,
+    locations: Array<Array<number>>
+): number => {
+    for (let playerID = 0; playerID < locations.length; playerID++) {
+        for (let i = 0; i < locations[playerID].length; i++) {
+            let labourLocation = locations[playerID][i];
+            if (cellID === labourLocation) {
+                return playerID;
+            }
+        }
+    }
+
+    return -1;
 };
 
 /**

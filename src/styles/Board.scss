@@ -68,6 +68,7 @@ $colorWhiteGradient: linear-gradient(white, white);
 }
 
 @mixin buttonStyle($primaryColor: black, $secondaryColor: white) {
+    z-index: 12;
     @include fontStyle($secondaryColor, 14px, 300, 1px);
     background-color: $primaryColor;
     color: $secondaryColor;

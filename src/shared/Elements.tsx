@@ -42,6 +42,10 @@ export function PenguinIcon(playerID: number): JSX.Element {
 }
 
 export function PenguinLabourIcon(playerID: number): JSX.Element {
+    if (playerID === -1) {
+        return <></>;
+    }
+
     const colorStyle = colorByPlayerID[playerID];
     const labourStyle = "penguinLabour " + colorStyle;
 
