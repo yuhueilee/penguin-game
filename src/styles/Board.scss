@@ -75,6 +75,7 @@ $colorWhiteGradient: linear-gradient(white, white);
     border: none;
     border-radius: 5px;
     margin-top: 15px;
+    padding: 5px;
     &:hover {
         background-color: $secondaryColor;
         color: $primaryColor;
@@ -201,7 +202,7 @@ $colorWhiteGradient: linear-gradient(white, white);
 }
 
 .locateBtn {
-    @include buttonStyle(red);
+    @include buttonStyle;
 }
 
 .textStyle {
