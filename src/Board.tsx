@@ -61,9 +61,6 @@ export function PenguinBattleBoard({
                         <div className="labourIconGrid">
                             {PenguinLabourIcon(playerID)}
                         </div>
-                        <h5 className="textStyle">
-                            playerID: {G.cells[cellID]}
-                        </h5>
                         {showColoniseButton(ctx, G, currPlayerID, cellID) ? (
                             <button
                                 className="coloniseBtn"
