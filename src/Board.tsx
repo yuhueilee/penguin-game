@@ -108,13 +108,14 @@ export function PenguinBattleBoard({
         <div className="board">
             <div className="summary">
                 {winner}
-                <h1 className="title">LeaderBoard</h1>
-                {ranking}
-                <hr className="divider"></hr>
                 <h1 className="title">Who's Turn?</h1>
                 {PenguinIcon(currPlayerID)}
             </div>
             <div className="table">{tbody}</div>
+            <div className="leaderboard">
+                <h1 className="title">LeaderBoard</h1>
+                {ranking}
+            </div>
         </div>
     );
 }
