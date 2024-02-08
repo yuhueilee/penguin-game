@@ -136,17 +136,6 @@ $colorWhiteGradient: linear-gradient(white, white);
         border: 4px solid transparent;
         border-radius: 100px;
         margin: 2px;
-        .ranking {
-            flex: 2;
-            padding: 8px;
-            @include flexDisplay;
-            h1 {
-                background: $colorBlueGradient;
-                -webkit-text-fill-color: transparent;
-                background-clip: text;
-                margin: 0;
-            }
-        }
         .score {
             flex: 2;
             padding: 8px;
