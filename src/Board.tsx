@@ -100,9 +100,6 @@ export function PenguinBattleBoard({
             <div key={playerID} className={playerInfoStyle(playerID)}>
                 <div className="playerIcon">{PenguinIcon(playerID)}</div>
                 <div className="score">{FishBoxIcon(G.scores[playerID])}</div>
-                <div className="ranking">
-                    <h1>{i + 1}</h1>
-                </div>
             </div>
         );
     }
