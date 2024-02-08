@@ -46,6 +46,194 @@ $fishTailSize: 15px;
 }
 
 /* Penguin Icon */
+@mixin penguin($playerColor) {
+    .body {
+        @include size($penguinBodyWidth, $penguinBodyHeight, 50% 50% 5px 5px);
+        background-color: black;
+
+        .face {
+            z-index: 6;
+            $width: $penguinBodyWidth - 10px;
+            @include size($width, calc($penguinBodyWidth / 2));
+            @include absPos(50%, 10%);
+            @include flex(center, center, column);
+            transform: translateX(calc(-1 * $width / 2));
+            .eyes {
+                @include flex;
+                $eyeSize: calc($penguinBodyHeight / 3);
+                .eye1 {
+                    @include size($eyeSize, $eyeSize, 50% 40% 20% 50%);
+                }
+                .eye2 {
+                    @include size($eyeSize, $eyeSize, 40% 50% 50% 20%);
+                }
+                .eye1,
+                .eye2 {
+                    background-color: #fff;
+                    .eyeBall1,
+                    .eyeBall2 {
+                        $width: 5px;
+                        @include size($width, $width, 50%);
+                        transform: translateX(calc(-1 * $width / 2));
+                        background-color: black;
+                    }
+                    .eyeBall1 {
+                        @include absPos(60%, 60%);
+                    }
+                    .eyeBall2 {
+                        @include absPos(40%, 60%);
+                    }
+                }
+            }
+            .mouth {
+                $mouthSize: calc($penguinBodyHeight/3);
+                @include size($mouthSize, 5px, 50%);
+                margin-top: -5px;
+                background-color: $colorYellow;
+                box-shadow: inset -1px 1px $colorGreyShadow;
+            }
+        }
+        .belly {
+            z-index: 5;
+            $len: calc($penguinBodyHeight * 2 / 3);
+            @include size($len, $len, 50% 50% 5px 5px);
+            @include absPos(50%, 100%);
+            transform: translateX(calc(-1 * $len / 2)) translateY(-$len);
+            background-color: #fff;
+            box-shadow: inset 0px -5px $colorGreyShadow;
+        }
+        .feet {
+            $width: calc($penguinBodyHeight * 5 / 9);
+            $height: calc($penguinBodyHeight / 9);
+            z-index: 7;
+            @include size($width, $height);
+            @include flex;
+            justify-content: space-between;
+            @include absPos(
+                calc($penguinBodyWidth / 2),
+                $penguinBodyHeight - $height
+            );
+            transform: translateX(calc(-1 * $width / 2));
+            .foot {
+                $width: calc($penguinBodyWidth/4);
+                $height: calc($width/2);
+                @include size($width, $height, 50%);
+                background-color: $colorYellow;
+                box-shadow: inset 0px -2px $colorGreyShadow;
+            }
+        }
+        .wings {
+            z-index: 8;
+            $width: calc($penguinBodyHeight * 10 / 9);
+            $height: calc($penguinBodyHeight/3);
+            @include size($width, $height);
+            @include flex;
+            justify-content: space-between;
+            @include absPos(
+                calc($penguinBodyWidth/2),
+                $penguinBodyHeight - $height * 1.5
+            );
+            transform: translateX(calc(-1 * $width / 2));
+            .wing1,
+            .wing2 {
+                background-color: black;
+            }
+            .wing1 {
+                $width: calc($penguinBodyWidth/4);
+                $height: calc($penguinBodyHeight/3);
+                @include size($width, $height, 45% 100% 45% 0);
+                transform: translateX(calc($height/2));
+            }
+            .wing2 {
+                $width: calc($penguinBodyWidth/4);
+                $height: calc($penguinBodyHeight/3);
+                @include size($width, $height, 100% 45% 0 45%);
+                transform: translateX(calc(-1 * $height/2));
+            }
+        }
+
+        .knife {
+            z-index: 7;
+            $w: 12px;
+            $h: 20px;
+            @include size($w, $h, 0 50% 50% 0);
+            @include absPos(10px, -10px);
+            background-color: $playerColor;
+            transform: rotate(-30deg);
+            &::after {
+                content: "";
+                display: block;
+                background-color: inherit;
+                @include size(calc($w/4), $w * 1.2, 0 0 2px 2px);
+                margin-top: $h - 2px;
+            }
+        }
+        .spoon {
+            z-index: 7;
+            $w: 12px;
+            $h: 20px;
+            @include size($w, $h, 50%);
+            @include absPos(0, -10px);
+            background-color: $playerColor;
+            transform: rotate(15deg);
+            &::after {
+                content: "";
+                display: block;
+                background-color: inherit;
+                @include size(calc($w/4), $w * 1.2, 0 0 2px 2px);
+                margin-top: $h - 2px;
+                margin-left: calc($w/2) - calc($w/8);
+            }
+        }
+
+        .card {
+            z-index: 6;
+            $width: calc($penguinBodyHeight/3);
+            @include size($width, $width, 2px);
+            @include flex;
+            @include absPos(calc($penguinBodyWidth/2), 50px);
+            transform: translateX(calc(-1 * $width / 2));
+            box-shadow: inset -2px -2px $colorGreyShadow;
+            background-color: $playerColor;
+            .id > h1 {
+                margin: 0;
+                font-size: calc($penguinBodyWidth/4);
+                font-family: "Protest Riot", sans-serif;
+                color: white;
+            }
+        }
+    }
+
+    @keyframes cardAnimation {
+        0% {
+            transform: translateX(-15px);
+        }
+        100% {
+            transform: translateX(-15px) translateY(-6px);
+        }
+    }
+
+    .body:hover {
+        .wing1 {
+            @include size(20px, 30px, 100% 45% 0 45%);
+            transform: translateX(0px);
+        }
+        .knife {
+            transform: rotate(20deg);
+        }
+        .spoon {
+            transform: rotate(-30deg);
+        }
+        .wing2 {
+            @include size(20px, 30px, 45% 100% 45% 0);
+            transform: translateX(0px);
+        }
+        .card {
+            animation: cardAnimation 0.5s infinite alternate;
+        }
+    }
+}
+
 .grid {
     $width: 0.2em;
     @include flex;
@@ -56,216 +244,37 @@ $fishTailSize: 15px;
     &.red {
         background: $colorRed content-box;
         border: solid $width $colorRed;
+        @include penguin($colorRed);
     }
     &.yellow {
         background: $colorYellow content-box;
         border: solid $width $colorYellow;
+        @include penguin($colorYellow);
     }
     &.green {
         background: $colorGreen content-box;
         border: solid $width $colorGreen;
+        @include penguin($colorGreen);
     }
     &.blue {
         background: $colorBlue content-box;
         border: solid $width $colorBlue;
+        @include penguin($colorBlue);
     }
 }
 
-.body {
-    @include size($penguinBodyWidth, $penguinBodyHeight, 50% 50% 5px 5px);
-    background-color: black;
-
-    .face {
-        z-index: 6;
-        $width: $penguinBodyWidth - 10px;
-        @include size($width, calc($penguinBodyWidth / 2));
-        @include absPos(50%, 10%);
-        @include flex(center, center, column);
-        transform: translateX(calc(-1 * $width / 2));
-        .eyes {
-            @include flex;
-            $eyeSize: calc($penguinBodyHeight / 3);
-            .eye1 {
-                @include size($eyeSize, $eyeSize, 50% 40% 20% 50%);
-            }
-            .eye2 {
-                @include size($eyeSize, $eyeSize, 40% 50% 50% 20%);
-            }
-            .eye1,
-            .eye2 {
-                background-color: #fff;
-                .eyeBall1,
-                .eyeBall2 {
-                    $width: 5px;
-                    @include size($width, $width, 50%);
-                    transform: translateX(calc(-1 * $width / 2));
-                    background-color: black;
-                }
-                .eyeBall1 {
-                    @include absPos(60%, 60%);
-                }
-                .eyeBall2 {
-                    @include absPos(40%, 60%);
-                }
-            }
-        }
-        .mouth {
-            $mouthSize: calc($penguinBodyHeight/3);
-            @include size($mouthSize, 5px, 50%);
-            margin-top: -5px;
-            background-color: $colorYellow;
-            box-shadow: inset -1px 1px $colorGreyShadow;
-        }
+.penguinLabour {
+    &.red {
+        @include penguin($colorRed);
     }
-    .belly {
-        z-index: 5;
-        $len: calc($penguinBodyHeight * 2 / 3);
-        @include size($len, $len, 50% 50% 5px 5px);
-        @include absPos(50%, 100%);
-        transform: translateX(calc(-1 * $len / 2)) translateY(-$len);
-        background-color: #fff;
-        box-shadow: inset 0px -5px $colorGreyShadow;
+    &.yellow {
+        @include penguin($colorYellow);
     }
-    .feet {
-        $width: calc($penguinBodyHeight * 5 / 9);
-        $height: calc($penguinBodyHeight / 9);
-        z-index: 7;
-        @include size($width, $height);
-        @include flex;
-        justify-content: space-between;
-        @include absPos(
-            calc($penguinBodyWidth / 2),
-            $penguinBodyHeight - $height
-        );
-        transform: translateX(calc(-1 * $width / 2));
-        .foot {
-            $width: calc($penguinBodyWidth/4);
-            $height: calc($width/2);
-            @include size($width, $height, 50%);
-            background-color: $colorYellow;
-            box-shadow: inset 0px -2px $colorGreyShadow;
-        }
+    &.green {
+        @include penguin($colorGreen);
     }
-    .wings {
-        z-index: 8;
-        $width: calc($penguinBodyHeight * 10 / 9);
-        $height: calc($penguinBodyHeight/3);
-        @include size($width, $height);
-        @include flex;
-        justify-content: space-between;
-        @include absPos(
-            calc($penguinBodyWidth/2),
-            $penguinBodyHeight - $height * 1.5
-        );
-        transform: translateX(calc(-1 * $width / 2));
-        .wing1,
-        .wing2 {
-            background-color: black;
-        }
-        .wing1 {
-            $width: calc($penguinBodyWidth/4);
-            $height: calc($penguinBodyHeight/3);
-            @include size($width, $height, 45% 100% 45% 0);
-            transform: translateX(calc($height/2));
-        }
-        .wing2 {
-            $width: calc($penguinBodyWidth/4);
-            $height: calc($penguinBodyHeight/3);
-            @include size($width, $height, 100% 45% 0 45%);
-            transform: translateX(calc(-1 * $height/2));
-        }
-    }
-
-    .knife {
-        z-index: 7;
-        $w: 12px;
-        $h: 20px;
-        @include size($w, $h, 0 50% 50% 0);
-        @include absPos(10px, -10px);
-        background-color: red;
-        transform: rotate(-30deg);
-        &::after {
-            content: "";
-            display: block;
-            background-color: inherit;
-            @include size(calc($w/4), $w * 1.2, 0 0 2px 2px);
-            margin-top: $h - 2px;
-        }
-    }
-    .spoon {
-        z-index: 7;
-        $w: 12px;
-        $h: 20px;
-        @include size($w, $h, 50%);
-        @include absPos(0, -10px);
-        background-color: red;
-        transform: rotate(15deg);
-        &::after {
-            content: "";
-            display: block;
-            background-color: inherit;
-            @include size(calc($w/4), $w * 1.2, 0 0 2px 2px);
-            margin-top: $h - 2px;
-            margin-left: calc($w/2) - calc($w/8);
-        }
-    }
-
-    .card {
-        z-index: 6;
-        $width: calc($penguinBodyHeight/3);
-        @include size($width, $width, 2px);
-        @include flex;
-        @include absPos(calc($penguinBodyWidth/2), 50px);
-        transform: translateX(calc(-1 * $width / 2));
-        box-shadow: inset -2px -2px $colorGreyShadow;
-        .id > h1 {
-            margin: 0;
-            font-size: calc($penguinBodyWidth/4);
-            font-family: "Protest Riot", sans-serif;
-            color: white;
-        }
-        &.red {
-            background-color: $colorRed;
-        }
-        &.yellow {
-            background-color: $colorYellow;
-        }
-        &.green {
-            background-color: $colorGreen;
-        }
-        &.blue {
-            background-color: $colorBlue;
-        }
-    }
-}
-
-/* animation style */
-@keyframes cardAnimation {
-    0% {
-        transform: translateX(-15px);
-    }
-    100% {
-        transform: translateX(-15px) translateY(-6px);
-    }
-}
-
-.body:hover {
-    .wing1 {
-        @include size(20px, 30px, 100% 45% 0 45%);
-        transform: translateX(0px);
-    }
-    .knife {
-        transform: rotate(20deg);
-    }
-    .spoon {
-        transform: rotate(-30deg);
-    }
-    .wing2 {
-        @include size(20px, 30px, 45% 100% 45% 0);
-        transform: translateX(0px);
-    }
-    .card {
-        animation: cardAnimation 0.5s infinite alternate;
+    &.blue {
+        @include penguin($colorBlue);
     }
 }
 
