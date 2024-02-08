@@ -109,7 +109,7 @@ $colorWhiteGradient: linear-gradient(white, white);
     $bdRS: 10px;
     @include size($width, $height, $bdRS);
     @include fixedPos(100%, 100%);
-    @include flexDisplay(center, center, column);
+    @include flexDisplay(flex-start, center, column);
     transform: translateX(-$width - 50px) translateY(-$height - 50px);
     padding: 16px;
     background: white;
@@ -117,7 +117,9 @@ $colorWhiteGradient: linear-gradient(white, white);
 
     .title {
         @include fontStyle(white, 20px);
-        margin-top: -70px;
+        margin: 0;
+        margin-top: -50px;
+        margin-bottom: 25px;
         padding: 4px 16px;
         background: $colorTitle;
         border-radius: $bdRS $bdRS 0 0;
@@ -167,6 +169,8 @@ $colorWhiteGradient: linear-gradient(white, white);
 }
 
 .playerTurn {
+    z-index: 10;
+
     $colorTitle: black;
 
     $width: 200px;
@@ -174,7 +178,7 @@ $colorWhiteGradient: linear-gradient(white, white);
     $bdRS: 10px;
     @include size($width, $height, $bdRS);
     @include fixedPos(0, 100%);
-    @include flexDisplay(center, center, column);
+    @include flexDisplay(flex-start, center, column);
     transform: translateX(10px) translateY(-$height - 50px);
     padding: 16px;
     background: white;
@@ -182,7 +186,9 @@ $colorWhiteGradient: linear-gradient(white, white);
 
     .title {
         @include fontStyle(white, 20px);
-        margin-top: -70px;
+        margin: 0;
+        margin-top: -50px;
+        margin-bottom: 25px;
         padding: 4px 16px;
         background: $colorTitle;
         border-radius: $bdRS $bdRS 0 0;
