@@ -84,7 +84,7 @@ $colorWhiteGradient: linear-gradient(white, white);
     &:disabled {
         background-color: #cccccc;
         color: #666666;
-        cursor: not-allowed;
+        cursor: none;
     }
 }
 
