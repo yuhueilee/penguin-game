@@ -34,6 +34,12 @@ $colorWhiteGradient: linear-gradient(white, white);
     top: $t;
 }
 
+@mixin size($w, $h: $w, $r: 0) {
+    width: $w;
+    height: $h;
+    border-radius: $r;
+}
+
 @mixin fontStyle(
     $color: black,
     $size: 16px,
@@ -189,8 +195,9 @@ $colorWhiteGradient: linear-gradient(white, white);
 
 .labourIconGrid {
     z-index: 10;
-    @include abPos(50%, 5%);
-    transform: translateX(-40px);
+    @include size(100%);
+    @include flexDisplay;
+    @include abPos(0, -5%);
 }
 
 .fishIconGrid {
