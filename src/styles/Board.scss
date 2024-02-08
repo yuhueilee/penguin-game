@@ -28,6 +28,12 @@ $colorWhiteGradient: linear-gradient(white, white);
     flex-direction: $d;
 }
 
+@mixin abPos($l: initial, $t: initial) {
+    position: absolute;
+    left: $l;
+    top: $t;
+}
+
 @mixin fontStyle(
     $color: black,
     $size: 16px,
@@ -43,6 +49,7 @@ $colorWhiteGradient: linear-gradient(white, white);
 
 @mixin cellStyle($backgroundColor: #4169e1) {
     @include flexDisplay(center, center, column);
+    position: relative;
     width: $hexagonWidth;
     height: calc((sqrt(3) / 2) * $hexagonWidth);
     padding: 16px;
@@ -178,6 +185,12 @@ $colorWhiteGradient: linear-gradient(white, white);
     margin: 8px;
     font-size: 14px;
     color: rgba($color: white, $alpha: 0.85);
+}
+
+.labourIconGrid {
+    z-index: 10;
+    @include abPos(50%, 5%);
+    transform: translateX(-40px);
 }
 
 .fishIconGrid {
