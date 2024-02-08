@@ -179,6 +179,9 @@ $colorWhiteGradient: linear-gradient(white, white);
 
 .colonisedCell {
     @include cellStyle(#284086);
+    .fishIconGrid {
+        filter: opacity(0);
+    }
 }
 
 .coloniseBtn {
