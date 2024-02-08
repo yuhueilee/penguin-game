@@ -183,17 +183,19 @@ $colorWhiteGradient: linear-gradient(white, white);
         filter: opacity(0);
     }
 
+    $opacity: 0.7;
+
     &.red {
-        @include cellStyle($colorRedDark);
+        @include cellStyle(rgba($colorRedDark, $opacity));
     }
     &.yellow {
-        @include cellStyle($colorYellowDark);
+        @include cellStyle(rgba($colorYellowDark, $opacity));
     }
     &.green {
-        @include cellStyle($colorGreenDark);
+        @include cellStyle(rgba($colorGreenDark, $opacity));
     }
     &.blue {
-        @include cellStyle($colorBlueDark);
+        @include cellStyle(rgba($colorBlueDark, $opacity));
     }
 }
 
