@@ -58,7 +58,7 @@ $colorWhiteGradient: linear-gradient(white, white);
     position: relative;
     width: $hexagonWidth;
     height: calc((sqrt(3) / 2) * $hexagonWidth);
-    padding: 16px;
+    padding: 15px;
     margin: 0 $gridGap;
     line-height: 10px;
     text-align: center;
@@ -74,6 +74,7 @@ $colorWhiteGradient: linear-gradient(white, white);
     color: $secondaryColor;
     border: none;
     border-radius: 5px;
+    margin-top: 15px;
     &:hover {
         background-color: $secondaryColor;
         color: $primaryColor;
