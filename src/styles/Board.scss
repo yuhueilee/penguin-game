@@ -102,12 +102,12 @@ $colorWhiteGradient: linear-gradient(white, white);
 }
 
 .leaderboard {
-    $colorTitle: rgb(69, 207, 231);
+    $colorTitle: black;
 
     $width: 300px;
-    $height: 350px;
+    $height: 300px;
     $bdRS: 10px;
-    @include size($width, $height, 0 $bdRS $bdRS $bdRS);
+    @include size($width, $height, $bdRS);
     @include fixedPos(100%, 100%);
     @include flexDisplay(center, center, column);
     transform: translateX(-$width - 50px) translateY(-$height - 50px);
@@ -116,9 +116,9 @@ $colorWhiteGradient: linear-gradient(white, white);
     border: solid 4px $colorTitle;
 
     .title {
-        @include abPos(-4px, -68px);
+        @include fontStyle(white, 20px);
+        margin-top: -70px;
         padding: 4px 16px;
-        color: white;
         background: $colorTitle;
         border-radius: $bdRS $bdRS 0 0;
     }
@@ -140,10 +140,6 @@ $colorWhiteGradient: linear-gradient(white, white);
                 background-clip: text;
                 margin: 0;
             }
-        }
-        .playerIcon {
-            flex: 2;
-            padding: 8px;
         }
         .score {
             flex: 2;
@@ -170,28 +166,27 @@ $colorWhiteGradient: linear-gradient(white, white);
     }
 }
 
-.summary {
-    @include flexDisplay(flex-start, center, column);
-    flex: 220px;
-    flex-shrink: 0;
-    border-radius: 10px;
-    box-shadow: 0px 0px 30px rgba(black, 0.3);
-    padding: 8px;
+.playerTurn {
+    $colorTitle: black;
+
+    $width: 200px;
+    $height: 150px;
+    $bdRS: 10px;
+    @include size($width, $height, $bdRS);
+    @include fixedPos(0, 100%);
+    @include flexDisplay(center, center, column);
+    transform: translateX(10px) translateY(-$height - 50px);
+    padding: 16px;
+    background: white;
+    border: solid 4px $colorTitle;
+
     .title {
-        margin: 0;
-        padding: 8px;
-    }
-    .highlightText {
-        @include fontStyle(red, 32px, 500);
-        margin: 0;
-    }
-    .smallText {
-        @include fontStyle;
-        padding: 0 8px;
-    }
-    .divider {
-        width: 100%;
-        border-color: rgba(white, 0.7);
+        @include fontStyle(white, 20px);
+        margin-top: -70px;
+        padding: 4px 16px;
+        background: $colorTitle;
+        border-radius: $bdRS $bdRS 0 0;
+        text-align: end;
     }
 }
 

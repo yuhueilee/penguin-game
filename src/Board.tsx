@@ -106,9 +106,8 @@ export function PenguinBattleBoard({
 
     return (
         <div className="board">
-            <div className="summary">
-                {winner}
-                <h1 className="title">Who's Turn?</h1>
+            <div className="playerTurn">
+                <h1 className="title">Now Playing...</h1>
                 {PenguinIcon(currPlayerID)}
             </div>
             <div className="table">{tbody}</div>
