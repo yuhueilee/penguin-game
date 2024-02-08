@@ -42,6 +42,33 @@ export function PenguinIcon(playerID: number): JSX.Element {
     );
 }
 
+export function PenguinLabourIcon(playerID: number): JSX.Element {
+    return (
+        <div className="body">
+            <div className="face">
+                <div className="eyes">
+                    <div className="eye1">
+                        <div className="eyeBall1"></div>
+                    </div>
+                    <div className="eye2">
+                        <div className="eyeBall2"></div>
+                    </div>
+                </div>
+                <div className="mouth"></div>
+            </div>
+            <div className="feet">
+                <div className="foot"> </div>
+                <div className="foot"></div>
+            </div>
+            <div className="wings">
+                <div className="wing1"></div>
+                <div className="wing2"></div>
+            </div>
+            <div className="belly"></div>
+        </div>
+    );
+}
+
 export function FishIcon(amount: number): JSX.Element {
     let fishPart = (
         <>
