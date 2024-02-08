@@ -28,6 +28,18 @@ $colorWhiteGradient: linear-gradient(white, white);
     flex-direction: $d;
 }
 
+@mixin abPos($l: initial, $t: initial) {
+    position: absolute;
+    left: $l;
+    top: $t;
+}
+
+@mixin size($w, $h: $w, $r: 0) {
+    width: $w;
+    height: $h;
+    border-radius: $r;
+}
+
 @mixin fontStyle(
     $color: black,
     $size: 16px,
@@ -41,11 +53,12 @@ $colorWhiteGradient: linear-gradient(white, white);
     font-family: "Protest Riot", sans-serif;
 }
 
-@mixin cellStyle($backgroundColor: #4169e1) {
+@mixin cellStyle($backgroundColor: $colorBlueLight) {
     @include flexDisplay(center, center, column);
+    position: relative;
     width: $hexagonWidth;
     height: calc((sqrt(3) / 2) * $hexagonWidth);
-    padding: 16px;
+    padding: 15px;
     margin: 0 $gridGap;
     line-height: 10px;
     text-align: center;
@@ -55,11 +68,14 @@ $colorWhiteGradient: linear-gradient(white, white);
 }
 
 @mixin buttonStyle($primaryColor: black, $secondaryColor: white) {
+    z-index: 12;
     @include fontStyle($secondaryColor, 14px, 300, 1px);
     background-color: $primaryColor;
     color: $secondaryColor;
     border: none;
     border-radius: 5px;
+    margin-top: 15px;
+    padding: 5px;
     &:hover {
         background-color: $secondaryColor;
         color: $primaryColor;
@@ -68,7 +84,7 @@ $colorWhiteGradient: linear-gradient(white, white);
     &:disabled {
         background-color: #cccccc;
         color: #666666;
-        cursor: not-allowed;
+        cursor: none;
     }
 }
 
@@ -163,7 +179,24 @@ $colorWhiteGradient: linear-gradient(white, white);
 }
 
 .colonisedCell {
-    @include cellStyle(#284086);
+    .fishIconGrid {
+        filter: opacity(0);
+    }
+
+    $opacity: 0.7;
+
+    &.red {
+        @include cellStyle(rgba($colorRedDark, $opacity));
+    }
+    &.yellow {
+        @include cellStyle(rgba($colorYellowDark, $opacity));
+    }
+    &.green {
+        @include cellStyle(rgba($colorGreenDark, $opacity));
+    }
+    &.blue {
+        @include cellStyle(rgba($colorBlueDark, $opacity));
+    }
 }
 
 .coloniseBtn {
@@ -171,13 +204,20 @@ $colorWhiteGradient: linear-gradient(white, white);
 }
 
 .locateBtn {
-    @include buttonStyle(red);
+    @include buttonStyle;
 }
 
 .textStyle {
     margin: 8px;
     font-size: 14px;
     color: rgba($color: white, $alpha: 0.85);
+}
+
+.labourIconGrid {
+    z-index: 10;
+    @include size(100%);
+    @include flexDisplay;
+    @include abPos(0, -5%);
 }
 
 .fishIconGrid {
