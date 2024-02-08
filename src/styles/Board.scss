@@ -114,7 +114,7 @@ $colorWhiteGradient: linear-gradient(white, white);
 .leaderboard {
     $colorTitle: black;
 
-    $width: 300px;
+    $width: 250px;
     $height: 300px;
     $bdRS: 10px;
     @include size($width, $height, $bdRS);
@@ -136,6 +136,7 @@ $colorWhiteGradient: linear-gradient(white, white);
         border: 4px solid transparent;
         border-radius: 100px;
         margin: 2px;
+        transform: scale(0.9);
         .score {
             flex: 2;
             padding: 8px;
