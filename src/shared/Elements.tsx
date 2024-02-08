@@ -61,8 +61,12 @@ export function PenguinLabourIcon(playerID: number): JSX.Element {
                 <div className="foot"></div>
             </div>
             <div className="wings">
-                <div className="wing1"></div>
-                <div className="wing2"></div>
+                <div className="wing1">
+                    <div className="knife"></div>
+                </div>
+                <div className="wing2">
+                    <div className="spoon"></div>
+                </div>
             </div>
             <div className="belly"></div>
         </div>

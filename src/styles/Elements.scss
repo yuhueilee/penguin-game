@@ -117,7 +117,6 @@ $fishTailSize: 15px;
             box-shadow: inset -1px 1px $colorGreyShadow;
         }
     }
-
     .belly {
         z-index: 5;
         $len: calc($penguinBodyHeight * 2 / 3);
@@ -147,7 +146,6 @@ $fishTailSize: 15px;
             box-shadow: inset 0px -2px $colorGreyShadow;
         }
     }
-
     .wings {
         z-index: 8;
         $width: calc($penguinBodyHeight * 10 / 9);
@@ -175,6 +173,40 @@ $fishTailSize: 15px;
             $height: calc($penguinBodyHeight/3);
             @include size($width, $height, 100% 45% 0 45%);
             transform: translateX(calc(-1 * $height/2));
+        }
+    }
+
+    .knife {
+        z-index: 7;
+        $w: 12px;
+        $h: 20px;
+        @include size($w, $h, 0 50% 50% 0);
+        @include absPos(10px, -10px);
+        background-color: red;
+        transform: rotate(-30deg);
+        &::after {
+            content: "";
+            display: block;
+            background-color: inherit;
+            @include size(calc($w/4), $w * 1.2, 0 0 2px 2px);
+            margin-top: $h - 2px;
+        }
+    }
+    .spoon {
+        z-index: 7;
+        $w: 12px;
+        $h: 20px;
+        @include size($w, $h, 50%);
+        @include absPos(0, -10px);
+        background-color: red;
+        transform: rotate(15deg);
+        &::after {
+            content: "";
+            display: block;
+            background-color: inherit;
+            @include size(calc($w/4), $w * 1.2, 0 0 2px 2px);
+            margin-top: $h - 2px;
+            margin-left: calc($w/2) - calc($w/8);
         }
     }
 
@@ -221,6 +253,12 @@ $fishTailSize: 15px;
     .wing1 {
         @include size(20px, 30px, 100% 45% 0 45%);
         transform: translateX(0px);
+    }
+    .knife {
+        transform: rotate(20deg);
+    }
+    .spoon {
+        transform: rotate(-30deg);
     }
     .wing2 {
         @include size(20px, 30px, 45% 100% 45% 0);
