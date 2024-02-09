@@ -6,6 +6,8 @@ $summaryWidth: 270px;
 $summaryHeight: 700px;
 $turnHeight: 150px;
 
+$colorBrownLight: #f3a556;
+$colorBrownDark: #bb7b3c;
 $colorRedLight: #fe9191;
 $colorRedDark: #f24f4f;
 $colorYellowLight: #ffe76c;
@@ -108,10 +110,26 @@ $colorWhiteGradient: linear-gradient(white, white);
 }
 
 .board {
-    @include flexDisplay(flex-start, flex-start);
+    @include flexDisplay(center, center, column);
     position: relative;
     font-family: "Protest Riot", sans-serif;
     letter-spacing: 1px;
+
+    .banner {
+        @include flexDisplay(center, center, column);
+        margin-bottom: 16px;
+        padding: 16px;
+        background: $colorBrownLight;
+        border-radius: 5px;
+        box-shadow: -5px -5px $colorBrownDark;
+        width: 390px;
+
+        .header,
+        .subTitle {
+            margin: 0;
+            color: rgba(white, 0.9);
+        }
+    }
 
     .row {
         @include flexDisplay;
