@@ -2,6 +2,9 @@
 
 $gridGap: 15px;
 $hexagonWidth: 100px;
+$summaryWidth: 270px;
+$summaryHeight: 700px;
+$turnHeight: 150px;
 
 $colorRedLight: #fe9191;
 $colorRedDark: #f24f4f;
@@ -109,6 +112,13 @@ $colorWhiteGradient: linear-gradient(white, white);
     position: relative;
     font-family: "Protest Riot", sans-serif;
     letter-spacing: 1px;
+
+    .column-1 {
+        z-index: 10;
+        @include size($summaryWidth, $summaryHeight);
+        flex-shrink: 0;
+        position: relative;
+    }
 }
 
 .leaderboard {
@@ -117,10 +127,10 @@ $colorWhiteGradient: linear-gradient(white, white);
     $width: 250px;
     $height: 300px;
     $bdRS: 10px;
+    $margin: 60px;
     @include size($width, $height, $bdRS);
-    @include fixedPos(100%, 100%);
+    @include fixedPos(0, $turnHeight * 2 + $margin);
     @include flexDisplay(flex-start, center, column);
-    transform: translateX(-$width - 50px) translateY(-$height - 50px);
     padding: 16px;
     background: white;
     border: solid 4px $colorTitle;
@@ -163,17 +173,14 @@ $colorWhiteGradient: linear-gradient(white, white);
 }
 
 .playerTurn {
-    z-index: 10;
-
     $colorTitle: black;
 
-    $width: 200px;
-    $height: 150px;
+    $width: 250px;
     $bdRS: 10px;
-    @include size($width, $height, $bdRS);
-    @include fixedPos(0, 100%);
+    $margin: 130px;
+    @include size($width, $turnHeight, $bdRS);
+    @include fixedPos(0, $margin);
     @include flexDisplay(flex-start, center, column);
-    transform: translateX(10px) translateY(-$height - 50px);
     padding: 16px;
     background: white;
     border: solid 4px $colorTitle;

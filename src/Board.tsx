@@ -106,15 +106,17 @@ export function PenguinBattleBoard({
 
     return (
         <div className="board">
-            <div className="playerTurn">
-                <h1 className="title">Now Playing...</h1>
-                {PenguinIcon(currPlayerID)}
+            <div className="column-1">
+                <div className="playerTurn">
+                    <h1 className="title">Now Playing...</h1>
+                    {PenguinIcon(currPlayerID)}
+                </div>
+                <div className="leaderboard">
+                    <h1 className="title">LeaderBoard</h1>
+                    {ranking}
+                </div>
             </div>
             <div className="table">{tbody}</div>
-            <div className="leaderboard">
-                <h1 className="title">LeaderBoard</h1>
-                {ranking}
-            </div>
         </div>
     );
 }
