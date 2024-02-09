@@ -151,6 +151,7 @@ $colorWhiteGradient: linear-gradient(white, white);
             flex: 2;
             padding: 8px;
             @include flexDisplay;
+            transform: scale(0.8);
         }
 
         &.red {
