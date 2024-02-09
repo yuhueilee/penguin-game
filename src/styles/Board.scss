@@ -113,6 +113,10 @@ $colorWhiteGradient: linear-gradient(white, white);
     font-family: "Protest Riot", sans-serif;
     letter-spacing: 1px;
 
+    .row {
+        @include flexDisplay;
+    }
+
     .column-1 {
         z-index: 10;
         @include size($summaryWidth, $summaryHeight);
@@ -194,10 +198,6 @@ $colorWhiteGradient: linear-gradient(white, white);
 .table {
     @include flexDisplay(center, center, column);
     flex: 7;
-
-    .row {
-        @include flexDisplay;
-    }
 }
 
 .emptyCell {
