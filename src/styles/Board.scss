@@ -71,8 +71,6 @@ $colorWhiteGradient: linear-gradient(white, white);
     height: calc((sqrt(3) / 2) * $hexagonWidth);
     padding: 15px;
     margin: 0 $gridGap;
-    line-height: 10px;
-    text-align: center;
     /* transform to a symmetric hexagon */
     background: $backgroundColor;
     clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
