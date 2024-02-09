@@ -269,15 +269,18 @@ $colorWhiteGradient: linear-gradient(white, white);
     width: 100%;
 }
 
-#winner {
+.winner {
+    z-index: 100;
+    $width: 100%;
+    $height: auto;
+    @include size($width, $height);
     @include flexDisplay;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 500px;
-    height: 200px;
-    background-color: rgba($color: #242424, $alpha: 0.7);
-    color: white;
-    border-radius: 20px;
+    @include fixedPos(0, 40%);
+    padding: 16px;
+    background: white;
+    box-shadow: 0 0 30px rgba(black, 0.8);
+
+    .title {
+        margin-left: 16px;
+    }
 }

@@ -31,16 +31,14 @@ export function PenguinBattleBoard({
     if (ctx.gameover) {
         winner =
             ctx.gameover.winner !== undefined ? (
-                <>
-                    <h1 className="title">You Win!</h1>
+                <div className="winner">
                     {PenguinIcon(parseInt(ctx.gameover.winner))}
-                    <hr className="divider"></hr>
-                </>
+                    <h1 className="title">You Win!</h1>
+                </div>
             ) : (
-                <>
+                <div className="winner">
                     <h1 className="title">Draw!</h1>
-                    <hr className="divider"></hr>
-                </>
+                </div>
             );
     }
 
@@ -123,6 +121,7 @@ export function PenguinBattleBoard({
                 </div>
                 <div className="table">{tbody}</div>
             </div>
+            {winner}
         </div>
     );
 }
