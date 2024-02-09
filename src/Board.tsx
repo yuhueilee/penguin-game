@@ -31,16 +31,14 @@ export function PenguinBattleBoard({
     if (ctx.gameover) {
         winner =
             ctx.gameover.winner !== undefined ? (
-                <>
-                    <h1 className="title">You Win!</h1>
+                <div className="winner">
                     {PenguinIcon(parseInt(ctx.gameover.winner))}
-                    <hr className="divider"></hr>
-                </>
+                    <h1 className="title">You Win!</h1>
+                </div>
             ) : (
-                <>
+                <div className="winner">
                     <h1 className="title">Draw!</h1>
-                    <hr className="divider"></hr>
-                </>
+                </div>
             );
     }
 
@@ -100,24 +98,30 @@ export function PenguinBattleBoard({
             <div key={playerID} className={playerInfoStyle(playerID)}>
                 <div className="playerIcon">{PenguinIcon(playerID)}</div>
                 <div className="score">{FishBoxIcon(G.scores[playerID])}</div>
-                <div className="ranking">
-                    <h1>{i + 1}</h1>
-                </div>
             </div>
         );
     }
 
     return (
         <div className="board">
-            <div className="summary">
-                {winner}
-                <h1 className="title">LeaderBoard</h1>
-                {ranking}
-                <hr className="divider"></hr>
-                <h1 className="title">Who's Turn?</h1>
-                {PenguinIcon(currPlayerID)}
+            <div className="banner">
+                <h1 className="header">Penguin Battel</h1>
+                <h4 className="subTitle">- based on "Hey! That's My Fish!"</h4>
             </div>
-            <div className="table">{tbody}</div>
+            <div className="row">
+                <div className="column-1">
+                    <div className="playerTurn">
+                        <h1 className="title">Now Playing...</h1>
+                        {PenguinIcon(currPlayerID)}
+                    </div>
+                    <div className="leaderboard">
+                        <h1 className="title">LeaderBoard</h1>
+                        {ranking}
+                    </div>
+                </div>
+                <div className="table">{tbody}</div>
+            </div>
+            {winner}
         </div>
     );
 }

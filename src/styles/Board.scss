@@ -2,7 +2,12 @@
 
 $gridGap: 15px;
 $hexagonWidth: 100px;
+$summaryWidth: 270px;
+$summaryHeight: 700px;
+$turnHeight: 150px;
 
+$colorBrownLight: #f3a556;
+$colorBrownDark: #bb7b3c;
 $colorRedLight: #fe9191;
 $colorRedDark: #f24f4f;
 $colorYellowLight: #ffe76c;
@@ -30,6 +35,12 @@ $colorWhiteGradient: linear-gradient(white, white);
 
 @mixin abPos($l: initial, $t: initial) {
     position: absolute;
+    left: $l;
+    top: $t;
+}
+
+@mixin fixedPos($l: initial, $t: initial) {
+    position: fixed;
     left: $l;
     top: $t;
 }
@@ -88,62 +99,81 @@ $colorWhiteGradient: linear-gradient(white, white);
     }
 }
 
+@mixin titleStyle {
+    @include fontStyle(white, 20px);
+    margin: 0;
+    margin-top: -50px;
+    margin-bottom: 25px;
+    padding: 4px 16px;
+    background: black;
+    border-radius: 10px 10px 0 0;
+}
+
 .board {
-    @include flexDisplay(flex-start, flex-start);
+    @include flexDisplay(center, center, column);
     position: relative;
     font-family: "Protest Riot", sans-serif;
     letter-spacing: 1px;
+
+    .banner {
+        @include flexDisplay(center, center, column);
+        margin-bottom: 16px;
+        padding: 16px;
+        background: $colorBrownLight;
+        border-radius: 5px;
+        box-shadow: -5px -5px $colorBrownDark;
+        width: 390px;
+
+        .header,
+        .subTitle {
+            margin: 0;
+            color: rgba(white, 0.9);
+        }
+    }
+
+    .row {
+        @include flexDisplay;
+    }
+
+    .column-1 {
+        z-index: 10;
+        @include size($summaryWidth, $summaryHeight);
+        flex-shrink: 0;
+        position: relative;
+    }
 }
 
-.summary {
+.leaderboard {
+    $colorTitle: black;
+
+    $width: 250px;
+    $height: 300px;
+    $bdRS: 10px;
+    $margin: 60px;
+    @include size($width, $height, 0 $bdRS $bdRS 0);
+    @include fixedPos(0, $turnHeight * 2 + $margin);
     @include flexDisplay(flex-start, center, column);
-    flex: 220px;
-    flex-shrink: 0;
-    border-radius: 10px;
-    box-shadow: 0px 0px 30px rgba(black, 0.3);
-    padding: 8px;
+    padding: 16px;
+    background: white;
+    border: solid 4px $colorTitle;
+
     .title {
-        margin: 0;
-        padding: 8px;
+        @include titleStyle;
     }
-    .highlightText {
-        @include fontStyle(red, 32px, 500);
-        margin: 0;
-    }
-    .smallText {
-        @include fontStyle;
-        padding: 0 8px;
-    }
-    .divider {
-        width: 100%;
-        border-color: rgba(white, 0.7);
-    }
+
     .playerInfo {
         @include flexDisplay(center, center, row);
         @include fontStyle;
-        width: 100%;
+        width: $width;
         border: 4px solid transparent;
         border-radius: 100px;
         margin: 2px;
-        .ranking {
-            flex: 2;
-            padding: 8px;
-            @include flexDisplay;
-            h1 {
-                background: $colorBlueGradient;
-                -webkit-text-fill-color: transparent;
-                background-clip: text;
-                margin: 0;
-            }
-        }
-        .playerIcon {
-            flex: 2;
-            padding: 8px;
-        }
+        transform: scale(0.9);
         .score {
             flex: 2;
             padding: 8px;
             @include flexDisplay;
+            transform: scale(0.8);
         }
 
         &.red {
@@ -165,13 +195,27 @@ $colorWhiteGradient: linear-gradient(white, white);
     }
 }
 
+.playerTurn {
+    $colorTitle: black;
+
+    $width: 250px;
+    $bdRS: 10px;
+    $margin: 130px;
+    @include size($width, $turnHeight, 0 $bdRS $bdRS 0);
+    @include fixedPos(0, $margin);
+    @include flexDisplay(flex-start, center, column);
+    padding: 16px;
+    background: white;
+    border: solid 4px $colorTitle;
+
+    .title {
+        @include titleStyle;
+    }
+}
+
 .table {
     @include flexDisplay(center, center, column);
     flex: 7;
-
-    .row {
-        @include flexDisplay;
-    }
 }
 
 .emptyCell {
@@ -225,15 +269,18 @@ $colorWhiteGradient: linear-gradient(white, white);
     width: 100%;
 }
 
-#winner {
+.winner {
+    z-index: 100;
+    $width: 100%;
+    $height: auto;
+    @include size($width, $height);
     @include flexDisplay;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 500px;
-    height: 200px;
-    background-color: rgba($color: #242424, $alpha: 0.7);
-    color: white;
-    border-radius: 20px;
+    @include fixedPos(0, 40%);
+    padding: 16px;
+    background: white;
+    box-shadow: 0 0 30px rgba(black, 0.8);
+
+    .title {
+        margin-left: 16px;
+    }
 }
