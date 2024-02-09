@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Protest+Riot&display=swap");
 
-$gridGap: 15px;
+$gridGap: 18px;
 $hexagonWidth: 100px;
 $summaryWidth: 270px;
 $summaryHeight: 700px;
@@ -76,6 +76,8 @@ $colorWhiteGradient: linear-gradient(white, white);
     /* transform to a symmetric hexagon */
     background: $backgroundColor;
     clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    /* reduce the gap */
+    transform: scale(1.2);
 }
 
 @mixin buttonStyle($primaryColor: black, $secondaryColor: white) {
