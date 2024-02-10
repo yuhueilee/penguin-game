@@ -5,6 +5,7 @@ import React from "react";
 
 import { colorByPlayerID, maxCellsPerRow, totalCells } from "./shared/Consts";
 import {
+    Celebration,
     FishBoxIcon,
     FishIcon,
     PenguinIcon,
@@ -32,6 +33,7 @@ export function PenguinBattleBoard({
         winner =
             ctx.gameover.winner !== undefined ? (
                 <div className="winner">
+                    {Celebration()}
                     {PenguinIcon(parseInt(ctx.gameover.winner))}
                     <h1 className="title">You Win!</h1>
                 </div>

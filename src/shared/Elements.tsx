@@ -173,6 +173,26 @@ export function Celebration(): JSX.Element {
             <div className="ribbon28"></div>
             <div className="ribbon29"></div>
             <div className="ribbon30"></div>
+            <div className="ribbon31"></div>
+            <div className="ribbon32"></div>
+            <div className="ribbon33"></div>
+            <div className="ribbon34"></div>
+            <div className="ribbon35"></div>
+            <div className="ribbon36"></div>
+            <div className="ribbon37"></div>
+            <div className="ribbon38"></div>
+            <div className="ribbon39"></div>
+            <div className="ribbon40"></div>
+            <div className="ribbon41"></div>
+            <div className="ribbon42"></div>
+            <div className="ribbon43"></div>
+            <div className="ribbon44"></div>
+            <div className="ribbon45"></div>
+            <div className="ribbon46"></div>
+            <div className="ribbon47"></div>
+            <div className="ribbon48"></div>
+            <div className="ribbon49"></div>
+            <div className="ribbon50"></div>
         </div>
     );
 }

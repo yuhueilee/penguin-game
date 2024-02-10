@@ -434,8 +434,8 @@ $fishTailSize: 15px;
 /* Celebration Ribbons */
 .allRibbons {
     @include size(100%, 100%);
-    position: relative;
-    background: rgba(black, 0.3);
+    @include absPos(0, 0);
+    overflow: hidden;
 
     $colorRed: #ed5564;
     $colorYellow: #ffce54;
@@ -443,23 +443,18 @@ $fishTailSize: 15px;
     $colorBlue: #4fc1e8;
     $colorPurple: #ac92eb;
     $colors: ($colorRed, $colorYellow, $colorGreen, $colorBlue, $colorPurple);
-    @include size(100%);
-    @include absPos(0, 0);
-    overflow: hidden;
 
     @mixin falling($firstDeg, $secondDeg, $delay) {
         @keyframes fallingAni {
-            0%,
-            100% {
+            0% {
                 opacity: 0.2;
+                transform: translate(0px, 0) rotate($firstDeg);
             }
             70% {
                 opacity: 1;
             }
-            0% {
-                transform: translate(0px, 0) rotate($firstDeg);
-            }
             100% {
+                opacity: 0;
                 transform: translate(0px, 200px) rotate($secondDeg);
             }
         }
@@ -472,7 +467,7 @@ $fishTailSize: 15px;
         @include size(5px, 15px, 2px);
     }
 
-    @for $i from 1 through 30 {
+    @for $i from 1 through 50 {
         $posX: random() * 100%;
         $posY: random() * -70% + 50%;
         $first: random(30) - 50;
@@ -481,6 +476,7 @@ $fishTailSize: 15px;
         $bodyColor: nth($colors, random(5));
 
         .ribbon#{$i} {
+            z-index: $i;
             @include absPos($posX, $posY);
             @include falling(#{$first}deg, #{$second}deg, $delay);
             background-color: $bodyColor;
