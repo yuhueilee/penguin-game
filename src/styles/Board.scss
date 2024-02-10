@@ -16,6 +16,7 @@ $colorGreenLight: #adf8af;
 $colorGreenDark: #65df67;
 $colorBlueLight: #6fc5ff;
 $colorBlueDark: #0058ff;
+$colorBluePond: #1a76e7;
 $colorRedGradient: linear-gradient(150deg, $colorRedLight, $colorRedDark);
 $colorYellowGradient: linear-gradient(
     150deg,
@@ -261,6 +262,10 @@ $colorWhiteGradient: linear-gradient(white, white);
 .table {
     @include flexDisplay(center, center, column);
     flex: 7;
+    border-radius: 29% 32% 20% 34%;
+    background: $colorBluePond;
+    padding: 60px;
+    box-shadow: inset 10px 10px $colorBlueDark, inset -8px -5px $colorBlueDark;
 }
 
 .emptyCell {
