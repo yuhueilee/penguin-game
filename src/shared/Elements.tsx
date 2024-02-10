@@ -139,3 +139,40 @@ export function FishBoxIcon(amount: number, playerID: number): JSX.Element {
         </div>
     );
 }
+
+export function Celebration(): JSX.Element {
+    return (
+        <div className="allRibbons">
+            <div className="ribbon1"></div>
+            <div className="ribbon2"></div>
+            <div className="ribbon3"></div>
+            <div className="ribbon4"></div>
+            <div className="ribbon5"></div>
+            <div className="ribbon6"></div>
+            <div className="ribbon7"></div>
+            <div className="ribbon8"></div>
+            <div className="ribbon9"></div>
+            <div className="ribbon10"></div>
+            <div className="ribbon11"></div>
+            <div className="ribbon12"></div>
+            <div className="ribbon13"></div>
+            <div className="ribbon14"></div>
+            <div className="ribbon15"></div>
+            <div className="ribbon16"></div>
+            <div className="ribbon17"></div>
+            <div className="ribbon18"></div>
+            <div className="ribbon19"></div>
+            <div className="ribbon20"></div>
+            <div className="ribbon21"></div>
+            <div className="ribbon22"></div>
+            <div className="ribbon23"></div>
+            <div className="ribbon24"></div>
+            <div className="ribbon25"></div>
+            <div className="ribbon26"></div>
+            <div className="ribbon27"></div>
+            <div className="ribbon28"></div>
+            <div className="ribbon29"></div>
+            <div className="ribbon30"></div>
+        </div>
+    );
+}

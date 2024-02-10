@@ -430,3 +430,60 @@ $fishTailSize: 15px;
     );
     border: solid 2px white;
 }
+
+/* Celebration Ribbons */
+.allRibbons {
+    @include size(100%, 100%);
+    position: relative;
+    background: rgba(black, 0.3);
+
+    $colorRed: #ed5564;
+    $colorYellow: #ffce54;
+    $colorGreen: #a0d568;
+    $colorBlue: #4fc1e8;
+    $colorPurple: #ac92eb;
+    $colors: ($colorRed, $colorYellow, $colorGreen, $colorBlue, $colorPurple);
+    @include size(100%);
+    @include absPos(0, 0);
+    overflow: hidden;
+
+    @mixin falling($firstDeg, $secondDeg, $delay) {
+        @keyframes fallingAni {
+            0%,
+            100% {
+                opacity: 0.2;
+            }
+            70% {
+                opacity: 1;
+            }
+            0% {
+                transform: translate(0px, 0) rotate($firstDeg);
+            }
+            100% {
+                transform: translate(0px, 200px) rotate($secondDeg);
+            }
+        }
+
+        animation: fallingAni 1s infinite both;
+        animation-delay: $delay;
+    }
+
+    [class^="ribbon"] {
+        @include size(5px, 15px, 2px);
+    }
+
+    @for $i from 1 through 30 {
+        $posX: random() * 100%;
+        $posY: random() * -70% + 50%;
+        $first: random(30) - 50;
+        $second: random(50) - 10;
+        $delay: $i * -0.1s;
+        $bodyColor: nth($colors, random(5));
+
+        .ribbon#{$i} {
+            @include absPos($posX, $posY);
+            @include falling(#{$first}deg, #{$second}deg, $delay);
+            background-color: $bodyColor;
+        }
+    }
+}
