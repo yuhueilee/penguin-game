@@ -15,6 +15,7 @@ $colorYellowDark: #ffc700;
 $colorGreenLight: #adf8af;
 $colorGreenDark: #65df67;
 $colorBlueLight: #6fc5ff;
+$colorBlueLightDarken: #54a1d5;
 $colorBlueDark: #0058ff;
 $colorBluePond: #1a76e7;
 $colorRedGradient: linear-gradient(150deg, $colorRedLight, $colorRedDark);
@@ -165,9 +166,9 @@ $colorWhiteGradient: linear-gradient(white, white);
         @include flexDisplay(center, center, column);
         margin-bottom: 16px;
         padding: 16px;
-        background: $colorBrownLight;
+        background: $colorBlueLight;
         border-radius: 5px;
-        box-shadow: -5px -5px $colorBrownDark;
+        box-shadow: 5px 5px $colorBlueLightDarken;
         width: 390px;
 
         .header,
