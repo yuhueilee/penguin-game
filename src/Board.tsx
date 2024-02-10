@@ -77,7 +77,7 @@ export function PenguinBattleBoard({
                             onClick={() => colonise(cellID)}
                             disabled={ctx.gameover}
                         >
-                            colonise
+                            occupy
                         </button>
                     ) : (
                         <></>
@@ -92,7 +92,7 @@ export function PenguinBattleBoard({
                             onClick={() => locate(cellID)}
                             disabled={ctx.gameover}
                         >
-                            locate
+                            select
                         </button>
                     ) : (
                         <></>
