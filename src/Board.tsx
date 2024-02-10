@@ -51,7 +51,14 @@ export function PenguinBattleBoard({
             const cellID = maxCellsPerRow * i + j - Math.floor(i / 2);
             const playerID = playerIDOfLabourAtCell(cellID, G.locations);
             cells.push(
-                <div key={cellID} className={cellStyle(G.cells[cellID])}>
+                <div
+                    key={cellID}
+                    className={colorByPlayer(
+                        "colonisedCell",
+                        G.cells[cellID],
+                        "emptyCell"
+                    )}
+                >
                     <div className="fishIconGrid">
                         {FishIcon(G.fish[cellID])}
                     </div>
@@ -103,7 +110,10 @@ export function PenguinBattleBoard({
     for (let i = 0; i < scoreRanking.length; i++) {
         let playerID = scoreRanking[i];
         ranking.push(
-            <div key={playerID} className={playerInfoStyle(playerID)}>
+            <div
+                key={playerID}
+                className={colorByPlayer("playerInfo", playerID, "playerInfo")}
+            >
                 <div className="playerIcon">{PenguinIcon(playerID)}</div>
                 <div className="score">{FishBoxIcon(G.scores[playerID])}</div>
             </div>
@@ -133,18 +143,6 @@ export function PenguinBattleBoard({
         </div>
     );
 }
-
-const cellStyle = (playerID: number) => {
-    if (playerID === null) {
-        return "emptyCell";
-    }
-
-    return "colonisedCell " + colorByPlayerID[playerID];
-};
-
-const playerInfoStyle = (playerID: number) => {
-    return "playerInfo " + colorByPlayerID[playerID];
-};
 
 /**
  * Determine the combined style based on player ID.
