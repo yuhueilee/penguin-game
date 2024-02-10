@@ -78,24 +78,69 @@ $colorWhiteGradient: linear-gradient(white, white);
     transform: scale(1.2);
 }
 
-@mixin buttonStyle($primaryColor: black, $secondaryColor: white) {
+@mixin active($primary) {
+    background: white;
+    color: $primary;
+    cursor: pointer;
+}
+
+@mixin disabled {
+    background: #cccccc;
+    color: #666666;
+    cursor: none;
+}
+
+@mixin buttonStyle() {
     z-index: 12;
-    @include fontStyle($secondaryColor, 14px, 300, 1px);
-    background-color: $primaryColor;
-    color: $secondaryColor;
+    @include fontStyle(white, 14px, 300, 1px);
+    color: white;
+    background: black;
     border: none;
     border-radius: 5px;
     margin-top: 15px;
     padding: 5px;
     &:hover {
-        background-color: $secondaryColor;
-        color: $primaryColor;
-        cursor: pointer;
+        @include active(black);
     }
     &:disabled {
-        background-color: #cccccc;
-        color: #666666;
-        cursor: none;
+        @include disabled;
+    }
+
+    &.red {
+        background: $colorRedDark;
+        &:hover {
+            @include active($colorRedDark);
+        }
+        &:disabled {
+            @include disabled;
+        }
+    }
+    &.yellow {
+        background: $colorYellowDark;
+        &:hover {
+            @include active($colorYellowDark);
+        }
+        &:disabled {
+            @include disabled;
+        }
+    }
+    &.green {
+        background: $colorGreenDark;
+        &:hover {
+            @include active($colorGreenDark);
+        }
+        &:disabled {
+            @include disabled;
+        }
+    }
+    &.blue {
+        background: $colorBlueDark;
+        &:hover {
+            @include active($colorBlueDark);
+        }
+        &:disabled {
+            @include disabled;
+        }
     }
 }
 
@@ -243,11 +288,9 @@ $colorWhiteGradient: linear-gradient(white, white);
     }
 }
 
-.coloniseBtn {
-    @include buttonStyle;
-}
-
-.locateBtn {
+.coloniseBtn,
+.locateBtn,
+.defaultBtn {
     @include buttonStyle;
 }
 

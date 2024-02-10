@@ -60,7 +60,11 @@ export function PenguinBattleBoard({
                     </div>
                     {showColoniseButton(ctx, G, currPlayerID, cellID) ? (
                         <button
-                            className="coloniseBtn"
+                            className={colorByPlayer(
+                                "coloniseBtn",
+                                currPlayerID,
+                                "defaultBtn"
+                            )}
                             onClick={() => colonise(cellID)}
                             disabled={ctx.gameover}
                         >
@@ -71,7 +75,11 @@ export function PenguinBattleBoard({
                     )}
                     {showLocateButton(ctx, G, currPlayerID, cellID) ? (
                         <button
-                            className="locateBtn"
+                            className={colorByPlayer(
+                                "locateBtn",
+                                currPlayerID,
+                                "defaultBtn"
+                            )}
                             onClick={() => locate(cellID)}
                             disabled={ctx.gameover}
                         >
@@ -136,6 +144,22 @@ const cellStyle = (playerID: number) => {
 
 const playerInfoStyle = (playerID: number) => {
     return "playerInfo " + colorByPlayerID[playerID];
+};
+
+/**
+ * Determine the combined style based on player ID.
+ *
+ * @param prefix prefix style class name
+ * @param playerID player ID
+ * @param fallBack fallback style when no player ID is supplied
+ * @returns combined style based on player ID
+ */
+const colorByPlayer = (prefix: string, playerID: number, fallBack: string) => {
+    if (playerID === null) {
+        return fallBack;
+    }
+
+    return prefix + " " + colorByPlayerID[playerID];
 };
 
 /**
