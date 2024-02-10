@@ -333,3 +333,15 @@ $colorWhiteGradient: linear-gradient(white, white);
         margin-left: 16px;
     }
 }
+
+/* Animation */
+@keyframes buttonAni {
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+.coloniseBtn,
+.locateBtn {
+    animation: buttonAni 1s infinite;
+}
