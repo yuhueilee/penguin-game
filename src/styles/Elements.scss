@@ -448,7 +448,7 @@ $fishTailSize: 15px;
         @keyframes fallingAni {
             0% {
                 opacity: 0.2;
-                transform: translate(0px, 0) rotate($firstDeg);
+                transform: translate(-10px, 0) rotate($firstDeg);
             }
             70% {
                 opacity: 1;
@@ -464,7 +464,7 @@ $fishTailSize: 15px;
     }
 
     [class^="ribbon"] {
-        @include size(5px, 15px, 2px);
+        @include size(10px, 25px, 2px);
     }
 
     @for $i from 1 through 50 {
