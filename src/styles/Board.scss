@@ -344,4 +344,8 @@ $colorWhiteGradient: linear-gradient(white, white);
 .coloniseBtn,
 .locateBtn {
     animation: buttonAni 1s infinite;
+
+    &:disabled {
+        animation: none;
+    }
 }
