@@ -127,7 +127,7 @@ export function PenguinBattleBoard({
     return (
         <div className="board">
             <div className="banner">
-                <h1 className="header">Penguin Battel</h1>
+                <h1 className="header">PENGUIN BATTLE</h1>
                 <h4 className="subTitle">- based on "Hey! That's My Fish!"</h4>
             </div>
             <div className="row">
