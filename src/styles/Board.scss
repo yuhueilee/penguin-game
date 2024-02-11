@@ -360,6 +360,30 @@ $colorWhiteGradient: linear-gradient(white, white);
     }
 }
 
+@keyframes vSlideIn {
+    0% {
+        transform: translateY(-50px);
+    }
+    50% {
+        transform: translateY(10px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+@keyframes hSlideIn {
+    0% {
+        transform: translateX(-50px);
+    }
+    50% {
+        transform: translateX(10px);
+    }
+    100% {
+        transform: translateX(0px);
+    }
+}
+
 .coloniseBtn,
 .locateBtn {
     animation: zoom 1s infinite;
@@ -377,4 +401,13 @@ $colorWhiteGradient: linear-gradient(white, white);
     .emptyCell#{$i} {
         animation-delay: $i * 0.1s;
     }
+}
+
+.banner {
+    animation: vSlideIn 1s;
+}
+
+.leaderboard,
+.playerTurn {
+    animation: hSlideIn 2s;
 }
