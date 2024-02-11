@@ -161,10 +161,14 @@ $colorWhiteGradient: linear-gradient(white, white);
     position: relative;
     font-family: "Protest Riot", sans-serif;
     letter-spacing: 1px;
+    background: #e0ecf2;
+    border-radius: 50px;
+    $r: 30px;
+    box-shadow: inset $r $r #ecfffd, inset (-$r) $r #ecfffd;
 
     .banner {
         @include flexDisplay(center, center, column);
-        margin-bottom: 16px;
+        margin: 16px;
         padding: 16px;
         background: $colorBlueLight;
         border-radius: 5px;
