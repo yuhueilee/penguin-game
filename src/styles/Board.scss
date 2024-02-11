@@ -288,7 +288,7 @@ $colorWhiteGradient: linear-gradient(white, white);
     }
 }
 
-.emptyCell {
+[class^="emptyCell"] {
     @include cellStyle;
 }
 

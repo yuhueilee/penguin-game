@@ -58,7 +58,7 @@ export function PenguinBattleBoard({
                     className={colorByPlayer(
                         "colonisedCell",
                         G.cells[cellID],
-                        "emptyCell"
+                        "emptyCell" + cellID
                     )}
                 >
                     <div className="fishIconGrid">
