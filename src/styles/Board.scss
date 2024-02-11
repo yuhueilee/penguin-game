@@ -354,7 +354,7 @@ $colorWhiteGradient: linear-gradient(white, white);
 }
 
 /* Animation */
-@keyframes buttonAni {
+@keyframes zoom {
     50% {
         transform: scale(1.1);
     }
@@ -362,9 +362,19 @@ $colorWhiteGradient: linear-gradient(white, white);
 
 .coloniseBtn,
 .locateBtn {
-    animation: buttonAni 1s infinite;
+    animation: zoom 1s infinite;
 
     &:disabled {
         animation: none;
+    }
+}
+
+[class^="emptyCell"] {
+    animation: zoom 1s;
+}
+
+@for $i from 0 through 14 {
+    .emptyCell#{$i} {
+        animation-delay: $i * 0.1s;
     }
 }
