@@ -264,9 +264,24 @@ $colorWhiteGradient: linear-gradient(white, white);
     @include flexDisplay(center, center, column);
     flex: 7;
     border-radius: 29% 32% 20% 34%;
-    background: $colorBluePond;
+    background: #3e6589;
     padding: 60px;
-    box-shadow: inset 10px 10px $colorBlueDark, inset -8px -5px $colorBlueDark;
+    box-shadow: inset 10px 10px #a5c0df, inset -10px -10px #a5c0df,
+        inset -30px -30px #7a9ec7;
+    &::before {
+        content: "";
+        display: block;
+        @include size(20px, 200px, 50%);
+        @include abPos(20px, 200px);
+        background: #e0ecf2;
+    }
+    &::after {
+        content: "";
+        display: block;
+        @include size(20px, 20px, 50%);
+        @include abPos(20px, 420px);
+        background: #e0ecf2;
+    }
 }
 
 .emptyCell {
