@@ -271,14 +271,14 @@ $colorWhiteGradient: linear-gradient(white, white);
     &::before {
         content: "";
         display: block;
-        @include size(20px, 200px, 50%);
+        @include size(15px, 200px, 50%);
         @include abPos(20px, 200px);
         background: #e0ecf2;
     }
     &::after {
         content: "";
         display: block;
-        @include size(20px, 20px, 50%);
+        @include size(15px, 30px, 50%);
         @include abPos(20px, 420px);
         background: #e0ecf2;
     }
