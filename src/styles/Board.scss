@@ -15,7 +15,9 @@ $colorYellowDark: #ffc700;
 $colorGreenLight: #adf8af;
 $colorGreenDark: #65df67;
 $colorBlueLight: #6fc5ff;
+$colorBlueLightDarken: #54a1d5;
 $colorBlueDark: #0058ff;
+$colorBluePond: #1a76e7;
 $colorRedGradient: linear-gradient(150deg, $colorRedLight, $colorRedDark);
 $colorYellowGradient: linear-gradient(
     150deg,
@@ -78,24 +80,71 @@ $colorWhiteGradient: linear-gradient(white, white);
     transform: scale(1.2);
 }
 
-@mixin buttonStyle($primaryColor: black, $secondaryColor: white) {
+@mixin active($primary) {
+    background: white;
+    color: $primary;
+    cursor: pointer;
+}
+
+@mixin disabled {
+    background: #cccccc;
+    color: #666666;
+    cursor: none;
+}
+
+@mixin buttonStyle {
     z-index: 12;
-    @include fontStyle($secondaryColor, 14px, 300, 1px);
-    background-color: $primaryColor;
-    color: $secondaryColor;
+    @include fontStyle(white, 14px, 300, 1px);
+    color: white;
+    background: black;
     border: none;
     border-radius: 5px;
     margin-top: 15px;
     padding: 5px;
+    box-shadow: 0 0 10px rgba($color: white, $alpha: 0.9);
+
     &:hover {
-        background-color: $secondaryColor;
-        color: $primaryColor;
-        cursor: pointer;
+        @include active(black);
     }
     &:disabled {
-        background-color: #cccccc;
-        color: #666666;
-        cursor: none;
+        @include disabled;
+    }
+
+    &.red {
+        background: $colorRedDark;
+        &:hover {
+            @include active($colorRedDark);
+        }
+        &:disabled {
+            @include disabled;
+        }
+    }
+    &.yellow {
+        background: $colorYellowDark;
+        &:hover {
+            @include active($colorYellowDark);
+        }
+        &:disabled {
+            @include disabled;
+        }
+    }
+    &.green {
+        background: $colorGreenDark;
+        &:hover {
+            @include active($colorGreenDark);
+        }
+        &:disabled {
+            @include disabled;
+        }
+    }
+    &.blue {
+        background: $colorBlueDark;
+        &:hover {
+            @include active($colorBlueDark);
+        }
+        &:disabled {
+            @include disabled;
+        }
     }
 }
 
@@ -105,24 +154,31 @@ $colorWhiteGradient: linear-gradient(white, white);
     margin-top: -50px;
     margin-bottom: 25px;
     padding: 4px 16px;
-    background: black;
+    background: $colorBlueLight;
     border-radius: 10px 10px 0 0;
 }
 
 .board {
+    @include size(fit-content, fit-content, 24% 27% 15% 29%);
     @include flexDisplay(center, center, column);
     position: relative;
     font-family: "Protest Riot", sans-serif;
     letter-spacing: 1px;
+    background: #e0ecf2;
+    $r: 30px;
+    box-shadow: (-$r) (-$r) #ecfffd;
+    padding: 32px;
+    margin-left: 100px;
 
     .banner {
+        $w: 390px;
+        z-index: 10;
+        @include size($w, fit-content, 5px);
         @include flexDisplay(center, center, column);
-        margin-bottom: 16px;
         padding: 16px;
-        background: $colorBrownLight;
-        border-radius: 5px;
-        box-shadow: -5px -5px $colorBrownDark;
-        width: 390px;
+        margin-top: -20px;
+        background: $colorBlueLight;
+        box-shadow: 5px 5px $colorBlueLightDarken;
 
         .header,
         .subTitle {
@@ -130,31 +186,21 @@ $colorWhiteGradient: linear-gradient(white, white);
             color: rgba(white, 0.9);
         }
     }
-
-    .row {
-        @include flexDisplay;
-    }
-
-    .column-1 {
-        z-index: 10;
-        @include size($summaryWidth, $summaryHeight);
-        flex-shrink: 0;
-        position: relative;
-    }
 }
 
 .leaderboard {
-    $colorTitle: black;
+    z-index: 10;
+    $colorTitle: $colorBlueLight;
 
     $width: 250px;
-    $height: 300px;
+    $height: fit-content;
     $bdRS: 10px;
     $margin: 60px;
     @include size($width, $height, 0 $bdRS $bdRS 0);
     @include fixedPos(0, $turnHeight * 2 + $margin);
     @include flexDisplay(flex-start, center, column);
     padding: 16px;
-    background: white;
+    background: rgba(white, 0.9);
     border: solid 4px $colorTitle;
 
     .title {
@@ -196,7 +242,8 @@ $colorWhiteGradient: linear-gradient(white, white);
 }
 
 .playerTurn {
-    $colorTitle: black;
+    z-index: 10;
+    $colorTitle: $colorBlueLight;
 
     $width: 250px;
     $bdRS: 10px;
@@ -205,7 +252,7 @@ $colorWhiteGradient: linear-gradient(white, white);
     @include fixedPos(0, $margin);
     @include flexDisplay(flex-start, center, column);
     padding: 16px;
-    background: white;
+    background: rgba(white, 0.9);
     border: solid 4px $colorTitle;
 
     .title {
@@ -216,9 +263,32 @@ $colorWhiteGradient: linear-gradient(white, white);
 .table {
     @include flexDisplay(center, center, column);
     flex: 7;
+    border-radius: 29% 32% 20% 34%;
+    background: #3e6589;
+    padding: 160px;
+    box-shadow: inset 10px 10px #a5c0df, inset -10px -10px #a5c0df,
+        inset -30px -30px #7a9ec7;
+    &::before {
+        content: "";
+        display: block;
+        @include size(15px, 200px, 50%);
+        @include abPos(20px, 500px);
+        background: #e0ecf2;
+    }
+    &::after {
+        content: "";
+        display: block;
+        @include size(15px, 30px, 50%);
+        @include abPos(20px, 720px);
+        background: #e0ecf2;
+    }
+
+    .row {
+        @include flexDisplay;
+    }
 }
 
-.emptyCell {
+[class^="emptyCell"] {
     @include cellStyle;
 }
 
@@ -243,11 +313,9 @@ $colorWhiteGradient: linear-gradient(white, white);
     }
 }
 
-.coloniseBtn {
-    @include buttonStyle;
-}
-
-.locateBtn {
+.coloniseBtn,
+.locateBtn,
+.defaultBtn {
     @include buttonStyle;
 }
 
@@ -283,4 +351,63 @@ $colorWhiteGradient: linear-gradient(white, white);
     .title {
         margin-left: 16px;
     }
+}
+
+/* Animation */
+@keyframes zoom {
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+@keyframes vSlideIn {
+    0% {
+        transform: translateY(-50px);
+    }
+    50% {
+        transform: translateY(10px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+@keyframes hSlideIn {
+    0% {
+        transform: translateX(-50px);
+    }
+    50% {
+        transform: translateX(10px);
+    }
+    100% {
+        transform: translateX(0px);
+    }
+}
+
+.coloniseBtn,
+.locateBtn {
+    animation: zoom 1s infinite;
+
+    &:disabled {
+        animation: none;
+    }
+}
+
+[class^="emptyCell"] {
+    animation: zoom 1s;
+}
+
+@for $i from 0 through 14 {
+    .emptyCell#{$i} {
+        animation-delay: $i * 0.1s;
+    }
+}
+
+.banner {
+    animation: vSlideIn 1s;
+}
+
+.leaderboard,
+.playerTurn {
+    animation: hSlideIn 2s;
 }

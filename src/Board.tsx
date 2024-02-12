@@ -5,6 +5,7 @@ import React from "react";
 
 import { colorByPlayerID, maxCellsPerRow, totalCells } from "./shared/Consts";
 import {
+    Celebration,
     FishBoxIcon,
     FishIcon,
     PenguinIcon,
@@ -32,6 +33,7 @@ export function PenguinBattleBoard({
         winner =
             ctx.gameover.winner !== undefined ? (
                 <div className="winner">
+                    {Celebration()}
                     {PenguinIcon(parseInt(ctx.gameover.winner))}
                     <h1 className="title">You Win!</h1>
                 </div>
@@ -51,7 +53,14 @@ export function PenguinBattleBoard({
             const cellID = maxCellsPerRow * i + j - Math.floor(i / 2);
             const playerID = playerIDOfLabourAtCell(cellID, G.locations);
             cells.push(
-                <div key={cellID} className={cellStyle(G.cells[cellID])}>
+                <div
+                    key={cellID}
+                    className={colorByPlayer(
+                        "colonisedCell",
+                        G.cells[cellID],
+                        "emptyCell" + cellID
+                    )}
+                >
                     <div className="fishIconGrid">
                         {FishIcon(G.fish[cellID])}
                     </div>
@@ -60,22 +69,30 @@ export function PenguinBattleBoard({
                     </div>
                     {showColoniseButton(ctx, G, currPlayerID, cellID) ? (
                         <button
-                            className="coloniseBtn"
+                            className={colorByPlayer(
+                                "coloniseBtn",
+                                currPlayerID,
+                                "defaultBtn"
+                            )}
                             onClick={() => colonise(cellID)}
                             disabled={ctx.gameover}
                         >
-                            colonise
+                            occupy
                         </button>
                     ) : (
                         <></>
                     )}
                     {showLocateButton(ctx, G, currPlayerID, cellID) ? (
                         <button
-                            className="locateBtn"
+                            className={colorByPlayer(
+                                "locateBtn",
+                                currPlayerID,
+                                "defaultBtn"
+                            )}
                             onClick={() => locate(cellID)}
                             disabled={ctx.gameover}
                         >
-                            locate
+                            select
                         </button>
                     ) : (
                         <></>
@@ -95,9 +112,14 @@ export function PenguinBattleBoard({
     for (let i = 0; i < scoreRanking.length; i++) {
         let playerID = scoreRanking[i];
         ranking.push(
-            <div key={playerID} className={playerInfoStyle(playerID)}>
+            <div
+                key={playerID}
+                className={colorByPlayer("playerInfo", playerID, "playerInfo")}
+            >
                 <div className="playerIcon">{PenguinIcon(playerID)}</div>
-                <div className="score">{FishBoxIcon(G.scores[playerID])}</div>
+                <div className="score">
+                    {FishBoxIcon(G.scores[playerID], playerID)}
+                </div>
             </div>
         );
     }
@@ -105,37 +127,37 @@ export function PenguinBattleBoard({
     return (
         <div className="board">
             <div className="banner">
-                <h1 className="header">Penguin Battel</h1>
+                <h1 className="header">PENGUIN BATTLE</h1>
                 <h4 className="subTitle">- based on "Hey! That's My Fish!"</h4>
             </div>
-            <div className="row">
-                <div className="column-1">
-                    <div className="playerTurn">
-                        <h1 className="title">Now Playing...</h1>
-                        {PenguinIcon(currPlayerID)}
-                    </div>
-                    <div className="leaderboard">
-                        <h1 className="title">LeaderBoard</h1>
-                        {ranking}
-                    </div>
-                </div>
-                <div className="table">{tbody}</div>
+            <div className="playerTurn">
+                <h1 className="title">Now Playing...</h1>
+                {PenguinIcon(currPlayerID)}
             </div>
+            <div className="leaderboard">
+                <h1 className="title">LeaderBoard</h1>
+                {ranking}
+            </div>
+            <div className="table">{tbody}</div>
             {winner}
         </div>
     );
 }
 
-const cellStyle = (playerID: number) => {
+/**
+ * Determine the combined style based on player ID.
+ *
+ * @param prefix prefix style class name
+ * @param playerID player ID
+ * @param fallBack fallback style when no player ID is supplied
+ * @returns combined style based on player ID
+ */
+const colorByPlayer = (prefix: string, playerID: number, fallBack: string) => {
     if (playerID === null) {
-        return "emptyCell";
+        return fallBack;
     }
 
-    return "colonisedCell " + colorByPlayerID[playerID];
-};
-
-const playerInfoStyle = (playerID: number) => {
-    return "playerInfo " + colorByPlayerID[playerID];
+    return prefix + " " + colorByPlayerID[playerID];
 };
 
 /**

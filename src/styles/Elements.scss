@@ -1,10 +1,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Protest+Riot&display=swap");
 
 $colorRed: #f24f4f;
+$colorRedLight: #fe9191;
 $colorYellow: #ffc700;
 $colorYellowLight: #ffe76c;
 $colorGreen: #65df67;
+$colorGreenLight: #adf8af;
 $colorBlue: #4870ff;
+$colorBlueLight: #6fc5ff;
 $colorBlueDark: #0058ff;
 $colorGrey: #8c8c8c;
 $colorGreyDark: #303030;
@@ -374,10 +377,24 @@ $fishTailSize: 15px;
         @include size(100px, 50px, 2px 2px 5px 5px);
         @include absPos(50%, 100%);
         transform: translateX(calc(-1 * $w/2)) translateY(-1 * $h);
-        background-color: $colorBlue;
-        box-shadow: inset 0px -5px $colorBlueDark;
         h1 {
-            color: white;
+            color: black;
+        }
+        &.red {
+            background-color: $colorRedLight;
+            box-shadow: inset 0px -5px $colorRed;
+        }
+        &.yellow {
+            background-color: $colorYellowLight;
+            box-shadow: inset 0px -5px $colorYellow;
+        }
+        &.green {
+            background-color: $colorGreenLight;
+            box-shadow: inset 0px -5px $colorGreen;
+        }
+        &.blue {
+            background-color: $colorBlueLight;
+            box-shadow: inset 0px -5px $colorBlue;
         }
     }
     .tf-1 {
@@ -412,4 +429,57 @@ $fishTailSize: 15px;
         $fishTailSize
     );
     border: solid 2px white;
+}
+
+/* Celebration Ribbons */
+.allRibbons {
+    @include size(100%, 100%);
+    @include absPos(0, 0);
+    overflow: hidden;
+
+    $colorRed: #ed5564;
+    $colorYellow: #ffce54;
+    $colorGreen: #a0d568;
+    $colorBlue: #4fc1e8;
+    $colorPurple: #ac92eb;
+    $colors: ($colorRed, $colorYellow, $colorGreen, $colorBlue, $colorPurple);
+
+    @mixin falling($firstDeg, $secondDeg, $delay) {
+        @keyframes fallingAni {
+            0% {
+                opacity: 0.2;
+                transform: translate(-10px, 0) rotate($firstDeg);
+            }
+            70% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                transform: translate(0px, 200px) rotate($secondDeg);
+            }
+        }
+
+        animation: fallingAni 1s infinite both;
+        animation-delay: $delay;
+    }
+
+    [class^="ribbon"] {
+        @include size(10px, 25px, 2px);
+    }
+
+    @for $i from 1 through 50 {
+        $posX: random() * 100%;
+        $posY: random() * -70% + 50%;
+        $first: random(30) - 50;
+        $second: random(50) - 10;
+        $delay: $i * -0.1s;
+        $bodyColor: nth($colors, random(5));
+
+        .ribbon#{$i} {
+            z-index: $i;
+            @include absPos($posX, $posY);
+            @include falling(#{$first}deg, #{$second}deg, $delay);
+            background-color: $bodyColor;
+        }
+    }
 }
