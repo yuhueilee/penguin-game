@@ -191,7 +191,7 @@ $colorWhiteGradient: linear-gradient(white, white);
     $colorTitle: $colorBlueLight;
 
     $width: 250px;
-    $height: 300px;
+    $height: fit-content;
     $bdRS: 10px;
     $margin: 60px;
     @include size($width, $height, 0 $bdRS $bdRS 0);
