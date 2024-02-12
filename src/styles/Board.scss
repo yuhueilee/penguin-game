@@ -92,7 +92,7 @@ $colorWhiteGradient: linear-gradient(white, white);
     cursor: none;
 }
 
-@mixin buttonStyle() {
+@mixin buttonStyle {
     z-index: 12;
     @include fontStyle(white, 14px, 300, 1px);
     color: white;
@@ -101,6 +101,8 @@ $colorWhiteGradient: linear-gradient(white, white);
     border-radius: 5px;
     margin-top: 15px;
     padding: 5px;
+    box-shadow: 0 0 10px rgba($color: white, $alpha: 0.9);
+
     &:hover {
         @include active(black);
     }
