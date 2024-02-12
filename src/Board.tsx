@@ -130,15 +130,15 @@ export function PenguinBattleBoard({
                 <h1 className="header">PENGUIN BATTLE</h1>
                 <h4 className="subTitle">- based on "Hey! That's My Fish!"</h4>
             </div>
+            <div className="playerTurn">
+                <h1 className="title">Now Playing...</h1>
+                {PenguinIcon(currPlayerID)}
+            </div>
+            <div className="leaderboard">
+                <h1 className="title">LeaderBoard</h1>
+                {ranking}
+            </div>
             <div className="row">
-                <div className="playerTurn">
-                    <h1 className="title">Now Playing...</h1>
-                    {PenguinIcon(currPlayerID)}
-                </div>
-                <div className="leaderboard">
-                    <h1 className="title">LeaderBoard</h1>
-                    {ranking}
-                </div>
                 <div className="table">{tbody}</div>
             </div>
             {winner}
