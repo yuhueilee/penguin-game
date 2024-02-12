@@ -168,14 +168,14 @@ $colorWhiteGradient: linear-gradient(white, white);
     padding: 32px;
 
     .banner {
+        $w: 390px;
         z-index: 10;
+        @include size($w, fit-content, 5px);
         @include flexDisplay(center, center, column);
-        margin-top: -20px;
         padding: 16px;
+        margin-top: -20px;
         background: $colorBlueLight;
-        border-radius: 5px;
         box-shadow: 5px 5px $colorBlueLightDarken;
-        width: 390px;
 
         .header,
         .subTitle {
