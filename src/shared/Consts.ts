@@ -1,8 +1,8 @@
-export const totalCells = 15;
+export const maxCellsPerRow = 8;
 
-export const maxCellsPerRow = 3;
+export const totalCells = (maxCellsPerRow + (maxCellsPerRow - 1)) * 6;
 
-export const maxLaboursPerPlayer = 2;
+export const maxLaboursPerPlayer = 4;
 
 export const iRange = [-1, -1, +0, +1, +1, +0];
 

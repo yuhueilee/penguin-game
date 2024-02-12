@@ -157,18 +157,20 @@ $colorWhiteGradient: linear-gradient(white, white);
 }
 
 .board {
+    @include size(fit-content, fit-content, 24% 27% 15% 29%);
     @include flexDisplay(center, center, column);
     position: relative;
     font-family: "Protest Riot", sans-serif;
     letter-spacing: 1px;
     background: #e0ecf2;
-    border-radius: 50px;
     $r: 30px;
-    box-shadow: inset $r $r #ecfffd, inset (-$r) $r #ecfffd;
+    box-shadow: (-$r) (-$r) #ecfffd;
+    padding: 32px;
 
     .banner {
+        z-index: 10;
         @include flexDisplay(center, center, column);
-        margin: 16px;
+        margin-top: -20px;
         padding: 16px;
         background: $colorBlueLight;
         border-radius: 5px;
@@ -185,16 +187,10 @@ $colorWhiteGradient: linear-gradient(white, white);
     .row {
         @include flexDisplay;
     }
-
-    .column-1 {
-        z-index: 10;
-        @include size($summaryWidth, $summaryHeight);
-        flex-shrink: 0;
-        position: relative;
-    }
 }
 
 .leaderboard {
+    z-index: 10;
     $colorTitle: $colorBlueLight;
 
     $width: 250px;
@@ -247,6 +243,7 @@ $colorWhiteGradient: linear-gradient(white, white);
 }
 
 .playerTurn {
+    z-index: 10;
     $colorTitle: $colorBlueLight;
 
     $width: 250px;
@@ -269,21 +266,21 @@ $colorWhiteGradient: linear-gradient(white, white);
     flex: 7;
     border-radius: 29% 32% 20% 34%;
     background: #3e6589;
-    padding: 60px;
+    padding: 160px;
     box-shadow: inset 10px 10px #a5c0df, inset -10px -10px #a5c0df,
         inset -30px -30px #7a9ec7;
     &::before {
         content: "";
         display: block;
         @include size(15px, 200px, 50%);
-        @include abPos(20px, 200px);
+        @include abPos(20px, 500px);
         background: #e0ecf2;
     }
     &::after {
         content: "";
         display: block;
         @include size(15px, 30px, 50%);
-        @include abPos(20px, 420px);
+        @include abPos(20px, 720px);
         background: #e0ecf2;
     }
 }
