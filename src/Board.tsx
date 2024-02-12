@@ -138,9 +138,7 @@ export function PenguinBattleBoard({
                 <h1 className="title">LeaderBoard</h1>
                 {ranking}
             </div>
-            <div className="row">
-                <div className="table">{tbody}</div>
-            </div>
+            <div className="table">{tbody}</div>
             {winner}
         </div>
     );
