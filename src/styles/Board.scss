@@ -184,10 +184,6 @@ $colorWhiteGradient: linear-gradient(white, white);
             color: rgba(white, 0.9);
         }
     }
-
-    .row {
-        @include flexDisplay;
-    }
 }
 
 .leaderboard {
@@ -283,6 +279,10 @@ $colorWhiteGradient: linear-gradient(white, white);
         @include size(15px, 30px, 50%);
         @include abPos(20px, 720px);
         background: #e0ecf2;
+    }
+
+    .row {
+        @include flexDisplay;
     }
 }
 
