@@ -206,7 +206,7 @@ body {
     $colorTitle: $colorBlueLight;
     $width: 170px;
     $bdRS: 10px;
-    $margin: 60px;
+    margin: 4px;
     @include size($width, fit-content, 0 $bdRS $bdRS 0);
     @include fixedPos(8px, 8px);
     @include flexDisplay(flex-start, center, column);
