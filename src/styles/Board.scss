@@ -158,6 +158,13 @@ $colorWhiteGradient: linear-gradient(white, white);
     border-radius: 10px 10px 0 0;
 }
 
+html,
+body {
+    @include size(100%);
+    margin: 0;
+    padding: 0;
+}
+
 .board {
     @include size(fit-content, fit-content, 24% 27% 15% 29%);
     @include flexDisplay(center, center, column);
