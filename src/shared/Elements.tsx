@@ -138,7 +138,15 @@ export function FishIcon(amount: number, ratio: number): JSX.Element {
     return <></>;
 }
 
-export function FishBoxIcon(amount: number, playerID: number): JSX.Element {
+export function FishBoxIcon(
+    amount: number,
+    playerID: number,
+    ratio: number
+): JSX.Element {
+    const scaleStyle = {
+        transform: "scale(" + ratio + ")",
+    };
+
     let blackFish = (
         <div className="blackFish">
             <div className="eye"></div>
@@ -152,13 +160,15 @@ export function FishBoxIcon(amount: number, playerID: number): JSX.Element {
     const boxStyle = "box " + colorByPlayerID[playerID];
 
     return (
-        <div className="fishBox">
-            <div className="tf-1">{blackFish}</div>
-            <div className="tf-2">{blackFish}</div>
-            <div className="tf-3">{blackFish}</div>
-            <div className="tf-4">{blackFish}</div>
-            <div className={boxStyle}>
-                <h1>{amount}</h1>
+        <div style={scaleStyle}>
+            <div className="fishBox">
+                <div className="tf-1">{blackFish}</div>
+                <div className="tf-2">{blackFish}</div>
+                <div className="tf-3">{blackFish}</div>
+                <div className="tf-4">{blackFish}</div>
+                <div className={boxStyle}>
+                    <h1>{amount}</h1>
+                </div>
             </div>
         </div>
     );

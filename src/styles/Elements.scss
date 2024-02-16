@@ -380,17 +380,18 @@ $fishTailSize: 5px;
 /* Fish Box Icon */
 .fishBox {
     position: relative;
-    @include size(100px);
+    @include size(50px);
     .box {
-        $w: 100px;
-        $h: 50px;
+        $w: 50px;
+        $h: 25px;
         z-index: 5;
         @include flex;
-        @include size(100px, 50px, 2px 2px 5px 5px);
+        @include size($w, $h, 2px 2px 5px 5px);
         @include abPos(50%, 100%);
         transform: translateX(calc(-1 * $w/2)) translateY(-1 * $h);
         h1 {
             color: black;
+            font-size: 16px;
         }
         &.red {
             background-color: $colorRedLight;
@@ -411,22 +412,22 @@ $fishTailSize: 5px;
     }
     .tf-1 {
         z-index: 1;
-        @include abPos(0px, 25px);
+        @include abPos(5%, 30%);
         transform: rotate(10deg);
     }
     .tf-2 {
         z-index: 3;
-        @include abPos(30px, 30px);
+        @include abPos(25%, 30%);
         transform: rotate(-150deg);
     }
     .tf-3 {
         z-index: 2;
-        @include abPos(50px, 20px);
-        transform: rotate(50deg);
+        @include abPos(46%, 26%);
+        transform: rotate(60deg);
     }
     .tf-4 {
         z-index: 4;
-        @include abPos(65px, 40px);
+        @include abPos(65%, 35%);
         transform: rotate(-100deg);
     }
 }

@@ -118,7 +118,7 @@ export function PenguinBattleBoard({
             >
                 <div className="playerIcon">{PenguinIcon(playerID, 5)}</div>
                 <div className="score">
-                    {FishBoxIcon(G.scores[playerID], playerID)}
+                    {FishBoxIcon(G.scores[playerID], playerID, 2)}
                 </div>
             </div>
         );
