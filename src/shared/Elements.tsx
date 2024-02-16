@@ -4,17 +4,22 @@ import React from "react";
 
 import { colorByPlayerID } from "./Consts";
 
-export function PenguinIcon(playerID: number, ratio: number): JSX.Element {
+export function PenguinIcon(
+    playerID: number,
+    ratio: number,
+    active: boolean
+): JSX.Element {
     const colorStyle = colorByPlayerID[playerID];
     const gridStyle = "grid " + colorStyle;
     const scaleStyle = {
         transform: "scale(" + ratio + ")",
     };
+    const bodyStateStyle = active ? "body active" : "body";
 
     return (
         <div style={scaleStyle}>
             <div className={gridStyle}>
-                <div className="body">
+                <div className={bodyStateStyle}>
                     <div className="face">
                         <div className="eyes">
                             <div className="eye1">

@@ -34,7 +34,7 @@ export function PenguinBattleBoard({
             ctx.gameover.winner !== undefined ? (
                 <div className="winner">
                     {Celebration()}
-                    {PenguinIcon(parseInt(ctx.gameover.winner), 5)}
+                    {PenguinIcon(parseInt(ctx.gameover.winner), 5, true)}
                     <h1 className="title">You Win!</h1>
                 </div>
             ) : (
@@ -116,7 +116,9 @@ export function PenguinBattleBoard({
                 key={playerID}
                 className={colorByPlayer("playerInfo", playerID, "playerInfo")}
             >
-                <div className="playerIcon">{PenguinIcon(playerID, 3)}</div>
+                <div className="playerIcon">
+                    {PenguinIcon(playerID, 3, playerID === currPlayerID)}
+                </div>
                 <div className="score">
                     {FishBoxIcon(G.scores[playerID], playerID, 1.5)}
                 </div>
