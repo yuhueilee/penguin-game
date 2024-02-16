@@ -116,9 +116,9 @@ export function PenguinBattleBoard({
                 key={playerID}
                 className={colorByPlayer("playerInfo", playerID, "playerInfo")}
             >
-                <div className="playerIcon">{PenguinIcon(playerID, 5)}</div>
+                <div className="playerIcon">{PenguinIcon(playerID, 3)}</div>
                 <div className="score">
-                    {FishBoxIcon(G.scores[playerID], playerID, 2)}
+                    {FishBoxIcon(G.scores[playerID], playerID, 1.5)}
                 </div>
             </div>
         );
@@ -130,14 +130,7 @@ export function PenguinBattleBoard({
                 <h1 className="header">PENGUIN BATTLE</h1>
                 <h4 className="subTitle">- based on "Hey! That's My Fish!"</h4>
             </div>
-            <div className="playerTurn">
-                <h1 className="title">Now Playing...</h1>
-                {PenguinIcon(currPlayerID, 5)}
-            </div>
-            <div className="leaderboard">
-                <h1 className="title">LeaderBoard</h1>
-                {ranking}
-            </div>
+            <div className="leaderboard">{ranking}</div>
             <div className="table">{tbody}</div>
             {winner}
         </div>

@@ -191,35 +191,28 @@ $colorWhiteGradient: linear-gradient(white, white);
 .leaderboard {
     z-index: 10;
     $colorTitle: $colorBlueLight;
-
-    $width: 250px;
-    $height: fit-content;
+    $width: 170px;
     $bdRS: 10px;
     $margin: 60px;
-    @include size($width, $height, 0 $bdRS $bdRS 0);
-    @include fixedPos(0, $turnHeight * 2 + $margin);
+    @include size($width, fit-content, 0 $bdRS $bdRS 0);
+    @include fixedPos(8px, 8px);
     @include flexDisplay(flex-start, center, column);
-    padding: 16px;
-    background: rgba(white, 0.9);
-    border: solid 4px $colorTitle;
-
-    .title {
-        @include titleStyle;
-    }
 
     .playerInfo {
         @include flexDisplay(center, center, row);
         @include fontStyle;
-        width: $width;
+        @include size($width, 70px, calc($width * 0.5));
         border: 4px solid transparent;
-        border-radius: 100px;
         margin: 2px;
-        transform: scale(0.9);
-        .score {
+        .playerIcon {
             flex: 2;
-            padding: 8px;
+            @include flexDisplay(flex-start);
+            margin-left: 24px;
+        }
+        .score {
+            flex: 5;
             @include flexDisplay;
-            transform: scale(0.8);
+            padding: 0 8px 8px 0;
         }
 
         &.red {
@@ -238,25 +231,6 @@ $colorWhiteGradient: linear-gradient(white, white);
             background: $colorWhiteGradient padding-box,
                 $colorBlueGradient border-box;
         }
-    }
-}
-
-.playerTurn {
-    z-index: 10;
-    $colorTitle: $colorBlueLight;
-
-    $width: 250px;
-    $bdRS: 10px;
-    $margin: 130px;
-    @include size($width, $turnHeight, 0 $bdRS $bdRS 0);
-    @include fixedPos(0, $margin);
-    @include flexDisplay(flex-start, center, column);
-    padding: 16px;
-    background: rgba(white, 0.9);
-    border: solid 4px $colorTitle;
-
-    .title {
-        @include titleStyle;
     }
 }
 
