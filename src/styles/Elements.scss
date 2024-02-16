@@ -38,7 +38,7 @@ $fishTailSize: 15px;
     border-radius: $r;
 }
 
-@mixin absPos($left, $top) {
+@mixin abPos($left, $top) {
     position: absolute;
     left: $left;
     top: $top;
@@ -58,7 +58,7 @@ $fishTailSize: 15px;
             z-index: 6;
             $width: $penguinBodyWidth - 10px;
             @include size($width, calc($penguinBodyWidth / 2));
-            @include absPos(50%, 10%);
+            @include abPos(50%, 10%);
             @include flex(center, center, column);
             transform: translateX(calc(-1 * $width / 2));
             .eyes {
@@ -81,10 +81,10 @@ $fishTailSize: 15px;
                         background-color: black;
                     }
                     .eyeBall1 {
-                        @include absPos(60%, 60%);
+                        @include abPos(60%, 60%);
                     }
                     .eyeBall2 {
-                        @include absPos(40%, 60%);
+                        @include abPos(40%, 60%);
                     }
                 }
             }
@@ -100,7 +100,7 @@ $fishTailSize: 15px;
             z-index: 5;
             $len: calc($penguinBodyHeight * 2 / 3);
             @include size($len, $len, 50% 50% 5px 5px);
-            @include absPos(50%, 100%);
+            @include abPos(50%, 100%);
             transform: translateX(calc(-1 * $len / 2)) translateY(-$len);
             background-color: #fff;
             box-shadow: inset 0px -5px $colorGreyShadow;
@@ -112,7 +112,7 @@ $fishTailSize: 15px;
             @include size($width, $height);
             @include flex;
             justify-content: space-between;
-            @include absPos(
+            @include abPos(
                 calc($penguinBodyWidth / 2),
                 $penguinBodyHeight - $height
             );
@@ -132,7 +132,7 @@ $fishTailSize: 15px;
             @include size($width, $height);
             @include flex;
             justify-content: space-between;
-            @include absPos(
+            @include abPos(
                 calc($penguinBodyWidth/2),
                 $penguinBodyHeight - $height * 1.5
             );
@@ -160,7 +160,7 @@ $fishTailSize: 15px;
             $w: 12px;
             $h: 20px;
             @include size($w, $h, 0 50% 50% 0);
-            @include absPos(10px, -10px);
+            @include abPos(10px, -10px);
             background-color: $playerColor;
             transform: rotate(-30deg);
             &::after {
@@ -176,7 +176,7 @@ $fishTailSize: 15px;
             $w: 12px;
             $h: 20px;
             @include size($w, $h, 50%);
-            @include absPos(0, -10px);
+            @include abPos(0, -10px);
             background-color: $playerColor;
             transform: rotate(15deg);
             &::after {
@@ -194,7 +194,7 @@ $fishTailSize: 15px;
             $width: calc($penguinBodyHeight/3);
             @include size($width, $width, 2px);
             @include flex;
-            @include absPos(calc($penguinBodyWidth/2), 50px);
+            @include abPos(calc($penguinBodyWidth/2), 50px);
             transform: translateX(calc(-1 * $width / 2));
             box-shadow: inset -2px -2px $colorGreyShadow;
             background-color: $playerColor;
@@ -375,7 +375,7 @@ $fishTailSize: 15px;
         z-index: 5;
         @include flex;
         @include size(100px, 50px, 2px 2px 5px 5px);
-        @include absPos(50%, 100%);
+        @include abPos(50%, 100%);
         transform: translateX(calc(-1 * $w/2)) translateY(-1 * $h);
         h1 {
             color: black;
@@ -399,22 +399,22 @@ $fishTailSize: 15px;
     }
     .tf-1 {
         z-index: 1;
-        @include absPos(0px, 25px);
+        @include abPos(0px, 25px);
         transform: rotate(10deg);
     }
     .tf-2 {
         z-index: 3;
-        @include absPos(30px, 30px);
+        @include abPos(30px, 30px);
         transform: rotate(-150deg);
     }
     .tf-3 {
         z-index: 2;
-        @include absPos(50px, 20px);
+        @include abPos(50px, 20px);
         transform: rotate(50deg);
     }
     .tf-4 {
         z-index: 4;
-        @include absPos(65px, 40px);
+        @include abPos(65px, 40px);
         transform: rotate(-100deg);
     }
 }
@@ -434,7 +434,7 @@ $fishTailSize: 15px;
 /* Celebration Ribbons */
 .allRibbons {
     @include size(100%, 100%);
-    @include absPos(0, 0);
+    @include abPos(0, 0);
     overflow: hidden;
 
     $colorRed: #ed5564;
@@ -477,7 +477,7 @@ $fishTailSize: 15px;
 
         .ribbon#{$i} {
             z-index: $i;
-            @include absPos($posX, $posY);
+            @include abPos($posX, $posY);
             @include falling(#{$first}deg, #{$second}deg, $delay);
             background-color: $bodyColor;
         }
