@@ -62,7 +62,7 @@ export function PenguinBattleBoard({
                     )}
                 >
                     <div className="fishIconGrid">
-                        {FishIcon(G.fish[cellID])}
+                        {FishIcon(G.fish[cellID], 3)}
                     </div>
                     <div className="labourIconGrid">
                         {PenguinLabourIcon(playerID, 5)}

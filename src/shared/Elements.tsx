@@ -94,7 +94,11 @@ export function PenguinLabourIcon(
     );
 }
 
-export function FishIcon(amount: number): JSX.Element {
+export function FishIcon(amount: number, ratio: number): JSX.Element {
+    const scaleStyle = {
+        transform: "scale(" + ratio + ")",
+    };
+
     let fishPart = (
         <>
             <div className="eye"></div>
@@ -107,21 +111,25 @@ export function FishIcon(amount: number): JSX.Element {
 
     switch (amount) {
         case 1:
-            return <div className="fish-1">{fishPart}</div>;
+            return (
+                <div style={scaleStyle}>
+                    <div className="fish-1">{fishPart}</div>
+                </div>
+            );
         case 2:
             return (
-                <>
+                <div style={scaleStyle}>
                     <div className="fish-2">{fishPart}</div>
                     <div className="fish-2">{fishPart}</div>
-                </>
+                </div>
             );
         case 3:
             return (
-                <>
+                <div style={scaleStyle}>
                     <div className="fish-3">{fishPart}</div>
                     <div className="fish-3">{fishPart}</div>
                     <div className="fish-3">{fishPart}</div>
-                </>
+                </div>
             );
     }
     return <></>;
