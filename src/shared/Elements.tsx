@@ -7,7 +7,6 @@ import { colorByPlayerID } from "./Consts";
 export function PenguinIcon(playerID: number, ratio: number): JSX.Element {
     const colorStyle = colorByPlayerID[playerID];
     const gridStyle = "grid " + colorStyle;
-
     const scaleStyle = {
         transform: "scale(" + ratio + ")",
     };
@@ -47,41 +46,49 @@ export function PenguinIcon(playerID: number, ratio: number): JSX.Element {
     );
 }
 
-export function PenguinLabourIcon(playerID: number): JSX.Element {
+export function PenguinLabourIcon(
+    playerID: number,
+    ratio: number
+): JSX.Element {
     if (playerID === -1) {
         return <></>;
     }
 
     const colorStyle = colorByPlayerID[playerID];
     const labourStyle = "penguinLabour " + colorStyle;
+    const scaleStyle = {
+        transform: "scale(" + ratio + ")",
+    };
 
     return (
         <div className={labourStyle}>
-            <div className="body">
-                <div className="face">
-                    <div className="eyes">
-                        <div className="eye1">
-                            <div className="eyeBall1"></div>
+            <div style={scaleStyle}>
+                <div className="body">
+                    <div className="face">
+                        <div className="eyes">
+                            <div className="eye1">
+                                <div className="eyeBall1"></div>
+                            </div>
+                            <div className="eye2">
+                                <div className="eyeBall2"></div>
+                            </div>
                         </div>
-                        <div className="eye2">
-                            <div className="eyeBall2"></div>
+                        <div className="mouth"></div>
+                    </div>
+                    <div className="feet">
+                        <div className="foot"> </div>
+                        <div className="foot"></div>
+                    </div>
+                    <div className="wings">
+                        <div className="wing1">
+                            <div className="knife"></div>
+                        </div>
+                        <div className="wing2">
+                            <div className="spoon"></div>
                         </div>
                     </div>
-                    <div className="mouth"></div>
+                    <div className="belly"></div>
                 </div>
-                <div className="feet">
-                    <div className="foot"> </div>
-                    <div className="foot"></div>
-                </div>
-                <div className="wings">
-                    <div className="wing1">
-                        <div className="knife"></div>
-                    </div>
-                    <div className="wing2">
-                        <div className="spoon"></div>
-                    </div>
-                </div>
-                <div className="belly"></div>
             </div>
         </div>
     );
