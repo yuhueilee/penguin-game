@@ -62,10 +62,10 @@ export function PenguinBattleBoard({
                     )}
                 >
                     <div className="fishIconGrid">
-                        {FishIcon(G.fish[cellID], 3)}
+                        {FishIcon(G.fish[cellID], 2)}
                     </div>
                     <div className="labourIconGrid">
-                        {PenguinLabourIcon(playerID, 5)}
+                        {PenguinLabourIcon(playerID, 3)}
                     </div>
                     {showColoniseButton(ctx, G, currPlayerID, cellID) ? (
                         <button
@@ -126,10 +126,6 @@ export function PenguinBattleBoard({
 
     return (
         <div className="board">
-            <div className="banner">
-                <h1 className="header">PENGUIN BATTLE</h1>
-                <h4 className="subTitle">- based on "Hey! That's My Fish!"</h4>
-            </div>
             <div className="leaderboard">{ranking}</div>
             <div className="table">{tbody}</div>
             {winner}

@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Protest+Riot&display=swap");
 
-$gridGap: 18px;
-$hexagonWidth: 100px;
+$gridGap: 12px;
+$hexagonWidth: 40px;
 $summaryWidth: 270px;
 $summaryHeight: 700px;
 $turnHeight: 150px;
@@ -67,6 +67,7 @@ $colorWhiteGradient: linear-gradient(white, white);
 }
 
 @mixin cellStyle($backgroundColor: $colorBlueLight) {
+    z-index: 3;
     @include flexDisplay(center, center, column);
     position: relative;
     width: $hexagonWidth;
@@ -94,13 +95,13 @@ $colorWhiteGradient: linear-gradient(white, white);
 
 @mixin buttonStyle {
     z-index: 12;
-    @include fontStyle(white, 14px, 300, 1px);
+    @include fontStyle(white, 12px, 300, 1px);
     color: white;
     background: black;
     border: none;
     border-radius: 5px;
-    margin-top: 15px;
-    padding: 5px;
+    margin-top: 20%;
+    padding: 4px;
     box-shadow: 0 0 10px rgba($color: white, $alpha: 0.9);
 
     &:hover {
@@ -165,17 +166,22 @@ body {
     padding: 0;
 }
 
+#root,
+.bgio-client {
+    @include size(100%);
+}
+
 .board {
-    @include size(fit-content, fit-content, 24% 27% 15% 29%);
+    @include size(100%);
     @include flexDisplay(center, center, column);
+    min-width: fit-content;
     position: relative;
     font-family: "Protest Riot", sans-serif;
     letter-spacing: 1px;
     background: #e0ecf2;
     $r: 30px;
     box-shadow: (-$r) (-$r) #ecfffd;
-    padding: 32px;
-    margin-left: 100px;
+    padding: 8px;
 
     .banner {
         $w: 390px;
@@ -242,25 +248,29 @@ body {
 }
 
 .table {
+    @include size(80%, 100%, 2%);
     @include flexDisplay(center, center, column);
-    border-radius: 29% 32% 20% 34%;
+    min-width: fit-content;
     background: #3e6589;
-    padding: 160px;
-    box-shadow: inset 10px 10px #a5c0df, inset -10px -10px #a5c0df,
-        inset -30px -30px #7a9ec7;
+    box-shadow: inset 10px 5px #a5c0df, inset -10px -5px #a5c0df;
     &::before {
-        content: "";
+        content: "PENGUIN BATTLE";
         display: block;
-        @include size(15px, 200px, 50%);
-        @include abPos(20px, 500px);
-        background: #e0ecf2;
+        @include size(fit-content, fit-content);
+        @include abPos(-5%, 20%);
+        @include fontStyle(#6196c8, 36px, 800);
+        text-align: end;
+        transform: rotate(-90deg);
     }
     &::after {
-        content: "";
+        z-index: 2;
+        content: "based on 'Hey! That's My Fish!'";
         display: block;
-        @include size(15px, 30px, 50%);
-        @include abPos(20px, 720px);
-        background: #e0ecf2;
+        @include size(fit-content, fit-content);
+        @include abPos(85%, 90%);
+        @include fontStyle(#6196c8, 16px, 800);
+        text-align: start;
+        transform: rotate(0deg);
     }
 
     .row {
