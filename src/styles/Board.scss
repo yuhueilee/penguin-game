@@ -120,7 +120,7 @@ $colorWhiteGradient: linear-gradient(white, white);
 }
 
 @mixin disabled {
-    filter: opacity(0.5);
+    filter: brightness(60%);
     cursor: default;
 }
 
@@ -269,8 +269,15 @@ button {
 }
 
 .colonisedCell {
-    .fishIconGrid {
-        filter: opacity(0);
+    &:enabled {
+        .fishIconGrid {
+            z-index: 20;
+        }
+    }
+    &:disabled {
+        .fishIconGrid {
+            display: none;
+        }
     }
 
     $opacity: 0.7;
