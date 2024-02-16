@@ -172,8 +172,8 @@ $fishTailSize: 15px;
                 content: "";
                 display: block;
                 background-color: inherit;
-                @include size(calc($w/4), $w * 1.2, 0 0 2px 2px);
-                margin-top: $h - 2px;
+                @include size(1px, 3px, 0 0 2px 2px);
+                margin-top: $h - 1px;
             }
         }
         .spoon {
@@ -188,9 +188,9 @@ $fishTailSize: 15px;
                 content: "";
                 display: block;
                 background-color: inherit;
-                @include size(calc($w/4), $w * 1.2, 0 0 2px 2px);
-                margin-top: $h - 2px;
-                margin-left: calc($w/2) - calc($w/8);
+                @include size(1px, 3px, 0 0 2px 2px);
+                margin-top: $h - 1px;
+                margin-left: 1.5px;
             }
         }
 
