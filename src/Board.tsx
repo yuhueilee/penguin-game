@@ -65,7 +65,7 @@ export function PenguinBattleBoard({
                         {FishIcon(G.fish[cellID], 2)}
                     </div>
                     <div className="labourIconGrid">
-                        {PenguinLabourIcon(playerID, 3)}
+                        {PenguinLabourIcon(playerID, 3, cellID === G.location)}
                     </div>
                     {showColoniseButton(ctx, G, currPlayerID, cellID) ? (
                         <button
