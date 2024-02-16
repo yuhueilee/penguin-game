@@ -17,7 +17,7 @@ $colorOrange: #ffba4c;
 $colorOrangeDark: #f29100;
 $colorGreyShadow: rgba(black, 25%);
 
-$gridSize: 120px;
+$gridSize: 20px;
 $penguinBodyRadius: 50% 50% 3px 3px;
 $penguinBodyWidth: 16px;
 $penguinBodyHeight: 18px;
@@ -250,7 +250,7 @@ $fishTailSize: 5px;
 }
 
 .grid {
-    $width: 0.2em;
+    $width: 0.02em;
     @include flex;
     @include size($gridSize, $gridSize, 50%);
     background: $colorBlue content-box;

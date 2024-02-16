@@ -12,8 +12,8 @@ export function PenguinIcon(playerID: number, ratio: number): JSX.Element {
     };
 
     return (
-        <div className={gridStyle}>
-            <div style={scaleStyle}>
+        <div style={scaleStyle}>
+            <div className={gridStyle}>
                 <div className="body">
                     <div className="face">
                         <div className="eyes">
