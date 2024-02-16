@@ -34,7 +34,7 @@ export function PenguinBattleBoard({
             ctx.gameover.winner !== undefined ? (
                 <div className="winner">
                     {Celebration()}
-                    {PenguinIcon(parseInt(ctx.gameover.winner))}
+                    {PenguinIcon(parseInt(ctx.gameover.winner), 5)}
                     <h1 className="title">You Win!</h1>
                 </div>
             ) : (
@@ -62,10 +62,10 @@ export function PenguinBattleBoard({
                     )}
                 >
                     <div className="fishIconGrid">
-                        {FishIcon(G.fish[cellID])}
+                        {FishIcon(G.fish[cellID], 3)}
                     </div>
                     <div className="labourIconGrid">
-                        {PenguinLabourIcon(playerID)}
+                        {PenguinLabourIcon(playerID, 5)}
                     </div>
                     {showColoniseButton(ctx, G, currPlayerID, cellID) ? (
                         <button
@@ -116,9 +116,9 @@ export function PenguinBattleBoard({
                 key={playerID}
                 className={colorByPlayer("playerInfo", playerID, "playerInfo")}
             >
-                <div className="playerIcon">{PenguinIcon(playerID)}</div>
+                <div className="playerIcon">{PenguinIcon(playerID, 5)}</div>
                 <div className="score">
-                    {FishBoxIcon(G.scores[playerID], playerID)}
+                    {FishBoxIcon(G.scores[playerID], playerID, 2)}
                 </div>
             </div>
         );
@@ -132,7 +132,7 @@ export function PenguinBattleBoard({
             </div>
             <div className="playerTurn">
                 <h1 className="title">Now Playing...</h1>
-                {PenguinIcon(currPlayerID)}
+                {PenguinIcon(currPlayerID, 5)}
             </div>
             <div className="leaderboard">
                 <h1 className="title">LeaderBoard</h1>
