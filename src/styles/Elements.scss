@@ -33,10 +33,10 @@ $penguinWingsWidth: $penguinFaceWidth;
 $penguinWingsHeight: 7px;
 $penguinWingWidth: 4px;
 
-$fishBodyHeight: 30px;
-$fishBodyWidth: 30px;
-$fishEyeSize: 5px;
-$fishTailSize: 15px;
+$fishBodyHeight: 10px;
+$fishBodyWidth: 10px;
+$fishEyeSize: 2px;
+$fishTailSize: 5px;
 
 @mixin flex($j: center, $a: center, $d: row) {
     display: flex;
@@ -310,7 +310,7 @@ $fishTailSize: 15px;
         @include size($eyeSize, $eyeSize, 100%);
         background-color: black;
         position: absolute;
-        border: solid 2px white;
+        border: solid 1px white;
         top: 15%;
         left: 20%;
     }
