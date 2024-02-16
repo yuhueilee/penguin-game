@@ -52,14 +52,30 @@ export function PenguinBattleBoard({
         for (let j = 0; j < numColumns; j++) {
             const cellID = maxCellsPerRow * i + j - Math.floor(i / 2);
             const playerID = playerIDOfLabourAtCell(cellID, G.locations);
+            const handleOnClick = (id: number) => {
+                if (showColoniseButton(ctx, G, currPlayerID, cellID)) {
+                    return colonise(id);
+                }
+                if (showLocateButton(ctx, G, currPlayerID, cellID)) {
+                    return locate(id);
+                }
+            };
+            const disabled =
+                !(
+                    showColoniseButton(ctx, G, currPlayerID, cellID) ||
+                    showLocateButton(ctx, G, currPlayerID, cellID)
+                ) || ctx.gameover;
             cells.push(
-                <div
+                <button
                     key={cellID}
                     className={colorByPlayer(
                         "colonisedCell",
+                        currPlayerID,
                         G.cells[cellID],
                         "emptyCell" + cellID
                     )}
+                    onClick={() => handleOnClick(cellID)}
+                    disabled={disabled}
                 >
                     <div className="fishIconGrid">
                         {FishIcon(G.fish[cellID], 2)}
@@ -67,37 +83,7 @@ export function PenguinBattleBoard({
                     <div className="labourIconGrid">
                         {PenguinLabourIcon(playerID, 3, cellID === G.location)}
                     </div>
-                    {showColoniseButton(ctx, G, currPlayerID, cellID) ? (
-                        <button
-                            className={colorByPlayer(
-                                "coloniseBtn",
-                                currPlayerID,
-                                "defaultBtn"
-                            )}
-                            onClick={() => colonise(cellID)}
-                            disabled={ctx.gameover}
-                        >
-                            occupy
-                        </button>
-                    ) : (
-                        <></>
-                    )}
-                    {showLocateButton(ctx, G, currPlayerID, cellID) ? (
-                        <button
-                            className={colorByPlayer(
-                                "locateBtn",
-                                currPlayerID,
-                                "defaultBtn"
-                            )}
-                            onClick={() => locate(cellID)}
-                            disabled={ctx.gameover}
-                        >
-                            select
-                        </button>
-                    ) : (
-                        <></>
-                    )}
-                </div>
+                </button>
             );
         }
         tbody.push(
@@ -114,7 +100,12 @@ export function PenguinBattleBoard({
         ranking.push(
             <div
                 key={playerID}
-                className={colorByPlayer("playerInfo", playerID, "playerInfo")}
+                className={colorByPlayer(
+                    "playerInfo",
+                    currPlayerID,
+                    playerID,
+                    "playerInfo"
+                )}
             >
                 <div className="playerIcon">
                     {PenguinIcon(playerID, 3, playerID === currPlayerID)}
@@ -139,13 +130,19 @@ export function PenguinBattleBoard({
  * Determine the combined style based on player ID.
  *
  * @param prefix prefix style class name
+ * @param currentPlayerID current active player ID
  * @param playerID player ID
  * @param fallBack fallback style when no player ID is supplied
  * @returns combined style based on player ID
  */
-const colorByPlayer = (prefix: string, playerID: number, fallBack: string) => {
+const colorByPlayer = (
+    prefix: string,
+    currentPlayerID: number,
+    playerID: number,
+    fallBack: string
+) => {
     if (playerID === null) {
-        return fallBack;
+        return fallBack + " " + colorByPlayerID[currentPlayerID];
     }
 
     return prefix + " " + colorByPlayerID[playerID];

@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Protest+Riot&display=swap");
 
 $gridGap: 12px;
-$hexagonWidth: 40px;
+$hexagonWidth: 72px;
 $summaryWidth: 270px;
 $summaryHeight: 700px;
 $turnHeight: 150px;
@@ -79,40 +79,12 @@ $colorWhiteGradient: linear-gradient(white, white);
     clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
     /* reduce the gap */
     transform: scale(1.2);
-}
 
-@mixin active($primary) {
-    background: white;
-    color: $primary;
-    cursor: pointer;
-}
-
-@mixin disabled {
-    background: #cccccc;
-    color: #666666;
-    cursor: none;
-}
-
-@mixin buttonStyle {
-    z-index: 12;
-    @include fontStyle(white, 12px, 300, 1px);
-    color: white;
-    background: black;
-    border: none;
-    border-radius: 5px;
-    margin-top: 20%;
-    padding: 4px;
-    box-shadow: 0 0 10px rgba($color: white, $alpha: 0.9);
-
-    &:hover {
-        @include active(black);
-    }
     &:disabled {
         @include disabled;
     }
 
     &.red {
-        background: $colorRedDark;
         &:hover {
             @include active($colorRedDark);
         }
@@ -121,7 +93,6 @@ $colorWhiteGradient: linear-gradient(white, white);
         }
     }
     &.yellow {
-        background: $colorYellowDark;
         &:hover {
             @include active($colorYellowDark);
         }
@@ -130,7 +101,6 @@ $colorWhiteGradient: linear-gradient(white, white);
         }
     }
     &.green {
-        background: $colorGreenDark;
         &:hover {
             @include active($colorGreenDark);
         }
@@ -139,7 +109,6 @@ $colorWhiteGradient: linear-gradient(white, white);
         }
     }
     &.blue {
-        background: $colorBlueDark;
         &:hover {
             @include active($colorBlueDark);
         }
@@ -147,6 +116,16 @@ $colorWhiteGradient: linear-gradient(white, white);
             @include disabled;
         }
     }
+}
+
+@mixin active($primary) {
+    background: $primary;
+    cursor: pointer;
+}
+
+@mixin disabled {
+    filter: opacity(0.5);
+    cursor: default;
 }
 
 @mixin titleStyle {
@@ -169,6 +148,17 @@ body {
 #root,
 .bgio-client {
     @include size(100%);
+}
+
+/* remove button default styles */
+button {
+    background: none;
+    color: inherit;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
 }
 
 .board {
@@ -303,12 +293,6 @@ body {
     }
 }
 
-.coloniseBtn,
-.locateBtn,
-.defaultBtn {
-    @include buttonStyle;
-}
-
 .textStyle {
     margin: 8px;
     font-size: 14px;
@@ -330,7 +314,7 @@ body {
 .winner {
     z-index: 100;
     $width: 100%;
-    $height: auto;
+    $height: 20%;
     @include size($width, $height);
     @include flexDisplay;
     @include fixedPos(0, 40%);
@@ -339,7 +323,7 @@ body {
     box-shadow: 0 0 30px rgba(black, 0.8);
 
     .title {
-        margin-left: 16px;
+        margin-left: 5%;
     }
 }
 
@@ -371,15 +355,6 @@ body {
     }
     100% {
         transform: translateX(0px);
-    }
-}
-
-.coloniseBtn,
-.locateBtn {
-    animation: zoom 1s infinite;
-
-    &:disabled {
-        animation: none;
     }
 }
 
