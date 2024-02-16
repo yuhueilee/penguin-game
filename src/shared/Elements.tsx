@@ -96,6 +96,9 @@ export function PenguinLabourIcon(
 
 export function FishIcon(amount: number, ratio: number): JSX.Element {
     const scaleStyle = {
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
         transform: "scale(" + ratio + ")",
     };
 
