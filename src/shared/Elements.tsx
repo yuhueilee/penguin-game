@@ -4,36 +4,41 @@ import React from "react";
 
 import { colorByPlayerID } from "./Consts";
 
-export function PenguinIcon(playerID: number): JSX.Element {
+export function PenguinIcon(playerID: number, ratio: number): JSX.Element {
     const colorStyle = colorByPlayerID[playerID];
     const gridStyle = "grid " + colorStyle;
+    const scaleStyle = {
+        transform: "scale(" + ratio + ")",
+    };
 
     return (
         <div className={gridStyle}>
-            <div className="body">
-                <div className="face">
-                    <div className="eyes">
-                        <div className="eye1">
-                            <div className="eyeBall1"></div>
+            <div style={scaleStyle}>
+                <div className="body">
+                    <div className="face">
+                        <div className="eyes">
+                            <div className="eye1">
+                                <div className="eyeBall1"></div>
+                            </div>
+                            <div className="eye2">
+                                <div className="eyeBall2"></div>
+                            </div>
                         </div>
-                        <div className="eye2">
-                            <div className="eyeBall2"></div>
-                        </div>
+                        <div className="mouth"></div>
                     </div>
-                    <div className="mouth"></div>
-                </div>
-                <div className="feet">
-                    <div className="foot"> </div>
-                    <div className="foot"></div>
-                </div>
-                <div className="wings">
-                    <div className="wing1"></div>
-                    <div className="wing2"></div>
-                </div>
-                <div className="belly"></div>
-                <div className="card">
-                    <div className="id">
-                        <h1>{playerID}</h1>
+                    <div className="feet">
+                        <div className="foot"> </div>
+                        <div className="foot"></div>
+                    </div>
+                    <div className="wings">
+                        <div className="wing1"></div>
+                        <div className="wing2"></div>
+                    </div>
+                    <div className="belly"></div>
+                    <div className="card">
+                        <div className="id">
+                            <h1>{playerID}</h1>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -41,47 +46,62 @@ export function PenguinIcon(playerID: number): JSX.Element {
     );
 }
 
-export function PenguinLabourIcon(playerID: number): JSX.Element {
+export function PenguinLabourIcon(
+    playerID: number,
+    ratio: number
+): JSX.Element {
     if (playerID === -1) {
         return <></>;
     }
 
     const colorStyle = colorByPlayerID[playerID];
     const labourStyle = "penguinLabour " + colorStyle;
+    const scaleStyle = {
+        transform: "scale(" + ratio + ")",
+    };
 
     return (
         <div className={labourStyle}>
-            <div className="body">
-                <div className="face">
-                    <div className="eyes">
-                        <div className="eye1">
-                            <div className="eyeBall1"></div>
+            <div style={scaleStyle}>
+                <div className="body">
+                    <div className="face">
+                        <div className="eyes">
+                            <div className="eye1">
+                                <div className="eyeBall1"></div>
+                            </div>
+                            <div className="eye2">
+                                <div className="eyeBall2"></div>
+                            </div>
                         </div>
-                        <div className="eye2">
-                            <div className="eyeBall2"></div>
+                        <div className="mouth"></div>
+                    </div>
+                    <div className="feet">
+                        <div className="foot"> </div>
+                        <div className="foot"></div>
+                    </div>
+                    <div className="wings">
+                        <div className="wing1">
+                            <div className="knife"></div>
+                        </div>
+                        <div className="wing2">
+                            <div className="spoon"></div>
                         </div>
                     </div>
-                    <div className="mouth"></div>
+                    <div className="belly"></div>
                 </div>
-                <div className="feet">
-                    <div className="foot"> </div>
-                    <div className="foot"></div>
-                </div>
-                <div className="wings">
-                    <div className="wing1">
-                        <div className="knife"></div>
-                    </div>
-                    <div className="wing2">
-                        <div className="spoon"></div>
-                    </div>
-                </div>
-                <div className="belly"></div>
             </div>
         </div>
     );
 }
 
-export function FishIcon(amount: number): JSX.Element {
+export function FishIcon(amount: number, ratio: number): JSX.Element {
+    const scaleStyle = {
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+        transform: "scale(" + ratio + ")",
+    };
+
     let fishPart = (
         <>
             <div className="eye"></div>
@@ -94,27 +114,39 @@ export function FishIcon(amount: number): JSX.Element {
 
     switch (amount) {
         case 1:
-            return <div className="fish-1">{fishPart}</div>;
+            return (
+                <div style={scaleStyle}>
+                    <div className="fish-1">{fishPart}</div>
+                </div>
+            );
         case 2:
             return (
-                <>
+                <div style={scaleStyle}>
                     <div className="fish-2">{fishPart}</div>
                     <div className="fish-2">{fishPart}</div>
-                </>
+                </div>
             );
         case 3:
             return (
-                <>
+                <div style={scaleStyle}>
                     <div className="fish-3">{fishPart}</div>
                     <div className="fish-3">{fishPart}</div>
                     <div className="fish-3">{fishPart}</div>
-                </>
+                </div>
             );
     }
     return <></>;
 }
 
-export function FishBoxIcon(amount: number, playerID: number): JSX.Element {
+export function FishBoxIcon(
+    amount: number,
+    playerID: number,
+    ratio: number
+): JSX.Element {
+    const scaleStyle = {
+        transform: "scale(" + ratio + ")",
+    };
+
     let blackFish = (
         <div className="blackFish">
             <div className="eye"></div>
@@ -128,13 +160,15 @@ export function FishBoxIcon(amount: number, playerID: number): JSX.Element {
     const boxStyle = "box " + colorByPlayerID[playerID];
 
     return (
-        <div className="fishBox">
-            <div className="tf-1">{blackFish}</div>
-            <div className="tf-2">{blackFish}</div>
-            <div className="tf-3">{blackFish}</div>
-            <div className="tf-4">{blackFish}</div>
-            <div className={boxStyle}>
-                <h1>{amount}</h1>
+        <div style={scaleStyle}>
+            <div className="fishBox">
+                <div className="tf-1">{blackFish}</div>
+                <div className="tf-2">{blackFish}</div>
+                <div className="tf-3">{blackFish}</div>
+                <div className="tf-4">{blackFish}</div>
+                <div className={boxStyle}>
+                    <h1>{amount}</h1>
+                </div>
             </div>
         </div>
     );
