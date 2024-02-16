@@ -80,12 +80,8 @@ $colorWhiteGradient: linear-gradient(white, white);
     /* reduce the gap */
     transform: scale(1.2);
 
-    &:disabled {
-        @include disabled;
-    }
-
     &.red {
-        &:hover {
+        &:hover:enabled {
             @include active($colorRedDark);
         }
         &:disabled {
@@ -93,7 +89,7 @@ $colorWhiteGradient: linear-gradient(white, white);
         }
     }
     &.yellow {
-        &:hover {
+        &:hover:enabled {
             @include active($colorYellowDark);
         }
         &:disabled {
@@ -101,7 +97,7 @@ $colorWhiteGradient: linear-gradient(white, white);
         }
     }
     &.green {
-        &:hover {
+        &:hover:enabled {
             @include active($colorGreenDark);
         }
         &:disabled {
@@ -109,7 +105,7 @@ $colorWhiteGradient: linear-gradient(white, white);
         }
     }
     &.blue {
-        &:hover {
+        &:hover:enabled {
             @include active($colorBlueDark);
         }
         &:disabled {
