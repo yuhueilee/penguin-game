@@ -277,16 +277,9 @@ button {
 }
 
 .colonisedCell {
-    &:enabled {
-        .fishIconGrid {
-            z-index: 20;
-            transform: translateY(70%);
-        }
-    }
-    &:disabled {
-        .fishIconGrid {
-            display: none;
-        }
+    .fishIconGrid {
+        z-index: 20;
+        transform: translateY(70%);
     }
 
     $opacity: 0.7;
