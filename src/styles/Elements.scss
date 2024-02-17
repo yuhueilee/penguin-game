@@ -17,7 +17,7 @@ $colorOrange: #ffba4c;
 $colorOrangeDark: #f29100;
 $colorGreyShadow: rgba(black, 25%);
 
-$gridSize: 120px;
+$gridSize: 20px;
 $penguinBodyRadius: 50% 50% 3px 3px;
 $penguinBodyWidth: 16px;
 $penguinBodyHeight: 18px;
@@ -211,6 +211,46 @@ $fishTailSize: 5px;
                 color: white;
             }
         }
+
+        &.active {
+            .wing1 {
+                animation: leftWingAnimation 0.5s infinite alternate;
+            }
+            .knife {
+                animation: knifeAnimation 0.5s infinite alternate;
+            }
+            .spoon {
+                animation: spoonAnimation 0.5s infinite alternate;
+            }
+            .wing2 {
+                animation: rightWingAnimation 0.5s infinite alternate;
+            }
+            .card {
+                animation: cardAnimation 0.5s infinite alternate;
+            }
+        }
+    }
+
+    @keyframes leftWingAnimation {
+        100% {
+            @include size(
+                $penguinWingWidth,
+                $penguinWingsHeight,
+                100% 45% 0 45%
+            );
+            transform: translateX(-3px);
+        }
+    }
+
+    @keyframes rightWingAnimation {
+        100% {
+            @include size(
+                $penguinWingWidth,
+                $penguinWingsHeight,
+                45% 100% 45% 0
+            );
+            transform: translateX(3px);
+        }
     }
 
     @keyframes cardAnimation {
@@ -220,37 +260,21 @@ $fishTailSize: 5px;
         }
     }
 
-    .body:hover {
-        .wing1 {
-            @include size(
-                $penguinWingWidth,
-                $penguinWingsHeight,
-                100% 45% 0 45%
-            );
-            transform: translateX(-3px);
-        }
-        .knife {
+    @keyframes knifeAnimation {
+        100% {
             transform: rotate(20deg);
         }
-        .spoon {
+    }
+
+    @keyframes spoonAnimation {
+        100% {
             transform: rotate(-30deg);
-        }
-        .wing2 {
-            @include size(
-                $penguinWingWidth,
-                $penguinWingsHeight,
-                45% 100% 45% 0
-            );
-            transform: translateX(3px);
-        }
-        .card {
-            animation: cardAnimation 0.5s infinite alternate;
         }
     }
 }
 
 .grid {
-    $width: 0.2em;
+    $width: 0.02em;
     @include flex;
     @include size($gridSize, $gridSize, 50%);
     background: $colorBlue content-box;

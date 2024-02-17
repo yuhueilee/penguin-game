@@ -34,7 +34,7 @@ export function PenguinBattleBoard({
             ctx.gameover.winner !== undefined ? (
                 <div className="winner">
                     {Celebration()}
-                    {PenguinIcon(parseInt(ctx.gameover.winner), 5)}
+                    {PenguinIcon(parseInt(ctx.gameover.winner), 5, true)}
                     <h1 className="title">You Win!</h1>
                 </div>
             ) : (
@@ -52,52 +52,41 @@ export function PenguinBattleBoard({
         for (let j = 0; j < numColumns; j++) {
             const cellID = maxCellsPerRow * i + j - Math.floor(i / 2);
             const playerID = playerIDOfLabourAtCell(cellID, G.locations);
+            const handleOnClick = (id: number) => {
+                if (showColoniseButton(ctx, G, currPlayerID, cellID)) {
+                    return colonise(id);
+                }
+                if (showLocateButton(ctx, G, currPlayerID, cellID)) {
+                    return locate(id);
+                }
+            };
+            const disabled =
+                !(
+                    showColoniseButton(ctx, G, currPlayerID, cellID) ||
+                    showLocateButton(ctx, G, currPlayerID, cellID)
+                ) || ctx.gameover;
+            const cellStyle = isFishCaught(cellID, G.cells, G.locations)
+                ? "eatenCell"
+                : "colonisedCell";
             cells.push(
-                <div
+                <button
                     key={cellID}
                     className={colorByPlayer(
-                        "colonisedCell",
+                        cellStyle,
+                        currPlayerID,
                         G.cells[cellID],
                         "emptyCell" + cellID
                     )}
+                    onClick={() => handleOnClick(cellID)}
+                    disabled={disabled}
                 >
                     <div className="fishIconGrid">
-                        {FishIcon(G.fish[cellID], 3)}
+                        {FishIcon(G.fish[cellID], 2)}
                     </div>
                     <div className="labourIconGrid">
-                        {PenguinLabourIcon(playerID, 5)}
+                        {PenguinLabourIcon(playerID, 3, cellID === G.location)}
                     </div>
-                    {showColoniseButton(ctx, G, currPlayerID, cellID) ? (
-                        <button
-                            className={colorByPlayer(
-                                "coloniseBtn",
-                                currPlayerID,
-                                "defaultBtn"
-                            )}
-                            onClick={() => colonise(cellID)}
-                            disabled={ctx.gameover}
-                        >
-                            occupy
-                        </button>
-                    ) : (
-                        <></>
-                    )}
-                    {showLocateButton(ctx, G, currPlayerID, cellID) ? (
-                        <button
-                            className={colorByPlayer(
-                                "locateBtn",
-                                currPlayerID,
-                                "defaultBtn"
-                            )}
-                            onClick={() => locate(cellID)}
-                            disabled={ctx.gameover}
-                        >
-                            select
-                        </button>
-                    ) : (
-                        <></>
-                    )}
-                </div>
+                </button>
             );
         }
         tbody.push(
@@ -111,14 +100,23 @@ export function PenguinBattleBoard({
     let ranking = [];
     for (let i = 0; i < scoreRanking.length; i++) {
         let playerID = scoreRanking[i];
+        const playerInfoStyle =
+            playerID === currPlayerID ? "playerInfo focus" : "playerInfo";
         ranking.push(
             <div
                 key={playerID}
-                className={colorByPlayer("playerInfo", playerID, "playerInfo")}
+                className={colorByPlayer(
+                    playerInfoStyle,
+                    currPlayerID,
+                    playerID,
+                    "playerInfo"
+                )}
             >
-                <div className="playerIcon">{PenguinIcon(playerID, 5)}</div>
+                <div className="playerIcon">
+                    {PenguinIcon(playerID, 3, playerID === currPlayerID)}
+                </div>
                 <div className="score">
-                    {FishBoxIcon(G.scores[playerID], playerID, 2)}
+                    {FishBoxIcon(G.scores[playerID], playerID, 1.5)}
                 </div>
             </div>
         );
@@ -126,18 +124,7 @@ export function PenguinBattleBoard({
 
     return (
         <div className="board">
-            <div className="banner">
-                <h1 className="header">PENGUIN BATTLE</h1>
-                <h4 className="subTitle">- based on "Hey! That's My Fish!"</h4>
-            </div>
-            <div className="playerTurn">
-                <h1 className="title">Now Playing...</h1>
-                {PenguinIcon(currPlayerID, 5)}
-            </div>
-            <div className="leaderboard">
-                <h1 className="title">LeaderBoard</h1>
-                {ranking}
-            </div>
+            <div className="leaderboard">{ranking}</div>
             <div className="table">{tbody}</div>
             {winner}
         </div>
@@ -148,13 +135,19 @@ export function PenguinBattleBoard({
  * Determine the combined style based on player ID.
  *
  * @param prefix prefix style class name
+ * @param currentPlayerID current active player ID
  * @param playerID player ID
  * @param fallBack fallback style when no player ID is supplied
  * @returns combined style based on player ID
  */
-const colorByPlayer = (prefix: string, playerID: number, fallBack: string) => {
+const colorByPlayer = (
+    prefix: string,
+    currentPlayerID: number,
+    playerID: number,
+    fallBack: string
+) => {
     if (playerID === null) {
-        return fallBack;
+        return fallBack + " " + colorByPlayerID[currentPlayerID];
     }
 
     return prefix + " " + colorByPlayerID[playerID];
@@ -222,6 +215,28 @@ const showLocateButton = (
         isLabourLocated(playerID, cellID, g.locations) &&
         isLinked(cellID, g.cells, g.cellCoords, maxCellsPerRow)
     );
+};
+
+/**
+ * Determines if the cell has been colonised before.
+ *
+ * @param cellID cell ID
+ * @param cells a list of player IDs
+ * @param locations a list of list of each labour's location
+ * @returns true if the cell ID has been colonised and no labour is located on it
+ */
+const isFishCaught = (
+    cellID: number,
+    cells: Array<number>,
+    locations: Array<Array<number>>
+): boolean => {
+    if (isCellColonised(cellID, cells)) {
+        const labourLocations = locations.flat(1);
+
+        return labourLocations.indexOf(cellID) === -1;
+    }
+
+    return false;
 };
 
 /**

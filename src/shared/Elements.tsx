@@ -4,17 +4,22 @@ import React from "react";
 
 import { colorByPlayerID } from "./Consts";
 
-export function PenguinIcon(playerID: number, ratio: number): JSX.Element {
+export function PenguinIcon(
+    playerID: number,
+    ratio: number,
+    active: boolean
+): JSX.Element {
     const colorStyle = colorByPlayerID[playerID];
     const gridStyle = "grid " + colorStyle;
     const scaleStyle = {
         transform: "scale(" + ratio + ")",
     };
+    const bodyStateStyle = active ? "body active" : "body";
 
     return (
-        <div className={gridStyle}>
-            <div style={scaleStyle}>
-                <div className="body">
+        <div style={scaleStyle}>
+            <div className={gridStyle}>
+                <div className={bodyStateStyle}>
                     <div className="face">
                         <div className="eyes">
                             <div className="eye1">
@@ -48,7 +53,8 @@ export function PenguinIcon(playerID: number, ratio: number): JSX.Element {
 
 export function PenguinLabourIcon(
     playerID: number,
-    ratio: number
+    ratio: number,
+    active: boolean
 ): JSX.Element {
     if (playerID === -1) {
         return <></>;
@@ -59,11 +65,12 @@ export function PenguinLabourIcon(
     const scaleStyle = {
         transform: "scale(" + ratio + ")",
     };
+    const bodyStateStyle = active ? "body active" : "body";
 
     return (
         <div className={labourStyle}>
             <div style={scaleStyle}>
-                <div className="body">
+                <div className={bodyStateStyle}>
                     <div className="face">
                         <div className="eyes">
                             <div className="eye1">
