@@ -82,7 +82,7 @@ $colorWhiteGradient: linear-gradient(white, white);
 
     &.red {
         &:hover:enabled {
-            @include active($colorRedDark);
+            @include hover($colorRedDark);
         }
         &:disabled {
             @include disabled;
@@ -90,7 +90,7 @@ $colorWhiteGradient: linear-gradient(white, white);
     }
     &.yellow {
         &:hover:enabled {
-            @include active($colorYellowDark);
+            @include hover($colorYellowDark);
         }
         &:disabled {
             @include disabled;
@@ -98,7 +98,7 @@ $colorWhiteGradient: linear-gradient(white, white);
     }
     &.green {
         &:hover:enabled {
-            @include active($colorGreenDark);
+            @include hover($colorGreenDark);
         }
         &:disabled {
             @include disabled;
@@ -106,7 +106,7 @@ $colorWhiteGradient: linear-gradient(white, white);
     }
     &.blue {
         &:hover:enabled {
-            @include active($colorBlueDark);
+            @include hover($colorBlueDark);
         }
         &:disabled {
             @include disabled;
@@ -114,7 +114,7 @@ $colorWhiteGradient: linear-gradient(white, white);
     }
 }
 
-@mixin active($primary) {
+@mixin hover($primary) {
     background: $primary;
     cursor: pointer;
 }
