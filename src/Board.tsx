@@ -65,11 +65,14 @@ export function PenguinBattleBoard({
                     showColoniseButton(ctx, G, currPlayerID, cellID) ||
                     showLocateButton(ctx, G, currPlayerID, cellID)
                 ) || ctx.gameover;
+            const cellStyle = isFishCaught(cellID, G.cells, G.locations)
+                ? "eatenCell"
+                : "colonisedCell";
             cells.push(
                 <button
                     key={cellID}
                     className={colorByPlayer(
-                        "colonisedCell",
+                        cellStyle,
                         currPlayerID,
                         G.cells[cellID],
                         "emptyCell" + cellID
@@ -212,6 +215,28 @@ const showLocateButton = (
         isLabourLocated(playerID, cellID, g.locations) &&
         isLinked(cellID, g.cells, g.cellCoords, maxCellsPerRow)
     );
+};
+
+/**
+ * Determines if the cell has been colonised before.
+ *
+ * @param cellID cell ID
+ * @param cells a list of player IDs
+ * @param locations a list of list of each labour's location
+ * @returns true if the cell ID has been colonised and no labour is located on it
+ */
+const isFishCaught = (
+    cellID: number,
+    cells: Array<number>,
+    locations: Array<Array<number>>
+): boolean => {
+    if (isCellColonised(cellID, cells)) {
+        const labourLocations = locations.flat(1);
+
+        return labourLocations.indexOf(cellID) === -1;
+    }
+
+    return false;
 };
 
 /**

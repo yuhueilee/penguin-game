@@ -17,7 +17,7 @@ $colorGreenDark: #65df67;
 $colorBlueLight: #6fc5ff;
 $colorBlueLightDarken: #54a1d5;
 $colorBlueDark: #0058ff;
-$colorBluePond: #1a76e7;
+$colorBluePond: #3e6589;
 $colorRedGradient: linear-gradient(150deg, $colorRedLight, $colorRedDark);
 $colorYellowGradient: linear-gradient(
     150deg,
@@ -295,6 +295,18 @@ button {
     }
     &.blue {
         @include cellStyle(rgba($colorBlueDark, $opacity));
+    }
+}
+
+.eatenCell {
+    &.red,
+    &.yellow,
+    &.green,
+    &.blue {
+        @include cellStyle(transparent);
+        .fishIconGrid {
+            filter: opacity(0);
+        }
     }
 }
 
