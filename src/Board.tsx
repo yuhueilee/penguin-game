@@ -97,11 +97,13 @@ export function PenguinBattleBoard({
     let ranking = [];
     for (let i = 0; i < scoreRanking.length; i++) {
         let playerID = scoreRanking[i];
+        const playerInfoStyle =
+            playerID === currPlayerID ? "playerInfo focus" : "playerInfo";
         ranking.push(
             <div
                 key={playerID}
                 className={colorByPlayer(
-                    "playerInfo",
+                    playerInfoStyle,
                     currPlayerID,
                     playerID,
                     "playerInfo"
