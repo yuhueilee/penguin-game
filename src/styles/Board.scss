@@ -272,6 +272,7 @@ button {
     &:enabled {
         .fishIconGrid {
             z-index: 20;
+            transform: translateY(70%);
         }
     }
     &:disabled {
