@@ -11,40 +11,51 @@ import {
     Rows,
 } from "./Helpers";
 
-it("correctly determined if the game is over", () => {
-    expect(
-        IsFinished(
-            [
-                [2, 4],
-                [10, 11],
-            ],
-            Array(15).fill(null), // none of the cells has been occupied
-            CalculateCoords(15, 3),
-            3
-        )
-    ).toBe(false);
-    expect(
-        IsFinished(
-            [
-                [2, 4],
-                [10, 11],
-            ],
-            Array(15).fill(0), // all of the cells has been occupied by player 0
-            CalculateCoords(15, 3),
-            3
-        )
-    ).toBe(true);
-    expect(
-        IsFinished(
-            [
-                [-1, -1],
-                [-1, -1],
-            ], // no cells has been located
-            Array(15).fill(null), // none of the cells has been occupied
-            CalculateCoords(15, 3),
-            3
-        )
-    ).toBe(false);
+describe("correctly determined if the game is over", () => {
+    // Setup.
+    const totalCells = 15;
+    const maxCellsPerRow = 3;
+    const coords = CalculateCoords(totalCells, maxCellsPerRow);
+
+    test("should be false if the labours still can move", () => {
+        expect(
+            IsFinished(
+                [
+                    [2, 4],
+                    [10, 11],
+                ],
+                Array(15).fill(null), // none of the cells has been occupied
+                coords,
+                maxCellsPerRow
+            )
+        ).toBe(false);
+    });
+    test("should be true if all of the cells has been occupied by a player", () => {
+        expect(
+            IsFinished(
+                [
+                    [2, 4],
+                    [10, 11],
+                ],
+                Array(15).fill(0), // all of the cells has been occupied by player 0
+                coords,
+                maxCellsPerRow
+            )
+        ).toBe(true);
+    });
+    test("should be false if no labour has been put on the cell", () => {
+        expect(
+            IsFinished(
+                [
+                    [-1, -1],
+                    [-1, -1],
+                ], // no cells has been located
+                Array(15).fill(null), // none of the cells has been occupied
+                coords,
+                maxCellsPerRow
+            )
+        ).toBe(false);
+    });
 });
 
 it("correctly determined if the turn is over for a player", () => {
