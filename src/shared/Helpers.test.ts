@@ -211,8 +211,10 @@ describe("correctly return a list of linked cell IDs", () => {
     });
 });
 
-it("correctly return the ranking of player's ID", () => {
-    expect(Ranking([3, 4, 1])).toEqual([1, 0, 2]);
-    expect(Ranking([2, 4, 5, 1])).toEqual([2, 1, 0, 3]);
-    expect(Ranking([3, 1, 1])).toEqual([0, 1, 2]);
+describe("correctly return the players ranking", () => {
+    test("should return the indexes sorted by their corresponding values in descending order", () => {
+        expect(Ranking([3, 4, 1])).toEqual([1, 0, 2]);
+        expect(Ranking([2, 4, 5, 1])).toEqual([2, 1, 0, 3]);
+        expect(Ranking([3, 1, 1])).toEqual([0, 1, 2]);
+    });
 });
