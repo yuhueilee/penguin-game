@@ -154,28 +154,35 @@ describe("correctly calculated the ID based on the coordinate", () => {
     });
 });
 
-it("correctly determine if the cell ID is linked to the location", () => {
-    expect(IsLinked(1, 3, CalculateCoords(5, 2))).toBe(true);
+describe("correctly determine if the two cell IDs are linked horizontally or diagonally", () => {
+    test("should return true when the two IDs are located at the same row", () => {
+        let cellCoords = CalculateCoords(15, 3);
+        expect(IsLinked(0, 1, cellCoords)).toBe(true);
+        expect(IsLinked(0, 2, cellCoords)).toBe(true);
+        expect(IsLinked(1, 0, cellCoords)).toBe(true);
+        expect(IsLinked(1, 2, cellCoords)).toBe(true);
+    });
 
-    let cellCoords = CalculateCoords(15, 3);
-    expect(IsLinked(0, 1, cellCoords)).toBe(true);
-    expect(IsLinked(0, 2, cellCoords)).toBe(true);
-    expect(IsLinked(0, 3, cellCoords)).toBe(true);
-    expect(IsLinked(0, 4, cellCoords)).toBe(false);
+    test("should return true when the two IDs are linked diagonally", () => {
+        expect(IsLinked(1, 3, CalculateCoords(5, 2))).toBe(true);
+        expect(IsLinked(4, 8, CalculateCoords(11, 4))).toBe(true);
+        expect(IsLinked(5, 10, CalculateCoords(14, 5))).toBe(true);
 
-    expect(IsLinked(1, 0, cellCoords)).toBe(true);
-    expect(IsLinked(1, 2, cellCoords)).toBe(true);
-    expect(IsLinked(1, 3, cellCoords)).toBe(true);
-    expect(IsLinked(1, 4, cellCoords)).toBe(true);
-    expect(IsLinked(1, 5, cellCoords)).toBe(true);
-    expect(IsLinked(1, 6, cellCoords)).toBe(false);
-    expect(IsLinked(1, 7, cellCoords)).toBe(true);
-    expect(IsLinked(1, 11, cellCoords)).toBe(false);
-    expect(IsLinked(3, 6, cellCoords)).toBe(true);
+        let cellCoords = CalculateCoords(15, 3);
+        expect(IsLinked(0, 3, cellCoords)).toBe(true);
+        expect(IsLinked(1, 3, cellCoords)).toBe(true);
+        expect(IsLinked(1, 4, cellCoords)).toBe(true);
+        expect(IsLinked(1, 5, cellCoords)).toBe(true);
+        expect(IsLinked(1, 7, cellCoords)).toBe(true);
+        expect(IsLinked(3, 6, cellCoords)).toBe(true);
+    });
 
-    expect(IsLinked(4, 8, CalculateCoords(11, 4))).toBe(true);
-
-    expect(IsLinked(5, 10, CalculateCoords(14, 5))).toBe(true);
+    test("should return false when the two IDs are neither located at the same row or linked diagonally", () => {
+        let cellCoords = CalculateCoords(15, 3);
+        expect(IsLinked(0, 4, cellCoords)).toBe(false);
+        expect(IsLinked(1, 6, cellCoords)).toBe(false);
+        expect(IsLinked(1, 11, cellCoords)).toBe(false);
+    });
 });
 
 it("correctly determines if the coordinate is out of range", () => {
