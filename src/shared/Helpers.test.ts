@@ -68,11 +68,15 @@ describe("correctly calculated the number of rows", () => {
     });
 });
 
-it("correctly calculated the number of columns", () => {
-    expect(Columns(1, 2)).toEqual(1);
-    expect(Columns(2, 3)).toEqual(3);
-    expect(Columns(1, 3)).toEqual(2);
-    expect(Columns(2, 4)).toEqual(4);
+describe("correctly calculated the number of columns", () => {
+    test("should return maximum cells per row subtracted by one given odd index", () => {
+        expect(Columns(1, 2)).toEqual(1);
+        expect(Columns(1, 3)).toEqual(2);
+    });
+    test("should return maximum cells per row given even index", () => {
+        expect(Columns(2, 3)).toEqual(3);
+        expect(Columns(2, 4)).toEqual(4);
+    });
 });
 
 it("correctly calculated the coordinate based on the ID", () => {
