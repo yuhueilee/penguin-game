@@ -11,7 +11,7 @@ import {
     Rows,
 } from "./Helpers";
 
-describe("correctly determined if the game is over", () => {
+describe("correctly determines if the game is over", () => {
     // Setup.
     const totalCells = 15;
     const maxCellsPerRow = 3;
@@ -58,7 +58,7 @@ describe("correctly determined if the game is over", () => {
     });
 });
 
-describe("correctly calculated the number of rows", () => {
+describe("correctly calculates the number of rows", () => {
     test("should return integer row value", () => {
         expect(Rows(5, 2)).toEqual(3);
         expect(Rows(5, 2)).toEqual(3);
@@ -68,7 +68,7 @@ describe("correctly calculated the number of rows", () => {
     });
 });
 
-describe("correctly calculated the number of columns", () => {
+describe("correctly calculates the number of columns", () => {
     test("should return maximum cells per row subtracted by one given odd index", () => {
         expect(Columns(1, 2)).toEqual(1);
         expect(Columns(1, 3)).toEqual(2);
@@ -79,7 +79,7 @@ describe("correctly calculated the number of columns", () => {
     });
 });
 
-describe("correctly calculated the coordinate based on the ID", () => {
+describe("correctly calculates the coordinate based on the ID", () => {
     test("should return x and y coordinate given an ID and a list of coordinates", () => {
         expect(IDToCoord(0, CalculateCoords(15, 3))).toEqual({
             xCoord: 0,
@@ -104,7 +104,7 @@ describe("correctly calculated the coordinate based on the ID", () => {
     });
 });
 
-describe("correctly calculated the ID based on the coordinate", () => {
+describe("correctly calculates the ID based on the coordinate", () => {
     test("should return an ID given the coordinate and a list of coordinates", () => {
         expect(
             CoordToID(
@@ -154,7 +154,7 @@ describe("correctly calculated the ID based on the coordinate", () => {
     });
 });
 
-describe("correctly determine if the two cell IDs are linked horizontally or diagonally", () => {
+describe("correctly determines if the two cell IDs are linked horizontally or diagonally", () => {
     test("should return true when the two IDs are located at the same row", () => {
         let cellCoords = CalculateCoords(15, 3);
         expect(IsLinked(0, 1, cellCoords)).toBe(true);
@@ -193,7 +193,7 @@ describe("correctly determines if the coordinate is out of range", () => {
     });
 });
 
-describe("correctly return a list of linked cell IDs", () => {
+describe("correctly returns a list of linked cell IDs", () => {
     test("should return a list of linked cell IDs", () => {
         const cellCoords = CalculateCoords(15, 3);
         let cells = Array(15).fill(null);
@@ -211,7 +211,7 @@ describe("correctly return a list of linked cell IDs", () => {
     });
 });
 
-describe("correctly return the players ranking", () => {
+describe("correctly returns the players ranking", () => {
     test("should return the indexes sorted by their corresponding values in descending order", () => {
         expect(Ranking([3, 4, 1])).toEqual([1, 0, 2]);
         expect(Ranking([2, 4, 5, 1])).toEqual([2, 1, 0, 3]);
