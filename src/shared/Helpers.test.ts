@@ -58,11 +58,14 @@ describe("correctly determined if the game is over", () => {
     });
 });
 
-it("correctly calculated the number of rows", () => {
-    expect(Rows(5, 2)).toEqual(3);
-    expect(Rows(15, 3)).toEqual(6);
-    expect(Rows(8, 3)).toEqual(3);
-    expect(Rows(11, 4)).toEqual(3);
+describe("correctly calculated the number of rows", () => {
+    test("should return integer row value", () => {
+        expect(Rows(5, 2)).toEqual(3);
+        expect(Rows(5, 2)).toEqual(3);
+        expect(Rows(15, 3)).toEqual(6);
+        expect(Rows(8, 3)).toEqual(3);
+        expect(Rows(11, 4)).toEqual(3);
+    });
 });
 
 it("correctly calculated the number of columns", () => {
