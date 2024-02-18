@@ -17,7 +17,7 @@ describe("correctly determines if the game is over", () => {
     const maxCellsPerRow = 3;
     const coords = CalculateCoords(totalCells, maxCellsPerRow);
 
-    test("should be false if the labours still can move", () => {
+    test("should return false if the labours still can move", () => {
         expect(
             IsFinished(
                 [
@@ -30,7 +30,7 @@ describe("correctly determines if the game is over", () => {
             )
         ).toBe(false);
     });
-    test("should be true if all of the cells has been occupied by a player", () => {
+    test("should return true if all of the cells has been occupied by a player", () => {
         expect(
             IsFinished(
                 [
@@ -43,7 +43,7 @@ describe("correctly determines if the game is over", () => {
             )
         ).toBe(true);
     });
-    test("should be false if no labour has been put on the cell", () => {
+    test("should return false if no labour has been put on the cell", () => {
         expect(
             IsFinished(
                 [
