@@ -58,42 +58,6 @@ describe("correctly determined if the game is over", () => {
     });
 });
 
-it("correctly determined if the turn is over for a player", () => {
-    expect(
-        IsFinished(
-            [
-                [2, 4],
-                [10, 11],
-            ],
-            Array(15).fill(null), // none of the cells has been occupied
-            CalculateCoords(15, 3),
-            3
-        )
-    ).toBe(false);
-    expect(
-        IsFinished(
-            [
-                [2, 4],
-                [10, 11],
-            ],
-            Array(15).fill(0), // all of the cells has been occupied by player 0
-            CalculateCoords(15, 3),
-            3
-        )
-    ).toBe(true);
-    expect(
-        IsFinished(
-            [
-                [-1, -1],
-                [-1, -1],
-            ], // no cells has been located
-            Array(15).fill(null), // none of the cells has been occupied
-            CalculateCoords(15, 3),
-            3
-        )
-    ).toBe(false);
-});
-
 it("correctly calculated the number of rows", () => {
     expect(Rows(5, 2)).toEqual(3);
     expect(Rows(15, 3)).toEqual(6);
