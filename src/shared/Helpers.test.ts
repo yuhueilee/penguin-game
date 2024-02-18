@@ -79,26 +79,28 @@ describe("correctly calculated the number of columns", () => {
     });
 });
 
-it("correctly calculated the coordinate based on the ID", () => {
-    expect(IDToCoord(0, CalculateCoords(15, 3))).toEqual({
-        xCoord: 0,
-        yCoord: 0,
-    });
-    expect(IDToCoord(4, CalculateCoords(15, 3))).toEqual({
-        xCoord: 1,
-        yCoord: 3,
-    });
-    expect(IDToCoord(6, CalculateCoords(15, 3))).toEqual({
-        xCoord: 2,
-        yCoord: 2,
-    });
-    expect(IDToCoord(8, CalculateCoords(11, 4))).toEqual({
-        xCoord: 2,
-        yCoord: 2,
-    });
-    expect(IDToCoord(8, CalculateCoords(9, 5))).toEqual({
-        xCoord: 1,
-        yCoord: 7,
+describe("correctly calculated the coordinate based on the ID", () => {
+    test("should return x and y coordinate given an ID and a list of coordinates", () => {
+        expect(IDToCoord(0, CalculateCoords(15, 3))).toEqual({
+            xCoord: 0,
+            yCoord: 0,
+        });
+        expect(IDToCoord(4, CalculateCoords(15, 3))).toEqual({
+            xCoord: 1,
+            yCoord: 3,
+        });
+        expect(IDToCoord(6, CalculateCoords(15, 3))).toEqual({
+            xCoord: 2,
+            yCoord: 2,
+        });
+        expect(IDToCoord(8, CalculateCoords(11, 4))).toEqual({
+            xCoord: 2,
+            yCoord: 2,
+        });
+        expect(IDToCoord(8, CalculateCoords(9, 5))).toEqual({
+            xCoord: 1,
+            yCoord: 7,
+        });
     });
 });
 
