@@ -53,7 +53,10 @@ export const Winner = (playersScores: Array<number>) => {
 /**
  * Determines if the game is over by checking none of the labours have linked cells.
  *
+ * @param locations a list of list of labours' locations where the index corresponds to the player ID
  * @param cells a list of player IDs where the index is the cell ID
+ * @param cellCoords a list of coordinates where the index is the cell ID
+ * @param maxCellsPerRow maximum cells allowed per row
  * @returns a boolean indicating if the game is over
  */
 export const IsFinished = (
