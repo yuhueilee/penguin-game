@@ -193,16 +193,22 @@ describe("correctly determines if the coordinate is out of range", () => {
     });
 });
 
-it("correctly return a list of linked cell IDs", () => {
-    const cellCoords = CalculateCoords(15, 3);
-    let cells = Array(15).fill(null);
-    expect(LinkedCells(0, cells, cellCoords, 3)).toEqual([1, 2, 3, 6, 9, 12]);
-    expect(LinkedCells(8, cells, cellCoords, 3)).toEqual([
-        2, 4, 5, 6, 9, 10, 11, 14,
-    ]);
-    cells[6] = 1;
-    expect(LinkedCells(0, cells, cellCoords, 3)).toEqual([1, 2, 3]);
-    expect(LinkedCells(8, cells, cellCoords, 3)).toEqual([5, 9, 10, 11, 14]);
+describe("correctly return a list of linked cell IDs", () => {
+    test("should return a list of linked cell IDs", () => {
+        const cellCoords = CalculateCoords(15, 3);
+        let cells = Array(15).fill(null);
+        expect(LinkedCells(0, cells, cellCoords, 3)).toEqual([
+            1, 2, 3, 6, 9, 12,
+        ]);
+        expect(LinkedCells(8, cells, cellCoords, 3)).toEqual([
+            2, 4, 5, 6, 9, 10, 11, 14,
+        ]);
+        cells[6] = 1; // make the cell ID 6 to be occupied by player 1
+        expect(LinkedCells(0, cells, cellCoords, 3)).toEqual([1, 2, 3]);
+        expect(LinkedCells(8, cells, cellCoords, 3)).toEqual([
+            5, 9, 10, 11, 14,
+        ]);
+    });
 });
 
 it("correctly return the ranking of player's ID", () => {
