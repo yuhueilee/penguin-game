@@ -185,10 +185,12 @@ describe("correctly determine if the two cell IDs are linked horizontally or dia
     });
 });
 
-it("correctly determines if the coordinate is out of range", () => {
-    expect(OutOfRange(0, 0, 15, 3)).toBe(false);
-    expect(OutOfRange(2, 2, 15, 3)).toBe(false);
-    expect(OutOfRange(5, 3, 15, 3)).toBe(false);
+describe("correctly determines if the coordinate is out of range", () => {
+    test("should return false when the coordinate is within the maximum and minimum range of x and y coordinate", () => {
+        expect(OutOfRange(0, 0, 15, 3)).toBe(false);
+        expect(OutOfRange(2, 2, 15, 3)).toBe(false);
+        expect(OutOfRange(5, 3, 15, 3)).toBe(false);
+    });
 });
 
 it("correctly return a list of linked cell IDs", () => {
